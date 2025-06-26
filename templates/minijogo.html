@@ -2,26 +2,33 @@
 <html>
 <head>
   <meta charset="UTF-8">
-  <title>Mini-jogo de Bandeiras</title>
-  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mini-jogo de Bandeiras Futurista</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/minijogo.css') }}">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 </head>
 <body>
-    <a href="/" class="botao-voltar">← Voltar ao Início</a>
+  <a href="/" class="botao-voltar">← Voltar ao Jogo Principal</a>
 
   <div class="container">
-    <h2 id="titulo-jogo">Monte a bandeira</h2>
-        <p>(Arraste as cores na ordem correta)</p>
-        <div id="pecas" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
-        <br>
-        <button onclick="verificar()">Verificar</button>
-        <p id="resultado-mini"></p>
-        <button onclick="proximaBandeira()">Próxima Bandeira</button>
-
-
-
-    <button onclick="verificar()">Verificar</button>
-    <p id="resultado-mini"></p>
+    <h2 id="titulo-jogo">🏁 Monte a Bandeira</h2>
+    <p style="text-align: center; margin-bottom: 20px; color: #b0b0b0;">
+      Arraste as cores na ordem correta para formar a bandeira
+    </p>
+    
+    <div id="pecas" ondrop="drop(event)" ondragover="allowDrop(event)">
+      <!-- Peças serão carregadas aqui -->
+    </div>
+    
+    <div id="resultado-mini"></div>
+    
+    <div class="control-buttons">
+      <button onclick="verificar()">🔍 Verificar</button>
+      <button onclick="proximaBandeira()">➡️ Próxima Bandeira</button>
+    </div>
   </div>
+
   <script src="{{ url_for('static', filename='js/minijogo.js') }}"></script>
 </body>
 </html>

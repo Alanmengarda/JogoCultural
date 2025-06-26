@@ -2,33 +2,62 @@
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8" />
-  <title>Jogo Cultural</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Jogo Cultural Futurista</title>
   <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 </head>
 <body>
-  <div class="container">
-    <h1>Jogo Cultural</h1>
-    <select id="idioma" onchange="carregarPerguntas()"> 
-      <option value="pt">Português</option>
-      <option value="en">English</option>
-    </select>
+  <div class="game-layout">
+    <!-- Sidebar do Ranking -->
+    <aside class="ranking-sidebar">
+      <h3>🏆 RANKING</h3>
+      <ul id="ranking-list" class="ranking-list">
+        <!-- Rankings serão carregados dinamicamente -->
+      </ul>
+    </aside>
 
-    <div id="quiz-box">
-      <p id="tema"></p>
-      <h2 id="pergunta"></h2>
-      <div id="opcoes"></div>
-      <p id="explicacao" class="hidden"></p>
-      <button id="proximo" onclick="proximaPergunta()" disabled>Próxima</button>
-    </div>
+    <!-- Conteúdo Principal -->
+    <main class="main-content">
+      <div class="container">
+        <h1>JOGO CULTURAL</h1>
+        
+        <div class="language-selector">
+          <select id="idioma" onchange="carregarPerguntas()"> 
+            <option value="pt">🇧🇷 Português</option>
+            <option value="en">🇺🇸 English</option>
+          </select>
+        </div>
 
-    <div id="resultado" class="hidden">
-      <h2>Fim do jogo!</h2>
-      <p>Sua pontuação: <span id="pontuacao-final"></span></p>
-      <input type="text" id="nome-jogador" placeholder="Seu nome">
-      <button onclick="enviarPontuacao()">Salvar Pontuação</button>
-    </div>
+        <div class="quiz-container">
+          <div id="quiz-box">
+            <p id="tema"></p>
+            <h2 id="pergunta"></h2>
+            <div id="opcoes"></div>
+            <div id="explicacao" class="hidden"></div>
+            <div class="control-buttons">
+              <button id="proximo" onclick="proximaPergunta()" disabled>
+                Próxima Pergunta →
+              </button>
+            </div>
+          </div>
 
-    <a href="/minijogo" id="link-bonus" class="hidden">Ir para mini-jogo bônus 🇧🇷</a>
+          <div id="resultado" class="hidden">
+            <h2>🎯 Fim do Jogo!</h2>
+            <p>Sua pontuação final:</p>
+            <p><span id="pontuacao-final"></span></p>
+            <div>
+              <input type="text" id="nome-jogador" placeholder="Digite seu nome">
+              <button onclick="enviarPontuacao()">💾 Salvar Pontuação</button>
+            </div>
+            <a href="/minijogo" id="link-bonus" class="hidden">
+              🎮 Jogar Mini-game Bônus 🇧🇷
+            </a>
+          </div>
+        </div>
+      </div>
+    </main>
   </div>
 
   <script src="{{ url_for('static', filename='js/script.js') }}"></script>
