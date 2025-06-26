@@ -3,6 +3,7 @@ let indice = 0;
 let pontuacao = 0;
 let idioma = 'pt';
 
+
 function carregarPerguntas() {
   idioma = document.getElementById("idioma").value;
   fetch(`/perguntas?lang=${idioma}`)
@@ -34,18 +35,27 @@ function mostrarPergunta() {
 
 function responder(indiceEscolhido) {
   const p = perguntas[indice];
-  document.querySelectorAll("#opcoes button").forEach(b => b.disabled = true);
+  const opcoes = document.querySelectorAll("#opcoes button");
+
+  // Desabilita todos os botões de opção
+  opcoes.forEach(b => b.disabled = true);
+
+  const exp = document.getElementById("explicacao");
+  exp.classList.remove("hidden");
 
   if (indiceEscolhido === p.resposta_correta) {
     pontuacao += 10;
+    exp.innerHTML = `✅ Resposta correta!<br><em>${p.explicacao}</em>`;
+    opcoes[indiceEscolhido].classList.add("correta");
+  } else {
+    exp.innerHTML = `❌ Resposta errada! A correta era: <strong>${p.opcoes[p.resposta_correta]}</strong><br><em>${p.explicacao}</em>`;
+    opcoes[indiceEscolhido].classList.add("errada");
+    opcoes[p.resposta_correta].classList.add("correta");
   }
-
-  const exp = document.getElementById("explicacao");
-  exp.innerText = "🧠 " + p.explicacao;
-  exp.classList.remove("hidden");
 
   document.getElementById("proximo").disabled = false;
 }
+
 
 function proximaPergunta() {
   indice++;

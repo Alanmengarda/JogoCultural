@@ -12,6 +12,8 @@ def carregar_perguntas(idioma='pt'):
     caminho = f"dados/perguntas_{idioma}.json"
     with open(caminho, encoding="utf-8") as f:
         return json.load(f)
+    
+
 
 def carregar_ranking():
     if not os.path.exists("dados/ranking.json"):
@@ -32,7 +34,7 @@ def index():
 
 @app.route("/perguntas")
 def perguntas():
-    idioma = request.args.get("lang", "pt")
+    idioma = request.args.get("lang", '')
     return jsonify(carregar_perguntas(idioma))
 
 @app.route("/pontuar", methods=["POST"])

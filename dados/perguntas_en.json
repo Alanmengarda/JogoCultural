@@ -1,0 +1,121 @@
+[
+  {
+    "tema": "Cuisine",
+    "pergunta": "Which country is famous for the dish called sushi?",
+    "opcoes": ["China", "Japan", "South Korea", "Thailand"],
+    "resposta_correta": 1,
+    "explicacao": "Sushi is a traditional Japanese dish made with seasoned rice and usually raw fish or seafood."
+  },
+  {
+    "tema": "Religion",
+    "pergunta": "Which religion has the Bhagavad Gita as a sacred text?",
+    "opcoes": ["Christianity", "Islam", "Hinduism", "Buddhism"],
+    "resposta_correta": 2,
+    "explicacao": "The Bhagavad Gita is one of the most important sacred texts in Hinduism and is part of the Mahabharata epic."
+  },
+  {
+    "tema": "Art",
+    "pergunta": "Who painted the Mona Lisa?",
+    "opcoes": ["Michelangelo", "Van Gogh", "Leonardo da Vinci", "Picasso"],
+    "resposta_correta": 2,
+    "explicacao": "The Mona Lisa was painted by Leonardo da Vinci in the 16th century and is one of the most well-known artworks in the world."
+  },
+  {
+    "tema": "Clothing",
+    "pergunta": "What is a 'kimono'?",
+    "opcoes": ["A traditional dance", "A Japanese garment", "A musical instrument", "A typical dish"],
+    "resposta_correta": 1,
+    "explicacao": "The kimono is a traditional Japanese garment worn during formal occasions and festivals."
+  },
+  {
+    "tema": "Architecture",
+    "pergunta": "Where is the Taj Mahal located?",
+    "opcoes": ["India", "Pakistan", "Nepal", "Bangladesh"],
+    "resposta_correta": 0,
+    "explicacao": "The Taj Mahal is located in Agra, India, and is a mausoleum built by Emperor Shah Jahan in memory of his wife."
+  },
+  {
+    "tema": "Language",
+    "pergunta": "What is the official language of Brazil?",
+    "opcoes": ["Portuguese", "Spanish", "English", "French"],
+    "resposta_correta": 0,
+    "explicacao": "The official language of Brazil is Portuguese, due to Portuguese colonization in the 16th century."
+  },
+  {
+    "tema": "Dance",
+    "pergunta": "Flamenco is a traditional dance style from which country?",
+    "opcoes": ["Italy", "Mexico", "Spain", "Argentina"],
+    "resposta_correta": 2,
+    "explicacao": "Flamenco is an expressive form of music and dance that originated in the Andalusia region of Spain."
+  },
+  {
+    "tema": "Music",
+    "pergunta": "Reggae is a musical genre that originated in which country?",
+    "opcoes": ["United States", "Jamaica", "South Africa", "Cuba"],
+    "resposta_correta": 1,
+    "explicacao": "Reggae originated in Jamaica in the 1960s and became popular worldwide through artists like Bob Marley."
+  },
+  {
+    "tema": "Festivals",
+    "pergunta": "In which country is the Day of the Dead celebrated with altars and decorated skulls?",
+    "opcoes": ["Peru", "Mexico", "Spain", "Colombia"],
+    "resposta_correta": 1,
+    "explicacao": "The Day of the Dead is a traditional Mexican celebration that honors deceased loved ones with offerings and symbolic decorations."
+  },
+  {
+    "tema": "Cinema",
+    "pergunta": "Which country is known for its film industry called 'Bollywood'?",
+    "opcoes": ["India", "United States", "Japan", "France"],
+    "resposta_correta": 0,
+    "explicacao": "Bollywood is the name for the Indian film industry, especially in Mumbai, known for its colorful and musical films."
+  },
+  {
+    "tema": "Mythology",
+    "pergunta": "In Greek mythology, who is the god of thunder?",
+    "opcoes": ["Hades", "Ares", "Zeus", "Apollo"],
+    "resposta_correta": 2,
+    "explicacao": "Zeus is the main god of Olympus and is known as the god of the sky, thunder, and lightning in Greek mythology."
+  },
+  {
+    "tema": "Traditional Sports",
+    "pergunta": "Sumo is a traditional sport from which country?",
+    "opcoes": ["China", "Mongolia", "Japan", "South Korea"],
+    "resposta_correta": 2,
+    "explicacao": "Sumo is a traditional Japanese wrestling sport with religious and Shinto ritual roots."
+  },
+  {
+    "tema": "Literature",
+    "pergunta": "Who wrote 'Don Quixote'?",
+    "opcoes": ["Shakespeare", "Cervantes", "Camões", "Victor Hugo"],
+    "resposta_correta": 1,
+    "explicacao": "Don Quixote was written by Miguel de Cervantes and is considered one of the greatest classics of Spanish and world literature."
+  },
+  {
+    "tema": "Traditions",
+    "pergunta": "Afternoon tea is a famous cultural tradition in which country?",
+    "opcoes": ["India", "China", "England", "Australia"],
+    "resposta_correta": 2,
+    "explicacao": "Afternoon tea is a British tradition that began in the 19th century, usually accompanied by cakes and sandwiches."
+  },
+  {
+    "tema": "Religious Architecture",
+    "pergunta": "The Notre-Dame Cathedral is located in which city?",
+    "opcoes": ["Paris", "London", "Madrid", "Rome"],
+    "resposta_correta": 0,
+    "explicacao": "The Notre-Dame Cathedral is in Paris, France, and is one of the greatest examples of Gothic architecture in Europe."
+  },
+  {
+    "tema": "German Language",
+    "pergunta": "From which country did the word 'Kindergarten' originate?",
+    "opcoes": ["Austria", "Germany", "Switzerland", "Netherlands"],
+    "resposta_correta": 1,
+    "explicacao": "'Kindergarten' is a German word meaning 'children's garden'. It was coined in Germany by Friedrich Fröbel in the 19th century to describe an early childhood education institution."
+  },
+  {
+    "tema": "French Language",
+    "pergunta": "From which country did the word 'Bonjour' originate?",
+    "opcoes": ["Canada", "Belgium", "France", "Switzerland"],
+    "resposta_correta": 2,
+    "explicacao": "'Bonjour' is a typical French greeting meaning 'good morning' and originated in France, although it is also used in other French-speaking countries."
+  }
+]
