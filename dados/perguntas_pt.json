@@ -1,0 +1,90 @@
+[{
+        "tema": "Culinária",
+        "pergunta": "Qual país é famoso pelo prato chamado sushi?",
+        "opcoes": ["China", "Japão", "Coreia do Sul", "Tailândia"],
+        "resposta_correta": 1
+    },
+    {
+        "tema": "Religião",
+        "pergunta": "Qual religião tem o Bhagavad Gita como texto sagrado?",
+        "opcoes": ["Cristianismo", "Islamismo", "Hinduísmo", "Budismo"],
+        "resposta_correta": 2
+    },
+    {
+        "tema": "Arte",
+        "pergunta": "Quem pintou a Mona Lisa?",
+        "opcoes": ["Michelangelo", "Van Gogh", "Leonardo da Vinci", "Picasso"],
+        "resposta_correta": 2
+    },
+    {
+        "tema": "Vestimenta",
+        "pergunta": "O que é um 'kimono'?",
+        "opcoes": ["Uma dança tradicional", "Uma peça de roupa japonesa", "Um instrumento musical", "Um prato típico"],
+        "resposta_correta": 1
+    },
+    {
+        "tema": "Arquitetura",
+        "pergunta": "Onde fica o Taj Mahal?",
+        "opcoes": ["Índia", "Paquistão", "Nepal", "Bangladesh"],
+        "resposta_correta": 0
+    },
+    {
+    "tema": "Língua",
+    "pergunta": "Qual é a língua oficial do Brasil?",
+    "opcoes": ["Português", "Espanhol", "Inglês", "Francês"],
+    "resposta_correta": 0
+    },
+    {
+        "tema": "Dança",
+        "pergunta": "O flamenco é um estilo de dança tradicional de qual país?",
+        "opcoes": ["Itália", "México", "Espanha", "Argentina"],
+        "resposta_correta": 2
+    },
+    {
+        "tema": "Música",
+        "pergunta": "O reggae é um gênero musical originado em qual país?",
+        "opcoes": ["Estados Unidos", "Jamaica", "África do Sul", "Cuba"],
+        "resposta_correta": 1
+    },
+    {
+        "tema": "Festas",
+        "pergunta": "Em qual país é celebrado o Dia dos Mortos com altares e caveiras decoradas?",
+        "opcoes": ["Peru", "México", "Espanha", "Colômbia"],
+        "resposta_correta": 1
+    },
+    {
+        "tema": "Cinema",
+        "pergunta": "Qual país é conhecido por sua indústria de cinema chamada 'Bollywood'?",
+        "opcoes": ["Índia", "Estados Unidos", "Japão", "França"],
+        "resposta_correta": 0
+    },
+    {
+        "tema": "Mitologia",
+        "pergunta": "Na mitologia grega, quem é o deus do trovão?",
+        "opcoes": ["Hades", "Ares", "Zeus", "Apolo"],
+        "resposta_correta": 2
+    },
+    {
+        "tema": "Esportes Tradicionais",
+        "pergunta": "O sumô é um esporte tradicional de qual país?",
+        "opcoes": ["China", "Mongólia", "Japão", "Coreia do Sul"],
+        "resposta_correta": 2
+    },
+    {
+        "tema": "Literatura",
+        "pergunta": "Quem escreveu 'Dom Quixote'?",
+        "opcoes": ["Shakespeare", "Cervantes", "Camões", "Victor Hugo"],
+        "resposta_correta": 1
+    },
+    {
+        "tema": "Tradições",
+        "pergunta": "O chá da tarde é uma tradição cultural famosa em qual país?",
+        "opcoes": ["Índia", "China", "Inglaterra", "Austrália"],
+        "resposta_correta": 2
+    },
+    {
+        "tema": "Arquitetura Religiosa",
+        "pergunta": "A Catedral de Notre-Dame está localizada em qual cidade?",
+        "opcoes": ["Paris", "Londres", "Madri", "Roma"],
+        "resposta_correta": 0
+    }]

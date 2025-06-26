@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Mini-jogo de Bandeiras</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+  <div class="container">
+    <h2>Monte a bandeira do Brasil 🇧🇷</h2>
+    <p>(Exemplo simples: arraste as cores na ordem correta)</p>
+
+    <div id="bandeira-alvo">Verde • Amarelo • Azul</div>
+    <div id="pecas" ondrop="drop(event)" ondragover="allowDrop(event)">
+        <button draggable="true" ondragstart="drag(event)" id="azul">Azul</button>
+        <button draggable="true" ondragstart="drag(event)" id="verde">Verde</button>
+        <button draggable="true" ondragstart="drag(event)" id="amarelo">Amarelo</button>
+    </div>
+
+
+    <button onclick="verificar()">Verificar</button>
+    <p id="resultado-mini"></p>
+  </div>
+  <script src="{{ url_for('static', filename='js/minijogo.js') }}"></script>
+</body>
+</html>

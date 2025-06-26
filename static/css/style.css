@@ -1,0 +1,39 @@
+body {
+  font-family: Arial, sans-serif;
+  background: #f1f1f1;
+  padding: 20px;
+}
+
+.container {
+  background: white;
+  padding: 20px;
+  border-radius: 12px;
+  max-width: 600px;
+  margin: auto;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+button {
+  display: block;
+  margin: 10px 0;
+  padding: 10px;
+  background: #009688;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+button:hover {
+  background: #00796b;
+}
+
+.hidden {
+  display: none;
+}
+
+#opcoes button {
+  width: 100%;
+  text-align: left;
+}
