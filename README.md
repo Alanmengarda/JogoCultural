@@ -8,25 +8,6 @@ python app.py
 
 Servidor ficará disponivel em: http://127.0.0.1:5000
 
-# Estrutura do projeto
-
-JogoCultural-main/
-├── app.py
-├── dados/
-│   ├── perguntas_en.json
-│   ├── perguntas_pt.json
-│   └── ranking.json
-├── static/
-│   ├── css/
-│   └── js/
-├── templates/
-│   ├── index.html
-│   └── minijogo.html
-├── package.json
-├── package-lock.json
-├── .gitignore
-└── README.md
-
 # Funcionalidades
 Perguntas sobre diferentes culturas e idiomas
 
