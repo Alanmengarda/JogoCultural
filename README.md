@@ -4,7 +4,7 @@ pip install flask
 
 E rode o servidor
 
-python app.py
+python app.py 
 
 Servidor ficará disponivel em: http://127.0.0.1:5000
 
