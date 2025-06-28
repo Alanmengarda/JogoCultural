@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Mini-jogo de Bandeiras Futurista</title>
+  <title>Quebra-cabeça de Bandeiras Futurista</title>
   <link rel="stylesheet" href="{{ url_for('static', filename='css/minijogo.css') }}">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -12,19 +12,31 @@
   <a href="/" class="botao-voltar">← Voltar ao Jogo Principal</a>
 
   <div class="container">
-    <h2 id="titulo-jogo">🏁 Monte a Bandeira</h2>
+    <h2 id="titulo-jogo">🧩 Quebra-cabeça de Bandeiras</h2>
     <p style="text-align: center; margin-bottom: 20px; color: #b0b0b0;">
-      Arraste as cores na ordem correta para formar a bandeira
+      Arraste as peças da bandeira para os locais corretos
     </p>
     
-    <div id="pecas" ondrop="drop(event)" ondragover="allowDrop(event)">
-      <!-- Peças serão carregadas aqui -->
+    <div class="puzzle-area">
+      <div class="secao">
+        <h3>🎯 Peças Disponíveis</h3>
+        <div id="pecas-disponiveis">
+          <!-- Peças serão carregadas aqui -->
+        </div>
+      </div>
+      
+      <div class="secao">
+        <h3>🏁 Área de Montagem</h3>
+        <div id="area-montagem">
+          <!-- Slots de montagem serão criados aqui -->
+        </div>
+      </div>
     </div>
     
     <div id="resultado-mini"></div>
     
     <div class="control-buttons">
-      <button onclick="verificar()">🔍 Verificar</button>
+      <button onclick="reiniciar()">🔄 Reiniciar</button>
       <button onclick="proximaBandeira()">➡️ Próxima Bandeira</button>
     </div>
   </div>

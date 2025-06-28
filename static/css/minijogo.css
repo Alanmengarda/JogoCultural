@@ -59,7 +59,7 @@ body::before {
   background: var(--bg-card);
   padding: 30px;
   border-radius: 20px;
-  max-width: 800px;
+  max-width: 1000px;
   margin: auto;
   border: 1px solid var(--border-glow);
   backdrop-filter: blur(15px);
@@ -96,48 +96,217 @@ h2 {
   text-shadow: 0 0 30px rgba(0, 255, 255, 0.5);
 }
 
-#pecas {
-  min-height: 100px;
-  border: 3px dashed var(--primary-color);
+.puzzle-area {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 30px;
+  margin: 30px 0;
+}
+
+.secao {
+  background: rgba(0, 0, 0, 0.3);
+  border: 2px solid var(--border-glow);
   border-radius: 15px;
   padding: 20px;
-  margin: 20px 0;
+  backdrop-filter: blur(5px);
+}
+
+.secao h3 {
+  text-align: center;
+  color: var(--primary-color);
+  margin-bottom: 15px;
+  font-family: 'Orbitron', monospace;
+}
+
+#pecas-disponiveis {
   display: flex;
   flex-wrap: wrap;
-  gap: 10px;
+  gap: 15px;
   justify-content: center;
+  min-height: 120px;
   align-items: center;
-  background: rgba(0, 255, 255, 0.05);
-  transition: all 0.3s ease;
 }
 
-#pecas:hover {
-  border-color: var(--secondary-color);
-  background: rgba(255, 0, 255, 0.05);
-  box-shadow: 0 0 30px rgba(0, 255, 255, 0.2);
+#area-montagem {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  min-height: 200px;
+  justify-content: center;
+  position: relative;
 }
 
-#pecas button {
-  background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
-  border: none;
-  border-radius: 12px;
-  padding: 15px 25px;
-  color: var(--bg-dark);
-  font-size: 1.1rem;
-  font-weight: bold;
+/* Estilos das peças */
+.peca {
+  width: 120px;
+  height: 60px;
+  border-radius: 8px;
   cursor: grab;
   transition: all 0.3s ease;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+  position: relative;
+  animation: slideInUp 0.5s ease-out;
+  animation-fill-mode: both;
 }
 
-#pecas button:hover {
-  transform: translateY(-3px) scale(1.05);
+.peca:hover {
+  transform: translateY(-5px) scale(1.05);
   box-shadow: 0 10px 25px rgba(0, 255, 255, 0.4);
 }
 
-#pecas button:active {
-  cursor: grabbing;
-  transform: scale(0.95);
+.peca.arrastando {
+  transform: rotate(5deg) scale(1.1);
+  z-index: 1000;
+}
+
+.peca.disponivel {
+  cursor: grab;
+}
+
+.peca.na-area {
+  cursor: default;
+}
+
+.peca-visual {
+  width: 100%;
+  height: 100%;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  border: 2px solid rgba(255, 255, 255, 0.2);
+}
+
+.peca-visual.horizontal {
+  /* Faixas horizontais */
+}
+
+.peca-visual.vertical {
+  /* Faixas verticais */
+}
+
+.peca-visual.fundo {
+  /* Fundo completo */
+}
+
+.peca-visual.centro {
+  /* Elemento central (círculo) */
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  margin: auto;
+}
+
+.peca-texto {
+  font-size: 0.8rem;
+  font-weight: bold;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.7);
+  pointer-events: none;
+}
+
+/* Estilos dos slots */
+.slot {
+  width: 100%;
+  height: 60px;
+  border: 3px dashed var(--primary-color);
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  position: relative;
+  margin-bottom: 5px;
+}
+
+.slot-hover {
+  border-color: var(--accent-color);
+  background: rgba(255, 255, 0, 0.1);
+  transform: scale(1.02);
+}
+
+.slot-preenchido {
+  border-style: solid;
+  border-color: var(--success-color);
+  background: rgba(0, 255, 136, 0.1);
+}
+
+.slot-erro {
+  border-color: var(--error-color);
+  background: rgba(255, 68, 68, 0.2);
+  animation: shake 0.6s ease-out;
+}
+
+.placeholder {
+  color: var(--text-light);
+  opacity: 0.6;
+  font-size: 0.9rem;
+  text-align: center;
+  pointer-events: none;
+}
+
+.placeholder.horizontal,
+.placeholder.vertical,
+.placeholder.fundo {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.placeholder.centro {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  border: 2px dashed var(--primary-color);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.7rem;
+}
+
+/* Layouts específicos para diferentes tipos de bandeiras */
+.slot-superior {
+  order: 1;
+}
+
+.slot-meio {
+  order: 2;
+}
+
+.slot-inferior {
+  order: 3;
+}
+
+#area-montagem.vertical {
+  flex-direction: row;
+}
+
+.slot-esquerda {
+  order: 1;
+  width: 33.33%;
+}
+
+.slot-direita {
+  order: 3;
+  width: 33.33%;
+}
+
+/* Layout especial para bandeira do Japão */
+.slot-fundo {
+  order: 1;
+  height: 100px;
+}
+
+.slot-centro {
+  order: 2;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
 }
 
 button {
@@ -212,6 +381,7 @@ button:hover {
   flex-wrap: wrap;
 }
 
+/* Animações */
 @keyframes borderGlow {
   from { opacity: 0.3; }
   to { opacity: 0.6; }
@@ -229,6 +399,12 @@ button:hover {
   75% { transform: translateX(5px); }
 }
 
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-10px); }
+  75% { transform: translateX(10px); }
+}
+
 /* Responsive */
 @media (max-width: 768px) {
   .container {
@@ -236,17 +412,31 @@ button:hover {
     margin: 10px;
   }
   
+  .puzzle-area {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+  
   h2 {
     font-size: 1.5rem;
   }
   
-  #pecas button {
-    padding: 12px 20px;
-    font-size: 1rem;
+  .peca {
+    width: 100px;
+    height: 50px;
   }
   
   .control-buttons {
     flex-direction: column;
     align-items: center;
+  }
+  
+  #area-montagem.vertical {
+    flex-direction: column;
+  }
+  
+  .slot-esquerda,
+  .slot-direita {
+    width: 100%;
   }
 }

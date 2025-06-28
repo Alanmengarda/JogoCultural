@@ -1,119 +1,242 @@
 const bandeiras = [
   {
     pais: "Brasil 🇧🇷",
-    ordem: ["Verde", "Amarelo", "Azul"],
+    pecas: [
+      { id: 1, tipo: "superior", cor: "#009739", texto: "Verde" },
+      { id: 2, tipo: "meio", cor: "#FEDD00", texto: "Amarelo" },
+      { id: 3, tipo: "inferior", cor: "#012169", texto: "Azul" }
+    ],
     explicacao: "A bandeira do Brasil tem fundo verde (florestas), losango amarelo (riquezas minerais) e círculo azul com estrelas (céu).",
-    cores: {
-      "Verde": "#009739",
-      "Amarelo": "#FEDD00", 
-      "Azul": "#012169"
-    }
+    ordem_correta: [1, 2, 3]
   },
   {
     pais: "Alemanha 🇩🇪",
-    ordem: ["Preto", "Vermelho", "Amarelo"],
+    pecas: [
+      { id: 1, tipo: "superior", cor: "#000000", texto: "Preto" },
+      { id: 2, tipo: "meio", cor: "#DD0000", texto: "Vermelho" },
+      { id: 3, tipo: "inferior", cor: "#FFCE00", texto: "Amarelo" }
+    ],
     explicacao: "A bandeira alemã tem três faixas horizontais: preto (determinação), vermelho (coragem) e amarelo (generosidade).",
-    cores: {
-      "Preto": "#000000",
-      "Vermelho": "#DD0000",
-      "Amarelo": "#FFCE00"
-    }
+    ordem_correta: [1, 2, 3]
   },
   {
     pais: "França 🇫🇷",
-    ordem: ["Azul", "Branco", "Vermelho"],
+    pecas: [
+      { id: 1, tipo: "esquerda", cor: "#0055A4", texto: "Azul" },
+      { id: 2, tipo: "meio", cor: "#FFFFFF", texto: "Branco" },
+      { id: 3, tipo: "direita", cor: "#EF4135", texto: "Vermelho" }
+    ],
     explicacao: "A bandeira francesa (tricolor) tem três faixas verticais: azul (liberdade), branco (igualdade) e vermelho (fraternidade).",
-    cores: {
-      "Azul": "#0055A4",
-      "Branco": "#FFFFFF",
-      "Vermelho": "#EF4135"
-    }
+    ordem_correta: [1, 2, 3]
   },
   {
     pais: "Itália 🇮🇹",
-    ordem: ["Verde", "Branco", "Vermelho"],
+    pecas: [
+      { id: 1, tipo: "esquerda", cor: "#009246", texto: "Verde" },
+      { id: 2, tipo: "meio", cor: "#FFFFFF", texto: "Branco" },
+      { id: 3, tipo: "direita", cor: "#CE2B37", texto: "Vermelho" }
+    ],
     explicacao: "A bandeira italiana tem três faixas verticais: verde (esperança), branco (fé) e vermelho (caridade).",
-    cores: {
-      "Verde": "#009246",
-      "Branco": "#FFFFFF", 
-      "Vermelho": "#CE2B37"
-    }
+    ordem_correta: [1, 2, 3]
   },
   {
     pais: "Japão 🇯🇵",
-    ordem: ["Branco", "Vermelho"],
+    pecas: [
+      { id: 1, tipo: "fundo", cor: "#FFFFFF", texto: "Branco" },
+      { id: 2, tipo: "centro", cor: "#BC002D", texto: "Sol Vermelho" }
+    ],
     explicacao: "A bandeira japonesa (Hinomaru) tem fundo branco (pureza) com um círculo vermelho (sol nascente).",
-    cores: {
-      "Branco": "#FFFFFF",
-      "Vermelho": "#BC002D"
-    }
+    ordem_correta: [1, 2]
   }
 ];
 
 let indiceAtual = 0;
 let acertos = 0;
 let tentativas = 0;
+let pecasColocadas = [];
 
 function carregarBandeira() {
   const bandeira = bandeiras[indiceAtual];
-  document.getElementById("titulo-jogo").innerHTML = `🏁 Monte a bandeira de ${bandeira.pais}`;
+  document.getElementById("titulo-jogo").innerHTML = `🧩 Monte a bandeira de ${bandeira.pais}`;
 
-  // Criar peças com cores reais
-  const pecas = bandeira.ordem
-    .map(cor => {
-      const corHex = bandeira.cores[cor];
-      return `<button 
-        draggable="true" 
-        ondragstart="drag(event)" 
-        id="${cor.toLowerCase()}"
-        style="background: linear-gradient(135deg, ${corHex}, ${ajustarBrilho(corHex, -20)}); color: ${getContrastColor(corHex)}; border: 2px solid ${ajustarBrilho(corHex, -40)};"
-      >${cor}</button>`;
-    })
-    .sort(() => Math.random() - 0.5) // embaralhar
-    .join("");
-
-  document.getElementById("pecas").innerHTML = pecas;
+  // Limpar áreas
+  document.getElementById("pecas-disponiveis").innerHTML = "";
+  document.getElementById("area-montagem").innerHTML = "";
   document.getElementById("resultado-mini").innerHTML = "";
   document.getElementById("resultado-mini").className = "";
+  pecasColocadas = [];
+
+  // Criar peças embaralhadas
+  const pecasEmbaralhadas = [...bandeira.pecas].sort(() => Math.random() - 0.5);
   
-  // Adicionar animação de entrada para as peças
-  setTimeout(() => {
-    const botoes = document.querySelectorAll("#pecas button");
-    botoes.forEach((btn, index) => {
-      btn.style.animation = `slideInUp 0.5s ease-out ${index * 0.1}s forwards`;
-      btn.style.opacity = '0';
-      setTimeout(() => {
-        btn.style.opacity = '1';
-      }, index * 100);
-    });
-  }, 100);
+  pecasEmbaralhadas.forEach((peca, index) => {
+    const elementoPeca = criarPeca(peca, false);
+    elementoPeca.style.animationDelay = `${index * 0.1}s`;
+    document.getElementById("pecas-disponiveis").appendChild(elementoPeca);
+  });
+
+  // Criar slots de montagem
+  bandeira.pecas.forEach((peca, index) => {
+    const slot = criarSlot(peca, index);
+    document.getElementById("area-montagem").appendChild(slot);
+  });
 }
 
-function ajustarBrilho(cor, quantidade) {
-  const hex = cor.replace('#', '');
-  const r = Math.max(0, Math.min(255, parseInt(hex.substr(0, 2), 16) + quantidade));
-  const g = Math.max(0, Math.min(255, parseInt(hex.substr(2, 2), 16) + quantidade));
-  const b = Math.max(0, Math.min(255, parseInt(hex.substr(4, 2), 16) + quantidade));
-  return `#${r.toString(16).padStart(2, '0')}${g.toString(16).padStart(2, '0')}${b.toString(16).padStart(2, '0')}`;
+function criarPeca(peca, naArea = false) {
+  const div = document.createElement('div');
+  div.className = `peca ${naArea ? 'na-area' : 'disponivel'}`;
+  div.draggable = !naArea;
+  div.dataset.id = peca.id;
+  div.dataset.tipo = peca.tipo;
+  
+  // Criar visual da peça baseado no tipo
+  let visualPeca = '';
+  if (peca.tipo === 'superior' || peca.tipo === 'meio' || peca.tipo === 'inferior') {
+    // Faixas horizontais
+    visualPeca = `
+      <div class="peca-visual horizontal" style="background: ${peca.cor};">
+        <span class="peca-texto">${peca.texto}</span>
+      </div>
+    `;
+  } else if (peca.tipo === 'esquerda' || peca.tipo === 'direita') {
+    // Faixas verticais
+    visualPeca = `
+      <div class="peca-visual vertical" style="background: ${peca.cor};">
+        <span class="peca-texto">${peca.texto}</span>
+      </div>
+    `;
+  } else if (peca.tipo === 'fundo') {
+    // Fundo completo
+    visualPeca = `
+      <div class="peca-visual fundo" style="background: ${peca.cor}; border: 2px solid #ccc;">
+        <span class="peca-texto">${peca.texto}</span>
+      </div>
+    `;
+  } else if (peca.tipo === 'centro') {
+    // Elemento central (como sol do Japão)
+    visualPeca = `
+      <div class="peca-visual centro" style="background: ${peca.cor};">
+        <span class="peca-texto">${peca.texto}</span>
+      </div>
+    `;
+  }
+  
+  div.innerHTML = visualPeca;
+  
+  if (!naArea) {
+    div.addEventListener('dragstart', drag);
+    div.addEventListener('dragend', dragEnd);
+  }
+  
+  return div;
 }
 
-function getContrastColor(hexcolor) {
-  const hex = hexcolor.replace('#', '');
-  const r = parseInt(hex.substr(0, 2), 16);
-  const g = parseInt(hex.substr(2, 2), 16);
-  const b = parseInt(hex.substr(4, 2), 16);
-  const brightness = ((r * 299) + (g * 587) + (b * 114)) / 1000;
-  return brightness > 128 ? '#000000' : '#FFFFFF';
+function criarSlot(peca, index) {
+  const div = document.createElement('div');
+  div.className = `slot slot-${peca.tipo}`;
+  div.dataset.aceita = peca.id;
+  div.dataset.posicao = index;
+  
+  // Criar placeholder visual
+  let placeholder = '';
+  if (peca.tipo === 'superior' || peca.tipo === 'meio' || peca.tipo === 'inferior') {
+    placeholder = `<div class="placeholder horizontal">Arraste ${peca.texto} aqui</div>`;
+  } else if (peca.tipo === 'esquerda' || peca.tipo === 'direita') {
+    placeholder = `<div class="placeholder vertical">Arraste ${peca.texto} aqui</div>`;
+  } else if (peca.tipo === 'fundo') {
+    placeholder = `<div class="placeholder fundo">Arraste ${peca.texto} aqui</div>`;
+  } else if (peca.tipo === 'centro') {
+    placeholder = `<div class="placeholder centro">Arraste ${peca.texto} aqui</div>`;
+  }
+  
+  div.innerHTML = placeholder;
+  
+  div.addEventListener('dragover', allowDrop);
+  div.addEventListener('drop', drop);
+  
+  return div;
 }
 
-function verificar() {
+function drag(ev) {
+  ev.dataTransfer.setData("text", ev.target.dataset.id);
+  ev.target.style.opacity = '0.5';
+  ev.target.style.transform = 'rotate(5deg) scale(1.1)';
+  ev.target.classList.add('arrastando');
+}
+
+function dragEnd(ev) {
+  ev.target.style.opacity = '1';
+  ev.target.style.transform = 'rotate(0deg) scale(1)';
+  ev.target.classList.remove('arrastando');
+}
+
+function allowDrop(ev) {
+  ev.preventDefault();
+  ev.target.closest('.slot').classList.add('slot-hover');
+}
+
+function drop(ev) {
+  ev.preventDefault();
+  const slot = ev.target.closest('.slot');
+  slot.classList.remove('slot-hover');
+  
+  const pecaId = parseInt(ev.dataTransfer.getData("text"));
+  const slotAceita = parseInt(slot.dataset.aceita);
+  const posicao = parseInt(slot.dataset.posicao);
+  
+  if (pecaId === slotAceita) {
+    // Peça correta
+    const pecaOriginal = document.querySelector(`[data-id="${pecaId}"].disponivel`);
+    if (pecaOriginal) {
+      const bandeira = bandeiras[indiceAtual];
+      const pecaData = bandeira.pecas.find(p => p.id === pecaId);
+      
+      // Remover peça da área de peças disponíveis
+      pecaOriginal.remove();
+      
+      // Adicionar peça ao slot
+      const novaPeca = criarPeca(pecaData, true);
+      slot.innerHTML = '';
+      slot.appendChild(novaPeca);
+      
+      // Registrar peça colocada
+      pecasColocadas[posicao] = pecaId;
+      
+      // Efeito visual de sucesso
+      slot.classList.add('slot-preenchido');
+      novaPeca.style.animation = 'pecaEncaixe 0.5s ease-out';
+      
+      // Verificar se completou
+      if (pecasColocadas.filter(p => p !== undefined).length === bandeira.pecas.length) {
+        setTimeout(verificarCompleto, 500);
+      }
+    }
+  } else {
+    // Peça incorreta - efeito de erro
+    slot.classList.add('slot-erro');
+    setTimeout(() => {
+      slot.classList.remove('slot-erro');
+    }, 600);
+    
+    // Vibração de erro
+    if (navigator.vibrate) {
+      navigator.vibrate([100, 50, 100]);
+    }
+  }
+}
+
+function verificarCompleto() {
   const bandeira = bandeiras[indiceAtual];
-  const ordem = Array.from(document.querySelectorAll("#pecas button")).map(btn => btn.innerText);
   const resultadoDiv = document.getElementById("resultado-mini");
   
   tentativas++;
-
-  if (ordem.join() === bandeira.ordem.join()) {
+  
+  // Verificar se a ordem está correta
+  const ordemCorreta = pecasColocadas.every((pecaId, index) => 
+    pecaId === bandeira.ordem_correta[index]
+  );
+  
+  if (ordemCorreta) {
     acertos++;
     resultadoDiv.innerHTML = `✅ <strong>Perfeito!</strong><br>${bandeira.explicacao}`;
     resultadoDiv.className = "correto";
@@ -123,15 +246,7 @@ function verificar() {
     
     // Vibração de sucesso
     if (navigator.vibrate) {
-      navigator.vibrate([100, 50, 100]);
-    }
-  } else {
-    resultadoDiv.innerHTML = `❌ <strong>Tente novamente!</strong><br>Ordem correta: ${bandeira.ordem.join(' → ')}<br><em>${bandeira.explicacao}</em>`;
-    resultadoDiv.className = "errado";
-    
-    // Vibração de erro
-    if (navigator.vibrate) {
-      navigator.vibrate([200, 100, 200]);
+      navigator.vibrate([100, 50, 100, 50, 100]);
     }
   }
   
@@ -141,7 +256,7 @@ function verificar() {
 
 function criarEfeitoSucesso() {
   // Criar efeito de confete
-  for (let i = 0; i < 15; i++) {
+  for (let i = 0; i < 20; i++) {
     const confete = document.createElement('div');
     confete.style.cssText = `
       position: fixed;
@@ -179,6 +294,10 @@ function criarEfeitoSucesso() {
       style.remove();
     }, 2000);
   }
+}
+
+function reiniciar() {
+  carregarBandeira();
 }
 
 function proximaBandeira() {
@@ -228,52 +347,6 @@ function atualizarEstatisticas() {
   `;
 }
 
-function allowDrop(ev) {
-  ev.preventDefault();
-}
-
-function drag(ev) {
-  ev.dataTransfer.setData("text", ev.target.id);
-  ev.target.style.opacity = '0.5';
-  ev.target.style.transform = 'rotate(5deg)';
-}
-
-function drop(ev) {
-  ev.preventDefault();
-  const data = ev.dataTransfer.getData("text");
-  const dragged = document.getElementById(data);
-  const container = ev.target.closest("#pecas");
-
-  // Restaurar aparência do elemento arrastado
-  dragged.style.opacity = '1';
-  dragged.style.transform = 'rotate(0deg)';
-
-  if (ev.target.tagName === "BUTTON" && ev.target !== dragged) {
-    // Trocar posições
-    const temp = document.createElement('div');
-    container.insertBefore(temp, ev.target);
-    container.insertBefore(ev.target, dragged);
-    container.insertBefore(dragged, temp);
-    container.removeChild(temp);
-  } else if (ev.target === container) {
-    container.appendChild(dragged);
-  }
-  
-  // Efeito visual de drop
-  dragged.style.animation = 'bounceIn 0.3s ease-out';
-  setTimeout(() => {
-    dragged.style.animation = '';
-  }, 300);
-}
-
-// Event listeners para melhorar a experiência de drag
-document.addEventListener('dragend', function(ev) {
-  if (ev.target.tagName === 'BUTTON') {
-    ev.target.style.opacity = '1';
-    ev.target.style.transform = 'rotate(0deg)';
-  }
-});
-
 // Adicionar animações CSS extras
 function adicionarAnimacoesExtras() {
   const style = document.createElement('style');
@@ -289,15 +362,24 @@ function adicionarAnimacoesExtras() {
       }
     }
     
-    @keyframes bounceIn {
+    @keyframes pecaEncaixe {
       0% {
-        transform: scale(0.8);
+        transform: scale(0.8) rotate(-10deg);
       }
       50% {
-        transform: scale(1.1);
+        transform: scale(1.1) rotate(5deg);
       }
       100% {
-        transform: scale(1);
+        transform: scale(1) rotate(0deg);
+      }
+    }
+    
+    @keyframes pulseGlow {
+      0%, 100% {
+        box-shadow: 0 0 20px rgba(0, 255, 255, 0.3);
+      }
+      50% {
+        box-shadow: 0 0 40px rgba(0, 255, 255, 0.6);
       }
     }
   `;
