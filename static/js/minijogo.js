@@ -1,52 +1,61 @@
 const bandeiras = [
   {
     pais: "Brasil 🇧🇷",
+    imagem: "https://upload.wikimedia.org/wikipedia/en/0/05/Flag_of_Brazil.svg",
     pecas: [
-      { id: 1, tipo: "superior", cor: "#009739", texto: "Verde" },
-      { id: 2, tipo: "meio", cor: "#FEDD00", texto: "Amarelo" },
-      { id: 3, tipo: "inferior", cor: "#012169", texto: "Azul" }
+      { id: 1, x: 0, y: 0, width: 50, height: 50 },
+      { id: 2, x: 50, y: 0, width: 50, height: 50 },
+      { id: 3, x: 0, y: 50, width: 50, height: 50 },
+      { id: 4, x: 50, y: 50, width: 50, height: 50 }
     ],
-    explicacao: "A bandeira do Brasil tem fundo verde (florestas), losango amarelo (riquezas minerais) e círculo azul com estrelas (céu).",
-    ordem_correta: [1, 2, 3]
-  },
-  {
-    pais: "Alemanha 🇩🇪",
-    pecas: [
-      { id: 1, tipo: "superior", cor: "#000000", texto: "Preto" },
-      { id: 2, tipo: "meio", cor: "#DD0000", texto: "Vermelho" },
-      { id: 3, tipo: "inferior", cor: "#FFCE00", texto: "Amarelo" }
-    ],
-    explicacao: "A bandeira alemã tem três faixas horizontais: preto (determinação), vermelho (coragem) e amarelo (generosidade).",
-    ordem_correta: [1, 2, 3]
+    explicacao: "A bandeira do Brasil representa as riquezas naturais e a diversidade do país.",
+    dimensoes: { width: 100, height: 100 }
   },
   {
     pais: "França 🇫🇷",
+    imagem: "https://upload.wikimedia.org/wikipedia/en/c/c3/Flag_of_France.svg",
     pecas: [
-      { id: 1, tipo: "esquerda", cor: "#0055A4", texto: "Azul" },
-      { id: 2, tipo: "meio", cor: "#FFFFFF", texto: "Branco" },
-      { id: 3, tipo: "direita", cor: "#EF4135", texto: "Vermelho" }
+      { id: 1, x: 0, y: 0, width: 33.33, height: 100 },
+      { id: 2, x: 33.33, y: 0, width: 33.33, height: 100 },
+      { id: 3, x: 66.66, y: 0, width: 33.34, height: 100 }
     ],
-    explicacao: "A bandeira francesa (tricolor) tem três faixas verticais: azul (liberdade), branco (igualdade) e vermelho (fraternidade).",
-    ordem_correta: [1, 2, 3]
+    explicacao: "A bandeira francesa representa liberdade, igualdade e fraternidade.",
+    dimensoes: { width: 100, height: 100 }
   },
   {
-    pais: "Itália 🇮🇹",
+    pais: "Alemanha 🇩🇪",
+    imagem: "https://upload.wikimedia.org/wikipedia/en/b/ba/Flag_of_Germany.svg",
     pecas: [
-      { id: 1, tipo: "esquerda", cor: "#009246", texto: "Verde" },
-      { id: 2, tipo: "meio", cor: "#FFFFFF", texto: "Branco" },
-      { id: 3, tipo: "direita", cor: "#CE2B37", texto: "Vermelho" }
+      { id: 1, x: 0, y: 0, width: 100, height: 33.33 },
+      { id: 2, x: 0, y: 33.33, width: 100, height: 33.33 },
+      { id: 3, x: 0, y: 66.66, width: 100, height: 33.34 }
     ],
-    explicacao: "A bandeira italiana tem três faixas verticais: verde (esperança), branco (fé) e vermelho (caridade).",
-    ordem_correta: [1, 2, 3]
+    explicacao: "A bandeira alemã simboliza a unidade e democracia do país.",
+    dimensoes: { width: 100, height: 100 }
   },
   {
     pais: "Japão 🇯🇵",
+    imagem: "https://upload.wikimedia.org/wikipedia/en/9/9e/Flag_of_Japan.svg",
     pecas: [
-      { id: 1, tipo: "fundo", cor: "#FFFFFF", texto: "Branco" },
-      { id: 2, tipo: "centro", cor: "#BC002D", texto: "Sol Vermelho" }
+      { id: 1, x: 0, y: 0, width: 50, height: 50 },
+      { id: 2, x: 50, y: 0, width: 50, height: 50 },
+      { id: 3, x: 0, y: 50, width: 50, height: 50 },
+      { id: 4, x: 50, y: 50, width: 50, height: 50 }
     ],
-    explicacao: "A bandeira japonesa (Hinomaru) tem fundo branco (pureza) com um círculo vermelho (sol nascente).",
-    ordem_correta: [1, 2]
+    explicacao: "A bandeira japonesa representa o sol nascente e a pureza.",
+    dimensoes: { width: 100, height: 100 }
+  },
+  {
+    pais: "Reino Unido 🇬🇧",
+    imagem: "https://upload.wikimedia.org/wikipedia/en/a/ae/Flag_of_the_United_Kingdom.svg",
+    pecas: [
+      { id: 1, x: 0, y: 0, width: 50, height: 50 },
+      { id: 2, x: 50, y: 0, width: 50, height: 50 },
+      { id: 3, x: 0, y: 50, width: 50, height: 50 },
+      { id: 4, x: 50, y: 50, width: 50, height: 50 }
+    ],
+    explicacao: "A Union Jack combina as cruzes de São Jorge, Santo André e São Patrício.",
+    dimensoes: { width: 100, height: 100 }
   }
 ];
 
@@ -54,6 +63,7 @@ let indiceAtual = 0;
 let acertos = 0;
 let tentativas = 0;
 let pecasColocadas = [];
+let imagemCarregada = false;
 
 function carregarBandeira() {
   const bandeira = bandeiras[indiceAtual];
@@ -65,96 +75,209 @@ function carregarBandeira() {
   document.getElementById("resultado-mini").innerHTML = "";
   document.getElementById("resultado-mini").className = "";
   pecasColocadas = [];
+  imagemCarregada = false;
 
+  // Pré-carregar a imagem
+  const img = new Image();
+  img.crossOrigin = "anonymous";
+  img.onload = function() {
+    imagemCarregada = true;
+    criarPecasESlots(bandeira, this);
+  };
+  img.onerror = function() {
+    // Fallback para imagem local ou placeholder
+    console.log("Erro ao carregar imagem, usando fallback");
+    criarPecasFallback(bandeira);
+  };
+  img.src = bandeira.imagem;
+}
+
+function criarPecasESlots(bandeira, imagemOriginal) {
+  // Criar canvas para cortar a imagem em peças
+  const canvas = document.createElement('canvas');
+  const ctx = canvas.getContext('2d');
+  canvas.width = 300;
+  canvas.height = 200;
+  
+  // Desenhar a imagem completa no canvas
+  ctx.drawImage(imagemOriginal, 0, 0, canvas.width, canvas.height);
+  
   // Criar peças embaralhadas
   const pecasEmbaralhadas = [...bandeira.pecas].sort(() => Math.random() - 0.5);
   
   pecasEmbaralhadas.forEach((peca, index) => {
-    const elementoPeca = criarPeca(peca, false);
+    const elementoPeca = criarPecaComImagem(peca, bandeira, canvas);
     elementoPeca.style.animationDelay = `${index * 0.1}s`;
     document.getElementById("pecas-disponiveis").appendChild(elementoPeca);
   });
 
   // Criar slots de montagem
-  bandeira.pecas.forEach((peca, index) => {
-    const slot = criarSlot(peca, index);
-    document.getElementById("area-montagem").appendChild(slot);
-  });
+  criarAreaMontagem(bandeira);
 }
 
-function criarPeca(peca, naArea = false) {
+function criarPecaComImagem(peca, bandeira, canvasOriginal) {
   const div = document.createElement('div');
-  div.className = `peca ${naArea ? 'na-area' : 'disponivel'}`;
-  div.draggable = !naArea;
+  div.className = 'peca disponivel';
+  div.draggable = true;
   div.dataset.id = peca.id;
-  div.dataset.tipo = peca.tipo;
   
-  // Criar visual da peça baseado no tipo
-  let visualPeca = '';
-  if (peca.tipo === 'superior' || peca.tipo === 'meio' || peca.tipo === 'inferior') {
-    // Faixas horizontais
-    visualPeca = `
-      <div class="peca-visual horizontal" style="background: ${peca.cor};">
-        <span class="peca-texto">${peca.texto}</span>
-      </div>
-    `;
-  } else if (peca.tipo === 'esquerda' || peca.tipo === 'direita') {
-    // Faixas verticais
-    visualPeca = `
-      <div class="peca-visual vertical" style="background: ${peca.cor};">
-        <span class="peca-texto">${peca.texto}</span>
-      </div>
-    `;
-  } else if (peca.tipo === 'fundo') {
-    // Fundo completo
-    visualPeca = `
-      <div class="peca-visual fundo" style="background: ${peca.cor}; border: 2px solid #ccc;">
-        <span class="peca-texto">${peca.texto}</span>
-      </div>
-    `;
-  } else if (peca.tipo === 'centro') {
-    // Elemento central (como sol do Japão)
-    visualPeca = `
-      <div class="peca-visual centro" style="background: ${peca.cor};">
-        <span class="peca-texto">${peca.texto}</span>
-      </div>
-    `;
-  }
+  // Criar canvas para esta peça específica
+  const canvas = document.createElement('canvas');
+  const ctx = canvas.getContext('2d');
   
-  div.innerHTML = visualPeca;
+  // Calcular dimensões da peça
+  const larguraPeca = (peca.width / 100) * 300;
+  const alturaPeca = (peca.height / 100) * 200;
   
-  if (!naArea) {
+  canvas.width = larguraPeca;
+  canvas.height = alturaPeca;
+  
+  // Recortar a parte correspondente da imagem original
+  const sourceX = (peca.x / 100) * 300;
+  const sourceY = (peca.y / 100) * 200;
+  
+  ctx.drawImage(
+    canvasOriginal,
+    sourceX, sourceY, larguraPeca, alturaPeca,
+    0, 0, larguraPeca, alturaPeca
+  );
+  
+  // Adicionar borda e efeitos à peça
+  ctx.strokeStyle = '#00ffff';
+  ctx.lineWidth = 3;
+  ctx.strokeRect(0, 0, larguraPeca, alturaPeca);
+  
+  // Adicionar número da peça
+  ctx.fillStyle = 'rgba(0, 0, 0, 0.7)';
+  ctx.fillRect(5, 5, 25, 25);
+  ctx.fillStyle = '#ffffff';
+  ctx.font = 'bold 16px Arial';
+  ctx.fillText(peca.id, 12, 22);
+  
+  div.appendChild(canvas);
+  
+  // Estilizar a div da peça
+  div.style.cssText = `
+    margin: 5px;
+    border-radius: 8px;
+    cursor: grab;
+    transition: all 0.3s ease;
+    position: relative;
+    animation: slideInUp 0.5s ease-out;
+    animation-fill-mode: both;
+    box-shadow: 0 4px 15px rgba(0, 255, 255, 0.3);
+  `;
+  
+  div.addEventListener('dragstart', drag);
+  div.addEventListener('dragend', dragEnd);
+  
+  return div;
+}
+
+function criarAreaMontagem(bandeira) {
+  const areaMontagem = document.getElementById("area-montagem");
+  
+  // Criar container da bandeira completa
+  const containerBandeira = document.createElement('div');
+  containerBandeira.className = 'bandeira-container';
+  containerBandeira.style.cssText = `
+    position: relative;
+    width: 300px;
+    height: 200px;
+    border: 3px dashed var(--primary-color);
+    border-radius: 10px;
+    margin: 0 auto;
+    background: rgba(255, 255, 255, 0.1);
+  `;
+  
+  // Criar slots para cada peça
+  bandeira.pecas.forEach(peca => {
+    const slot = document.createElement('div');
+    slot.className = 'slot';
+    slot.dataset.aceita = peca.id;
+    
+    const left = (peca.x / 100) * 300;
+    const top = (peca.y / 100) * 200;
+    const width = (peca.width / 100) * 300;
+    const height = (peca.height / 100) * 200;
+    
+    slot.style.cssText = `
+      position: absolute;
+      left: ${left}px;
+      top: ${top}px;
+      width: ${width}px;
+      height: ${height}px;
+      border: 2px dashed rgba(0, 255, 255, 0.5);
+      border-radius: 5px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.3s ease;
+      background: rgba(0, 255, 255, 0.05);
+    `;
+    
+    // Adicionar número do slot
+    const numeroSlot = document.createElement('span');
+    numeroSlot.textContent = peca.id;
+    numeroSlot.style.cssText = `
+      color: var(--primary-color);
+      font-size: 24px;
+      font-weight: bold;
+      opacity: 0.7;
+      pointer-events: none;
+    `;
+    slot.appendChild(numeroSlot);
+    
+    slot.addEventListener('dragover', allowDrop);
+    slot.addEventListener('drop', drop);
+    
+    containerBandeira.appendChild(slot);
+  });
+  
+  areaMontagem.appendChild(containerBandeira);
+}
+
+function criarPecasFallback(bandeira) {
+  // Fallback com cores sólidas se a imagem não carregar
+  const cores = ['#ff6b6b', '#4ecdc4', '#45b7d1', '#96ceb4', '#feca57', '#ff9ff3'];
+  
+  const pecasEmbaralhadas = [...bandeira.pecas].sort(() => Math.random() - 0.5);
+  
+  pecasEmbaralhadas.forEach((peca, index) => {
+    const div = document.createElement('div');
+    div.className = 'peca disponivel';
+    div.draggable = true;
+    div.dataset.id = peca.id;
+    
+    div.style.cssText = `
+      width: 80px;
+      height: 60px;
+      background: ${cores[peca.id - 1]};
+      border: 3px solid var(--primary-color);
+      border-radius: 8px;
+      margin: 5px;
+      cursor: grab;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+      color: white;
+      text-shadow: 1px 1px 2px rgba(0,0,0,0.7);
+      transition: all 0.3s ease;
+      animation: slideInUp 0.5s ease-out;
+      animation-delay: ${index * 0.1}s;
+      animation-fill-mode: both;
+    `;
+    
+    div.textContent = `Peça ${peca.id}`;
+    
     div.addEventListener('dragstart', drag);
     div.addEventListener('dragend', dragEnd);
-  }
+    
+    document.getElementById("pecas-disponiveis").appendChild(div);
+  });
   
-  return div;
-}
-
-function criarSlot(peca, index) {
-  const div = document.createElement('div');
-  div.className = `slot slot-${peca.tipo}`;
-  div.dataset.aceita = peca.id;
-  div.dataset.posicao = index;
-  
-  // Criar placeholder visual
-  let placeholder = '';
-  if (peca.tipo === 'superior' || peca.tipo === 'meio' || peca.tipo === 'inferior') {
-    placeholder = `<div class="placeholder horizontal">Arraste ${peca.texto} aqui</div>`;
-  } else if (peca.tipo === 'esquerda' || peca.tipo === 'direita') {
-    placeholder = `<div class="placeholder vertical">Arraste ${peca.texto} aqui</div>`;
-  } else if (peca.tipo === 'fundo') {
-    placeholder = `<div class="placeholder fundo">Arraste ${peca.texto} aqui</div>`;
-  } else if (peca.tipo === 'centro') {
-    placeholder = `<div class="placeholder centro">Arraste ${peca.texto} aqui</div>`;
-  }
-  
-  div.innerHTML = placeholder;
-  
-  div.addEventListener('dragover', allowDrop);
-  div.addEventListener('drop', drop);
-  
-  return div;
+  criarAreaMontagem(bandeira);
 }
 
 function drag(ev) {
@@ -172,50 +295,76 @@ function dragEnd(ev) {
 
 function allowDrop(ev) {
   ev.preventDefault();
-  ev.target.closest('.slot').classList.add('slot-hover');
+  const slot = ev.target.closest('.slot');
+  if (slot) {
+    slot.style.background = 'rgba(255, 255, 0, 0.2)';
+    slot.style.borderColor = 'var(--accent-color)';
+    slot.style.transform = 'scale(1.05)';
+  }
 }
 
 function drop(ev) {
   ev.preventDefault();
   const slot = ev.target.closest('.slot');
-  slot.classList.remove('slot-hover');
+  
+  // Resetar estilo do slot
+  slot.style.background = 'rgba(0, 255, 255, 0.05)';
+  slot.style.borderColor = 'rgba(0, 255, 255, 0.5)';
+  slot.style.transform = 'scale(1)';
   
   const pecaId = parseInt(ev.dataTransfer.getData("text"));
   const slotAceita = parseInt(slot.dataset.aceita);
-  const posicao = parseInt(slot.dataset.posicao);
   
   if (pecaId === slotAceita) {
     // Peça correta
     const pecaOriginal = document.querySelector(`[data-id="${pecaId}"].disponivel`);
     if (pecaOriginal) {
-      const bandeira = bandeiras[indiceAtual];
-      const pecaData = bandeira.pecas.find(p => p.id === pecaId);
-      
       // Remover peça da área de peças disponíveis
       pecaOriginal.remove();
       
-      // Adicionar peça ao slot
-      const novaPeca = criarPeca(pecaData, true);
+      // Clonar e adicionar peça ao slot
+      const novaPeca = pecaOriginal.cloneNode(true);
+      novaPeca.classList.remove('disponivel');
+      novaPeca.classList.add('na-area');
+      novaPeca.draggable = false;
+      novaPeca.style.cssText = `
+        width: 100%;
+        height: 100%;
+        border-radius: 5px;
+        animation: pecaEncaixe 0.5s ease-out;
+      `;
+      
+      // Limpar slot e adicionar peça
       slot.innerHTML = '';
       slot.appendChild(novaPeca);
       
       // Registrar peça colocada
-      pecasColocadas[posicao] = pecaId;
+      pecasColocadas.push(pecaId);
       
       // Efeito visual de sucesso
-      slot.classList.add('slot-preenchido');
-      novaPeca.style.animation = 'pecaEncaixe 0.5s ease-out';
+      slot.style.borderColor = 'var(--success-color)';
+      slot.style.boxShadow = '0 0 20px rgba(0, 255, 136, 0.6)';
       
       // Verificar se completou
-      if (pecasColocadas.filter(p => p !== undefined).length === bandeira.pecas.length) {
+      if (pecasColocadas.length === bandeiras[indiceAtual].pecas.length) {
         setTimeout(verificarCompleto, 500);
+      }
+      
+      // Som de sucesso simulado com vibração
+      if (navigator.vibrate) {
+        navigator.vibrate([50]);
       }
     }
   } else {
     // Peça incorreta - efeito de erro
-    slot.classList.add('slot-erro');
+    slot.style.background = 'rgba(255, 68, 68, 0.3)';
+    slot.style.borderColor = 'var(--error-color)';
+    slot.style.animation = 'shake 0.6s ease-out';
+    
     setTimeout(() => {
-      slot.classList.remove('slot-erro');
+      slot.style.background = 'rgba(0, 255, 255, 0.05)';
+      slot.style.borderColor = 'rgba(0, 255, 255, 0.5)';
+      slot.style.animation = '';
     }, 600);
     
     // Vibração de erro
@@ -230,24 +379,17 @@ function verificarCompleto() {
   const resultadoDiv = document.getElementById("resultado-mini");
   
   tentativas++;
+  acertos++;
   
-  // Verificar se a ordem está correta
-  const ordemCorreta = pecasColocadas.every((pecaId, index) => 
-    pecaId === bandeira.ordem_correta[index]
-  );
+  resultadoDiv.innerHTML = `✅ <strong>Parabéns!</strong><br>Você montou a bandeira de ${bandeira.pais}!<br><em>${bandeira.explicacao}</em>`;
+  resultadoDiv.className = "correto";
   
-  if (ordemCorreta) {
-    acertos++;
-    resultadoDiv.innerHTML = `✅ <strong>Perfeito!</strong><br>${bandeira.explicacao}`;
-    resultadoDiv.className = "correto";
-    
-    // Efeito de sucesso
-    criarEfeitoSucesso();
-    
-    // Vibração de sucesso
-    if (navigator.vibrate) {
-      navigator.vibrate([100, 50, 100, 50, 100]);
-    }
+  // Efeito de sucesso
+  criarEfeitoSucesso();
+  
+  // Vibração de sucesso
+  if (navigator.vibrate) {
+    navigator.vibrate([100, 50, 100, 50, 100]);
   }
   
   // Atualizar estatísticas
@@ -256,19 +398,19 @@ function verificarCompleto() {
 
 function criarEfeitoSucesso() {
   // Criar efeito de confete
-  for (let i = 0; i < 20; i++) {
+  for (let i = 0; i < 25; i++) {
     const confete = document.createElement('div');
     confete.style.cssText = `
       position: fixed;
-      width: 8px;
-      height: 8px;
+      width: 10px;
+      height: 10px;
       background: ${['#00ffff', '#ff00ff', '#ffff00', '#00ff88'][Math.floor(Math.random() * 4)]};
       border-radius: 50%;
       pointer-events: none;
       z-index: 9999;
       left: 50%;
       top: 30%;
-      animation: confetti${i} 2s ease-out forwards;
+      animation: confetti${i} 3s ease-out forwards;
     `;
     
     // Criar animação única para cada confete
@@ -280,7 +422,7 @@ function criarEfeitoSucesso() {
           opacity: 1;
         }
         100% {
-          transform: translate(${(Math.random() - 0.5) * 300}px, ${Math.random() * 300 + 100}px) rotate(${Math.random() * 360}deg) scale(0);
+          transform: translate(${(Math.random() - 0.5) * 400}px, ${Math.random() * 400 + 100}px) rotate(${Math.random() * 720}deg) scale(0);
           opacity: 0;
         }
       }
@@ -292,7 +434,7 @@ function criarEfeitoSucesso() {
     setTimeout(() => {
       confete.remove();
       style.remove();
-    }, 2000);
+    }, 3000);
   }
 }
 
@@ -312,7 +454,7 @@ function proximaBandeira() {
     carregarBandeira();
     container.style.transform = 'scale(1)';
     container.style.opacity = '1';
-  }, 200);
+  }, 300);
 }
 
 function atualizarEstatisticas() {
@@ -341,7 +483,7 @@ function atualizarEstatisticas() {
   const porcentagem = tentativas > 0 ? Math.round((acertos / tentativas) * 100) : 0;
   stats.innerHTML = `
     <div style="text-align: center; color: var(--primary-color); margin-bottom: 10px;">📊 STATS</div>
-    <div>✅ Acertos: ${acertos}</div>
+    <div>✅ Completados: ${acertos}</div>
     <div>🎯 Tentativas: ${tentativas}</div>
     <div>📈 Taxa: ${porcentagem}%</div>
   `;
@@ -365,22 +507,33 @@ function adicionarAnimacoesExtras() {
     @keyframes pecaEncaixe {
       0% {
         transform: scale(0.8) rotate(-10deg);
+        opacity: 0.7;
       }
       50% {
         transform: scale(1.1) rotate(5deg);
+        opacity: 0.9;
       }
       100% {
         transform: scale(1) rotate(0deg);
+        opacity: 1;
       }
     }
     
-    @keyframes pulseGlow {
-      0%, 100% {
-        box-shadow: 0 0 20px rgba(0, 255, 255, 0.3);
-      }
-      50% {
-        box-shadow: 0 0 40px rgba(0, 255, 255, 0.6);
-      }
+    @keyframes shake {
+      0%, 100% { transform: translateX(0); }
+      25% { transform: translateX(-10px); }
+      75% { transform: translateX(10px); }
+    }
+    
+    .peca:hover {
+      transform: translateY(-5px) scale(1.05);
+      box-shadow: 0 10px 25px rgba(0, 255, 255, 0.6);
+    }
+    
+    .peca.arrastando {
+      transform: rotate(5deg) scale(1.1);
+      z-index: 1000;
+      box-shadow: 0 15px 35px rgba(0, 255, 255, 0.8);
     }
   `;
   document.head.appendChild(style);
