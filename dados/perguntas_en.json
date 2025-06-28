@@ -21,7 +21,7 @@
     "explicacao": "The Mona Lisa was painted by Leonardo da Vinci in the 16th century and is one of the most well-known artworks in the world."
   },
   {
-    "tema": "Clothing",
+    "tema": "Culture",
     "pergunta": "What is a 'kimono'?",
     "opcoes": ["A traditional dance", "A Japanese garment", "A musical instrument", "A typical dish"],
     "resposta_correta": 1,
@@ -105,14 +105,14 @@
     "explicacao": "The Notre-Dame Cathedral is in Paris, France, and is one of the greatest examples of Gothic architecture in Europe."
   },
   {
-    "tema": "German Language",
+    "tema": "Language",
     "pergunta": "From which country did the word 'Kindergarten' originate?",
     "opcoes": ["Austria", "Germany", "Switzerland", "Netherlands"],
     "resposta_correta": 1,
     "explicacao": "'Kindergarten' is a German word meaning 'children's garden'. It was coined in Germany by Friedrich Fröbel in the 19th century to describe an early childhood education institution."
   },
   {
-    "tema": "French Language",
+    "tema": "Language",
     "pergunta": "From which country did the word 'Bonjour' originate?",
     "opcoes": ["Canada", "Belgium", "France", "Switzerland"],
     "resposta_correta": 2,
