@@ -66,18 +66,19 @@ let pecasColocadas = [];
 let imagemCarregada = false;
 
 function carregarBandeira() {
+  // Limpa a mensagem de acerto/erro ao trocar de bandeira
+  document.getElementById("resultado-mini").innerHTML = "";
+  document.getElementById("resultado-mini").className = "";
+
   const bandeira = bandeiras[indiceAtual];
   document.getElementById("titulo-jogo").innerHTML = `🧩 Monte a bandeira de ${bandeira.pais}`;
 
-  // Limpar áreas
   document.getElementById("pecas-disponiveis").innerHTML = "";
   document.getElementById("area-montagem").innerHTML = "";
-  document.getElementById("resultado-mini").innerHTML = "";
-  document.getElementById("resultado-mini").className = "";
+
   pecasColocadas = [];
   imagemCarregada = false;
 
-  // Pré-carregar a imagem
   const img = new Image();
   img.crossOrigin = "anonymous";
   img.onload = function() {
@@ -85,78 +86,60 @@ function carregarBandeira() {
     criarPecasESlots(bandeira, this);
   };
   img.onerror = function() {
-    // Fallback para imagem local ou placeholder
-    console.log("Erro ao carregar imagem, usando fallback");
     criarPecasFallback(bandeira);
   };
   img.src = bandeira.imagem;
 }
 
 function criarPecasESlots(bandeira, imagemOriginal) {
-  // Criar canvas para cortar a imagem em peças
   const canvas = document.createElement('canvas');
   const ctx = canvas.getContext('2d');
   canvas.width = 300;
   canvas.height = 200;
-  
-  // Desenhar a imagem completa no canvas
   ctx.drawImage(imagemOriginal, 0, 0, canvas.width, canvas.height);
-  
-  // Criar peças embaralhadas
+
   const pecasEmbaralhadas = [...bandeira.pecas].sort(() => Math.random() - 0.5);
-  
+
   pecasEmbaralhadas.forEach((peca, index) => {
-    const elementoPeca = criarPecaComImagem(peca, bandeira, canvas);
+    const elementoPeca = criarPecaComImagem(peca, canvas);
     elementoPeca.style.animationDelay = `${index * 0.1}s`;
     document.getElementById("pecas-disponiveis").appendChild(elementoPeca);
   });
 
-  // Criar slots de montagem
   criarAreaMontagem(bandeira);
 }
 
-function criarPecaComImagem(peca, bandeira, canvasOriginal) {
+function criarPecaComImagem(peca, canvasOriginal) {
   const div = document.createElement('div');
   div.className = 'peca disponivel';
   div.draggable = true;
   div.dataset.id = peca.id;
-  
-  // Criar canvas para esta peça específica
+
   const canvas = document.createElement('canvas');
   const ctx = canvas.getContext('2d');
-  
-  // Calcular dimensões da peça
+
   const larguraPeca = (peca.width / 100) * 300;
   const alturaPeca = (peca.height / 100) * 200;
-  
   canvas.width = larguraPeca;
   canvas.height = alturaPeca;
-  
-  // Recortar a parte correspondente da imagem original
+
   const sourceX = (peca.x / 100) * 300;
   const sourceY = (peca.y / 100) * 200;
-  
+
   ctx.drawImage(
     canvasOriginal,
     sourceX, sourceY, larguraPeca, alturaPeca,
     0, 0, larguraPeca, alturaPeca
   );
-  
-  // Adicionar borda e efeitos à peça
+
   ctx.strokeStyle = '#00ffff';
   ctx.lineWidth = 3;
   ctx.strokeRect(0, 0, larguraPeca, alturaPeca);
-  
-  // Adicionar número da peça
-  // ctx.fillStyle = 'rgba(0, 0, 0, 0.7)';
-  // ctx.fillRect(5, 5, 25, 25);
-  // ctx.fillStyle = '#ffffff';
-  // ctx.font = 'bold 16px Arial';
-  // ctx.fillText(peca.id, 12, 22);
-  
+
+  // Removido: número da peça
+
   div.appendChild(canvas);
-  
-  // Estilizar a div da peça
+
   div.style.cssText = `
     margin: 5px;
     border-radius: 8px;
@@ -167,17 +150,15 @@ function criarPecaComImagem(peca, bandeira, canvasOriginal) {
     animation-fill-mode: both;
     box-shadow: 0 4px 15px rgba(0, 255, 255, 0.3);
   `;
-  
+
   div.addEventListener('dragstart', drag);
   div.addEventListener('dragend', dragEnd);
-  
+
   return div;
 }
 
 function criarAreaMontagem(bandeira) {
   const areaMontagem = document.getElementById("area-montagem");
-  
-  // Criar container da bandeira completa
   const containerBandeira = document.createElement('div');
   containerBandeira.className = 'bandeira-container';
   containerBandeira.style.cssText = `
@@ -189,18 +170,17 @@ function criarAreaMontagem(bandeira) {
     margin: 0 auto;
     background: rgba(255, 255, 255, 0.1);
   `;
-  
-  // Criar slots para cada peça
+
   bandeira.pecas.forEach(peca => {
     const slot = document.createElement('div');
     slot.className = 'slot';
     slot.dataset.aceita = peca.id;
-    
+
     const left = (peca.x / 100) * 300;
     const top = (peca.y / 100) * 200;
     const width = (peca.width / 100) * 300;
     const height = (peca.height / 100) * 200;
-    
+
     slot.style.cssText = `
       position: absolute;
       left: ${left}px;
@@ -215,40 +195,28 @@ function criarAreaMontagem(bandeira) {
       transition: all 0.3s ease;
       background: rgba(0, 255, 255, 0.05);
     `;
-    
-    // Adicionar número do slot
-    const numeroSlot = document.createElement('span');
-    numeroSlot.textContent = peca.id;
-    numeroSlot.style.cssText = `
-      color: var(--primary-color);
-      font-size: 24px;
-      font-weight: bold;
-      opacity: 0.7;
-      pointer-events: none;
-    `;
-    slot.appendChild(numeroSlot);
-    
+
+    // Removido: número do slot
+
     slot.addEventListener('dragover', allowDrop);
     slot.addEventListener('drop', drop);
-    
+
     containerBandeira.appendChild(slot);
   });
-  
+
   areaMontagem.appendChild(containerBandeira);
 }
 
 function criarPecasFallback(bandeira) {
-  // Fallback com cores sólidas se a imagem não carregar
   const cores = ['#ff6b6b', '#4ecdc4', '#45b7d1', '#96ceb4', '#feca57', '#ff9ff3'];
-  
   const pecasEmbaralhadas = [...bandeira.pecas].sort(() => Math.random() - 0.5);
-  
+
   pecasEmbaralhadas.forEach((peca, index) => {
     const div = document.createElement('div');
     div.className = 'peca disponivel';
     div.draggable = true;
     div.dataset.id = peca.id;
-    
+
     div.style.cssText = `
       width: 80px;
       height: 60px;
@@ -268,15 +236,15 @@ function criarPecasFallback(bandeira) {
       animation-delay: ${index * 0.1}s;
       animation-fill-mode: both;
     `;
-    
-    div.textContent = `Peça ${peca.id}`;
-    
+
+    // Removido: div.textContent = `Peça ${peca.id}`;
+
     div.addEventListener('dragstart', drag);
     div.addEventListener('dragend', dragEnd);
-    
+
     document.getElementById("pecas-disponiveis").appendChild(div);
   });
-  
+
   criarAreaMontagem(bandeira);
 }
 
@@ -306,65 +274,54 @@ function allowDrop(ev) {
 function drop(ev) {
   ev.preventDefault();
   const slot = ev.target.closest('.slot');
-  
-  // Resetar estilo do slot
   slot.style.background = 'rgba(0, 255, 255, 0.05)';
   slot.style.borderColor = 'rgba(0, 255, 255, 0.5)';
   slot.style.transform = 'scale(1)';
-  
+
   const pecaId = parseInt(ev.dataTransfer.getData("text"));
   const slotAceita = parseInt(slot.dataset.aceita);
-  
+
   if (pecaId === slotAceita) {
-  // Peça correta
-  const pecaOriginal = document.querySelector(`[data-id="${pecaId}"].disponivel`);
-  if (pecaOriginal) {
-    // Remover peça da área de peças disponíveis e mover para o slot
-    pecaOriginal.classList.remove('disponivel');
-    pecaOriginal.classList.add('na-area');
-    pecaOriginal.draggable = false;
-    pecaOriginal.style.cssText = `
-      width: 100%;
-      height: 100%;
-      border-radius: 5px;
-      animation: pecaEncaixe 0.5s ease-out;
-    `;
+    const pecaOriginal = document.querySelector(`[data-id="${pecaId}"].disponivel`);
+    if (pecaOriginal) {
+      // Mover a peça original para o slot
+      pecaOriginal.classList.remove('disponivel');
+      pecaOriginal.classList.add('na-area');
+      pecaOriginal.draggable = false;
+      pecaOriginal.style.cssText = `
+        width: 100%;
+        height: 100%;
+        border-radius: 5px;
+        animation: pecaEncaixe 0.5s ease-out;
+      `;
 
-    // Limpar slot e adicionar a peça original
-    slot.innerHTML = '';
-    slot.appendChild(pecaOriginal);
+      slot.innerHTML = '';
+      slot.appendChild(pecaOriginal);
 
-    // Registrar peça colocada
-    pecasColocadas.push(pecaId);
+      pecasColocadas.push(pecaId);
 
-    // Efeito visual de sucesso
-    slot.style.borderColor = 'var(--success-color)';
-    slot.style.boxShadow = '0 0 20px rgba(0, 255, 136, 0.6)';
+      slot.style.borderColor = 'var(--success-color)';
+      slot.style.boxShadow = '0 0 20px rgba(0, 255, 136, 0.6)';
 
-    // Verificar se completou
-    if (pecasColocadas.length === bandeiras[indiceAtual].pecas.length) {
-      setTimeout(verificarCompleto, 500);
+      if (pecasColocadas.length === bandeiras[indiceAtual].pecas.length) {
+        setTimeout(verificarCompleto, 500);
+      }
+
+      if (navigator.vibrate) {
+        navigator.vibrate([50]);
+      }
     }
-
-    // Som de sucesso simulado com vibração
-    if (navigator.vibrate) {
-      navigator.vibrate([50]);
-    }
-  }
-}
-    else {
-    // Peça incorreta - efeito de erro
+  } else {
     slot.style.background = 'rgba(255, 68, 68, 0.3)';
     slot.style.borderColor = 'var(--error-color)';
     slot.style.animation = 'shake 0.6s ease-out';
-    
+
     setTimeout(() => {
       slot.style.background = 'rgba(0, 255, 255, 0.05)';
       slot.style.borderColor = 'rgba(0, 255, 255, 0.5)';
       slot.style.animation = '';
     }, 600);
-    
-    // Vibração de erro
+
     if (navigator.vibrate) {
       navigator.vibrate([100, 50, 100]);
     }
@@ -374,22 +331,19 @@ function drop(ev) {
 function verificarCompleto() {
   const bandeira = bandeiras[indiceAtual];
   const resultadoDiv = document.getElementById("resultado-mini");
-  
+
   tentativas++;
   acertos++;
-  
+
   resultadoDiv.innerHTML = `✅ <strong>Parabéns!</strong> <em>${bandeira.explicacao}</em>`;
   resultadoDiv.className = "correto";
-  
-  // Efeito de sucesso
+
   criarEfeitoSucesso();
-  
-  // Vibração de sucesso
+
   if (navigator.vibrate) {
     navigator.vibrate([100, 50, 100, 50, 100]);
   }
-  
-  // Atualizar estatísticas
+
   atualizarEstatisticas();
 }
 
@@ -409,7 +363,7 @@ function criarEfeitoSucesso() {
       top: 30%;
       animation: confetti${i} 3s ease-out forwards;
     `;
-    
+
     // Criar animação única para cada confete
     const style = document.createElement('style');
     style.textContent = `
@@ -426,8 +380,7 @@ function criarEfeitoSucesso() {
     `;
     document.head.appendChild(style);
     document.body.appendChild(confete);
-    
-    // Remover elementos após animação
+
     setTimeout(() => {
       confete.remove();
       style.remove();
@@ -441,12 +394,10 @@ function reiniciar() {
 
 function proximaBandeira() {
   indiceAtual = (indiceAtual + 1) % bandeiras.length;
-  
-  // Efeito de transição
   const container = document.querySelector('.container');
   container.style.transform = 'scale(0.95)';
   container.style.opacity = '0.7';
-  
+
   setTimeout(() => {
     carregarBandeira();
     container.style.transform = 'scale(1)';
@@ -455,7 +406,6 @@ function proximaBandeira() {
 }
 
 function atualizarEstatisticas() {
-  // Criar ou atualizar painel de estatísticas
   let stats = document.getElementById('stats-panel');
   if (!stats) {
     stats = document.createElement('div');
@@ -476,7 +426,7 @@ function atualizarEstatisticas() {
     `;
     document.body.appendChild(stats);
   }
-  
+
   const porcentagem = tentativas > 0 ? Math.round((acertos / tentativas) * 100) : 0;
   stats.innerHTML = `
     <div style="text-align: center; color: var(--primary-color); margin-bottom: 10px;">📊 STATS</div>
@@ -486,7 +436,6 @@ function atualizarEstatisticas() {
   `;
 }
 
-// Adicionar animações CSS extras
 function adicionarAnimacoesExtras() {
   const style = document.createElement('style');
   style.textContent = `
@@ -500,7 +449,6 @@ function adicionarAnimacoesExtras() {
         transform: translateY(0);
       }
     }
-    
     @keyframes pecaEncaixe {
       0% {
         transform: scale(0.8) rotate(-10deg);
@@ -515,18 +463,15 @@ function adicionarAnimacoesExtras() {
         opacity: 1;
       }
     }
-    
     @keyframes shake {
       0%, 100% { transform: translateX(0); }
       25% { transform: translateX(-10px); }
       75% { transform: translateX(10px); }
     }
-    
     .peca:hover {
       transform: translateY(-5px) scale(1.05);
       box-shadow: 0 10px 25px rgba(0, 255, 255, 0.6);
     }
-    
     .peca.arrastando {
       transform: rotate(5deg) scale(1.1);
       z-index: 1000;
@@ -536,7 +481,6 @@ function adicionarAnimacoesExtras() {
   document.head.appendChild(style);
 }
 
-// Inicialização
 window.onload = function() {
   adicionarAnimacoesExtras();
   carregarBandeira();
