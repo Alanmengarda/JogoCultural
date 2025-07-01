@@ -114,9 +114,9 @@ function getThemeIcon(tema) {
     'Culinária': '🍜', 'Cuisine': '🍜',
     'Religião': '🕉️', 'Religion': '🕉️',
     'Arte': '🎨', 'Art': '🎨',
-    'Vestimenta': '👘', 'Clothing': '👘',
+    'Cultura': '🎭', 'Culture': '🎭',
     'Arquitetura': '🏛️', 'Architecture': '🏛️',
-    'Língua': '🗣️', 'Language': '🗣️',
+    'Idioma': '🗣️', 'Language': '🗣️',
     'Dança': '💃', 'Dance': '💃',
     'Música': '🎵', 'Music': '🎵',
     'Festas': '🎉', 'Festivals': '🎉',
@@ -126,8 +126,8 @@ function getThemeIcon(tema) {
     'Literatura': '📚', 'Literature': '📚',
     'Tradições': '🎭', 'Traditions': '🎭',
     'Arquitetura Religiosa': '⛪', 'Religious Architecture': '⛪',
-    'Língua Alemã': '🇩🇪', 'German Language': '🇩🇪',
-    'Língua Francesa': '🇫🇷', 'French Language': '🇫🇷'
+    'Idioma': '🗣️', 'Language': '🗣️',
+    'Idioma': '🗣️', 'Language': '🗣️'
   };
   return icons[tema] || '🌍';
 }
