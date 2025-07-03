@@ -18,6 +18,19 @@ const transicoes = [
   'bounceIn'
 ];
 
+// Sistema de sons
+function tocarSom(tipo) {
+  try {
+    const audio = document.getElementById(`som-${tipo}`);
+    if (audio) {
+      audio.currentTime = 0;
+      audio.play().catch(e => console.log('Som não pôde ser reproduzido:', e));
+    }
+  } catch (e) {
+    console.log('Erro ao tocar som:', e);
+  }
+}
+
 function carregarPerguntas() {
   idioma = document.getElementById("idioma").value;
   dificuldadeAtual = document.getElementById("dificuldade").value;
@@ -238,27 +251,27 @@ function mostrarPergunta() {
 
 function getThemeIcon(tema) {
   const icons = {
-    'Culinária': '🍜', 'Cuisine': '🍜',
-    'Religião': '🕉️', 'Religion': '🕉️',
+    'Culinária': '🍜', 'Cuisine': '🍜', 'Gastronomía': '🍜',
+    'Religião': '🕉️', 'Religion': '🕉️', 'Religión': '🕉️',
     'Arte': '🎨', 'Art': '🎨',
     'Cultura': '🎭', 'Culture': '🎭',
-    'Arquitetura': '🏛️', 'Architecture': '🏛️',
-    'Língua': '🗣️', 'Language': '🗣️',
-    'Dança': '💃', 'Dance': '💃',
-    'Música': '🎵', 'Music': '🎵',
-    'Festas': '🎉', 'Festivals': '🎉',
-    'Cinema': '🎬', 'Cinema': '🎬',
-    'Mitologia': '⚡', 'Mythology': '⚡',
-    'Esportes Tradicionais': '🥋', 'Traditional Sports': '🥋',
+    'Arquitetura': '🏛️', 'Architecture': '🏛️', 'Arquitectura': '🏛️',
+    'Língua': '🗣️', 'Language': '🗣️', 'Idioma': '🗣️',
+    'Dança': '💃', 'Dance': '💃', 'Danza': '💃',
+    'Música': '🎵', 'Music': '🎵', 'Música': '🎵',
+    'Festas': '🎉', 'Festivals': '🎉', 'Festivales': '🎉',
+    'Cinema': '🎬', 'Cinema': '🎬', 'Cine': '🎬',
+    'Mitologia': '⚡', 'Mythology': '⚡', 'Mitología': '⚡',
+    'Esportes Tradicionais': '🥋', 'Traditional Sports': '🥋', 'Deportes Tradicionales': '🥋',
     'Literatura': '📚', 'Literature': '📚',
-    'Tradições': '🎭', 'Traditions': '🎭',
-    'Arquitetura Religiosa': '⛪', 'Religious Architecture': '⛪',
-    'Filosofia': '🤔', 'Philosophy': '🤔',
-    'História': '📜', 'History': '📜',
-    'Ciência': '🔬', 'Science': '🔬',
-    'Geografia': '🌍', 'Geography': '🌍',
-    'Economia': '💰', 'Economy': '💰',
-    'Tecnologia': '💻', 'Technology': '💻'
+    'Tradições': '🎭', 'Traditions': '🎭', 'Tradiciones': '🎭',
+    'Arquitetura Religiosa': '⛪', 'Religious Architecture': '⛪', 'Arquitectura Religiosa': '⛪',
+    'Filosofia': '🤔', 'Philosophy': '🤔', 'Filosofía': '🤔',
+    'História': '📜', 'History': '📜', 'Historia': '📜',
+    'Ciência': '🔬', 'Science': '🔬', 'Ciencia': '🔬',
+    'Geografia': '🌍', 'Geography': '🌍', 'Geografía': '🌍',
+    'Economia': '💰', 'Economy': '💰', 'Economía': '💰',
+    'Tecnologia': '💻', 'Technology': '💻', 'Tecnología': '💻'
   };
   return icons[tema] || '🌍';
 }
@@ -278,15 +291,6 @@ function responder(indiceEscolhido) {
     estatisticasTemas[p.tema] = { total: 0, acertos: 0, porcentagem: 0 };
   }
 
-  // Efeito sonoro simulado com vibração (se suportado)
-  if (navigator.vibrate) {
-    if (indiceEscolhido === p.resposta_correta) {
-      navigator.vibrate([100, 50, 100]); // Padrão de sucesso
-    } else {
-      navigator.vibrate([200, 100, 200, 100, 200]); // Padrão de erro
-    }
-  }
-
   if (indiceEscolhido === p.resposta_correta) {
     // Pontuação baseada na dificuldade
     const pontosPorDificuldade = {
@@ -301,12 +305,28 @@ function responder(indiceEscolhido) {
     exp.innerHTML = `✅ <strong>Resposta correta! (+${pontosPorDificuldade[p.dificuldade]} pontos)</strong><br><em>${p.explicacao}</em>`;
     opcoes[indiceEscolhido].classList.add("correta");
     
+    // Tocar som de acerto
+    tocarSom('acerto');
+    
     // Efeito de partículas simulado
     criarEfeitoSucesso(opcoes[indiceEscolhido]);
+    
+    // Vibração de sucesso
+    if (navigator.vibrate) {
+      navigator.vibrate([100, 50, 100]);
+    }
   } else {
     exp.innerHTML = `❌ <strong>Resposta errada!</strong> A correta era: <strong>${p.opcoes[p.resposta_correta]}</strong><br><em>${p.explicacao}</em>`;
     opcoes[indiceEscolhido].classList.add("errada");
     opcoes[p.resposta_correta].classList.add("correta");
+    
+    // Tocar som de erro
+    tocarSom('erro');
+    
+    // Vibração de erro
+    if (navigator.vibrate) {
+      navigator.vibrate([200, 100, 200, 100, 200]);
+    }
   }
 
   // Atualizar porcentagem do tema
@@ -339,6 +359,9 @@ function mostrarResultado() {
   document.getElementById("quiz-box").classList.add("hidden");
   document.getElementById("resultado").classList.remove("hidden");
   document.getElementById("pontuacao-final").innerText = `${pontuacao} pontos`;
+
+  // Tocar som de final
+  tocarSom('final');
 
   // Mostrar link bonus se pontuação alta
   const pontuacaoMinima = {
@@ -435,7 +458,7 @@ function enviarPontuacao() {
     body: JSON.stringify({ nome, pontos: pontuacao })
   }).then(() => {
     jaSalvouPontuacao = true;
-    alert("Pontuação salva com sucesso! 🎉");
+    alert("Pontuação salva com sucesso! 🎉\nSeus pontos foram somados ao seu total no ranking!");
     carregarRanking(); // Atualizar ranking após salvar
     
     // Esconder botão e input após salvar
@@ -444,7 +467,7 @@ function enviarPontuacao() {
     
     // Mostrar mensagem de sucesso
     const mensagemSalvo = document.createElement('div');
-    mensagemSalvo.innerHTML = '✅ <strong>Pontuação salva com sucesso!</strong><br>Reinicie o jogo para jogar novamente.';
+    mensagemSalvo.innerHTML = '✅ <strong>Pontuação salva com sucesso!</strong><br>Seus pontos foram somados ao ranking. Reinicie para jogar novamente.';
     mensagemSalvo.style.cssText = `
       background: rgba(0, 255, 136, 0.2);
       border: 2px solid var(--success-color);

@@ -3,42 +3,64 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Quebra-cabeça de Bandeiras Reais</title>
+  <title>Quebra-cabeça de Bandeiras com Níveis</title>
   <link rel="stylesheet" href="{{ url_for('static', filename='css/minijogo.css') }}">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 </head>
 <body>
-  <a href="/" class="botao-voltar">← Voltar ao Jogo Principal</a>
+  <div class="game-header">
+    <a href="/" class="botao-voltar">← Voltar ao Jogo Principal</a>
+    
+    <div class="dificuldade-selector">
+      <label for="dificuldade-mini">Dificuldade:</label>
+      <select id="dificuldade-mini" onchange="mudarDificuldade()">
+        <option value="facil">🟢 Fácil (4 peças)</option>
+        <option value="normal">🟡 Normal (6-9 peças)</option>
+        <option value="dificil">🔴 Difícil (16-25 peças)</option>
+      </select>
+    </div>
+  </div>
 
-  <div class="container">
-    <h2 id="titulo-jogo">🧩 Quebra-cabeça de Bandeiras</h2>
-    <p style="text-align: center; margin-bottom: 20px; color: #b0b0b0;">
-      Arraste as peças da imagem real da bandeira para montar o quebra-cabeça
-    </p>
-    
-    <div class="puzzle-area">
-      <div class="secao">
-        <h3>🎯 Peças do Quebra-cabeça</h3>
-        <div id="pecas-disponiveis">
-          <!-- Peças com imagens reais serão carregadas aqui -->
+  <div class="main-layout">
+    <div class="game-content">
+      <div class="container">
+        <h2 id="titulo-jogo">🧩 Quebra-cabeça de Bandeiras</h2>
+        <p style="text-align: center; margin-bottom: 20px; color: #b0b0b0;">
+          Arraste as peças da imagem real da bandeira para montar o quebra-cabeça
+        </p>
+        
+        <div class="puzzle-area">
+          <div class="secao">
+            <h3>🎯 Peças do Quebra-cabeça</h3>
+            <div id="pecas-disponiveis">
+              <!-- Peças com imagens reais serão carregadas aqui -->
+            </div>
+          </div>
+          
+          <div class="secao">
+            <h3>🏁 Monte a Bandeira</h3>
+            <div id="area-montagem">
+              <!-- Área de montagem será criada aqui -->
+            </div>
+          </div>
         </div>
-      </div>
-      
-      <div class="secao">
-        <h3>🏁 Monte a Bandeira</h3>
-        <div id="area-montagem">
-          <!-- Área de montagem será criada aqui -->
+        
+        <div id="resultado-mini"></div>
+        
+        <div class="control-buttons">
+          <button onclick="reiniciar()">🔄 Reiniciar</button>
+          <button onclick="proximaBandeira()">➡️ Próxima Bandeira</button>
         </div>
       </div>
     </div>
-    
-    <div id="resultado-mini"></div>
-    
-    <div class="control-buttons">
-      <button onclick="reiniciar()">🔄 Reiniciar</button>
-      <button onclick="proximaBandeira()">➡️ Próxima Bandeira</button>
-    </div>
+
+    <!-- Painel de Estatísticas -->
+    <aside class="stats-panel">
+      <div id="painel-estatisticas">
+        <!-- Estatísticas serão carregadas dinamicamente -->
+      </div>
+    </aside>
   </div>
 
   <script src="{{ url_for('static', filename='js/minijogo.js') }}"></script>
