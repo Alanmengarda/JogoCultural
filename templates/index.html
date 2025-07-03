@@ -23,11 +23,23 @@
       <div class="container">
         <h1>JOGO CULTURAL</h1>
         
-        <div class="language-selector">
-          <select id="idioma" onchange="carregarPerguntas()"> 
-            <option value="pt">🇧🇷 Português</option>
-            <option value="en">🇺🇸 English</option>
-          </select>
+        <div class="game-controls">
+          <div class="control-group">
+            <label for="idioma">Idioma</label>
+            <select id="idioma" onchange="carregarPerguntas()"> 
+              <option value="pt">🇧🇷 Português</option>
+              <option value="en">🇺🇸 English</option>
+            </select>
+          </div>
+          
+          <div class="control-group">
+            <label for="dificuldade">Dificuldade</label>
+            <select id="dificuldade" onchange="carregarPerguntas()">
+              <option value="facil">🟢 Fácil (5 pts)</option>
+              <option value="normal">🟡 Normal (10 pts)</option>
+              <option value="dificil">🔴 Difícil (20 pts)</option>
+            </select>
+          </div>
         </div>
 
         <div class="quiz-container">
@@ -49,15 +61,29 @@
             <p><span id="pontuacao-final"></span></p>
             <div>
               <input type="text" id="nome-jogador" placeholder="Digite seu nome">
-              <button onclick="enviarPontuacao()">💾 Salvar Pontuação</button>
+              <button id="botao-salvar" onclick="enviarPontuacao()">💾 Salvar Pontuação</button>
             </div>
             <a href="/minijogo" id="link-bonus" class="hidden">
               🎮 Jogar Mini-game Bônus 🇧🇷
             </a>
+            <div class="control-buttons">
+              <button onclick="reiniciarJogo()">🔄 Jogar Novamente</button>
+            </div>
           </div>
         </div>
       </div>
     </main>
+
+    <!-- Sidebar de Estatísticas -->
+    <aside class="stats-sidebar">
+      <div id="painel-progresso">
+        <!-- Progresso será carregado dinamicamente -->
+      </div>
+      
+      <div id="grafico-temas">
+        <!-- Gráfico de temas será carregado dinamicamente -->
+      </div>
+    </aside>
   </div>
 
   <script src="{{ url_for('static', filename='js/script.js') }}"></script>
