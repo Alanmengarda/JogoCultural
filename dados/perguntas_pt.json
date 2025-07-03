@@ -4,121 +4,191 @@
     "pergunta": "Qual país é famoso pelo prato chamado sushi?",
     "opcoes": ["China", "Japão", "Coreia do Sul", "Tailândia"],
     "resposta_correta": 1,
-    "explicacao": "O sushi é um prato tradicional japonês feito com arroz temperado e geralmente peixe cru ou frutos do mar."
+    "explicacao": "O sushi é um prato tradicional japonês feito com arroz temperado e geralmente peixe cru ou frutos do mar.",
+    "dificuldade": "facil"
   },
   {
     "tema": "Religião",
     "pergunta": "Qual religião tem o Bhagavad Gita como texto sagrado?",
     "opcoes": ["Cristianismo", "Islamismo", "Hinduísmo", "Budismo"],
     "resposta_correta": 2,
-    "explicacao": "O Bhagavad Gita é um dos textos sagrados mais importantes do hinduísmo, parte do épico Mahabharata."
+    "explicacao": "O Bhagavad Gita é um dos textos sagrados mais importantes do hinduísmo, parte do épico Mahabharata.",
+    "dificuldade": "normal"
   },
   {
     "tema": "Arte",
     "pergunta": "Quem pintou a Mona Lisa?",
     "opcoes": ["Michelangelo", "Van Gogh", "Leonardo da Vinci", "Picasso"],
     "resposta_correta": 2,
-    "explicacao": "A Mona Lisa foi pintada por Leonardo da Vinci no século XVI e é uma das obras de arte mais conhecidas do mundo."
+    "explicacao": "A Mona Lisa foi pintada por Leonardo da Vinci no século XVI e é uma das obras de arte mais conhecidas do mundo.",
+    "dificuldade": "facil"
   },
   {
     "tema": "Cultura",
     "pergunta": "O que é um 'kimono'?",
     "opcoes": ["Uma dança tradicional", "Uma peça de roupa japonesa", "Um instrumento musical", "Um prato típico"],
     "resposta_correta": 1,
-    "explicacao": "O kimono é uma tradicional vestimenta japonesa usada em ocasiões formais e festivais."
+    "explicacao": "O kimono é uma tradicional vestimenta japonesa usada em ocasiões formais e festivais.",
+    "dificuldade": "facil"
   },
   {
     "tema": "Arquitetura",
     "pergunta": "Onde fica o Taj Mahal?",
     "opcoes": ["Índia", "Paquistão", "Nepal", "Bangladesh"],
     "resposta_correta": 0,
-    "explicacao": "O Taj Mahal está localizado em Agra, na Índia, e é um mausoléu construído pelo imperador Shah Jahan em memória de sua esposa."
+    "explicacao": "O Taj Mahal está localizado em Agra, na Índia, e é um mausoléu construído pelo imperador Shah Jahan em memória de sua esposa.",
+    "dificuldade": "normal"
   },
   {
     "tema": "Língua",
     "pergunta": "Qual é a língua oficial do Brasil?",
     "opcoes": ["Português", "Espanhol", "Inglês", "Francês"],
     "resposta_correta": 0,
-    "explicacao": "A língua oficial do Brasil é o português, devido à colonização portuguesa no século XVI."
+    "explicacao": "A língua oficial do Brasil é o português, devido à colonização portuguesa no século XVI.",
+    "dificuldade": "facil"
   },
   {
     "tema": "Dança",
     "pergunta": "O flamenco é um estilo de dança tradicional de qual país?",
     "opcoes": ["Itália", "México", "Espanha", "Argentina"],
     "resposta_correta": 2,
-    "explicacao": "O flamenco é uma forma expressiva de música e dança originária da região da Andaluzia, na Espanha."
+    "explicacao": "O flamenco é uma forma expressiva de música e dança originária da região da Andaluzia, na Espanha.",
+    "dificuldade": "normal"
   },
   {
     "tema": "Música",
     "pergunta": "O reggae é um gênero musical originado em qual país?",
     "opcoes": ["Estados Unidos", "Jamaica", "África do Sul", "Cuba"],
     "resposta_correta": 1,
-    "explicacao": "O reggae surgiu na Jamaica na década de 1960 e ficou famoso por artistas como Bob Marley."
+    "explicacao": "O reggae surgiu na Jamaica na década de 1960 e ficou famoso por artistas como Bob Marley.",
+    "dificuldade": "normal"
   },
   {
     "tema": "Festas",
     "pergunta": "Em qual país é celebrado o Dia dos Mortos com altares e caveiras decoradas?",
     "opcoes": ["Peru", "México", "Espanha", "Colômbia"],
     "resposta_correta": 1,
-    "explicacao": "O Dia dos Mortos é uma celebração tradicional mexicana que homenageia os entes queridos falecidos com oferendas e decorações simbólicas."
+    "explicacao": "O Dia dos Mortos é uma celebração tradicional mexicana que homenageia os entes queridos falecidos com oferendas e decorações simbólicas.",
+    "dificuldade": "normal"
   },
   {
     "tema": "Cinema",
     "pergunta": "Qual país é conhecido por sua indústria de cinema chamada 'Bollywood'?",
     "opcoes": ["Índia", "Estados Unidos", "Japão", "França"],
     "resposta_correta": 0,
-    "explicacao": "Bollywood é o nome dado à indústria cinematográfica da Índia, especialmente de Mumbai, conhecida por seus filmes musicais e coloridos."
+    "explicacao": "Bollywood é o nome dado à indústria cinematográfica da Índia, especialmente de Mumbai, conhecida por seus filmes musicais e coloridos.",
+    "dificuldade": "facil"
   },
   {
     "tema": "Mitologia",
     "pergunta": "Na mitologia grega, quem é o deus do trovão?",
     "opcoes": ["Hades", "Ares", "Zeus", "Apolo"],
     "resposta_correta": 2,
-    "explicacao": "Zeus é o principal deus do Olimpo e é conhecido como o deus do céu, do trovão e do relâmpago na mitologia grega."
+    "explicacao": "Zeus é o principal deus do Olimpo e é conhecido como o deus do céu, do trovão e do relâmpago na mitologia grega.",
+    "dificuldade": "normal"
   },
   {
     "tema": "Esportes Tradicionais",
     "pergunta": "O sumô é um esporte tradicional de qual país?",
     "opcoes": ["China", "Mongólia", "Japão", "Coreia do Sul"],
     "resposta_correta": 2,
-    "explicacao": "O sumô é um esporte de luta tradicional do Japão com raízes religiosas e rituais xintoístas."
+    "explicacao": "O sumô é um esporte de luta tradicional do Japão com raízes religiosas e rituais xintoístas.",
+    "dificuldade": "normal"
   },
   {
     "tema": "Literatura",
     "pergunta": "Quem escreveu 'Dom Quixote'?",
     "opcoes": ["Shakespeare", "Cervantes", "Camões", "Victor Hugo"],
     "resposta_correta": 1,
-    "explicacao": "Dom Quixote foi escrito por Miguel de Cervantes e é considerado um dos maiores clássicos da literatura espanhola e mundial."
+    "explicacao": "Dom Quixote foi escrito por Miguel de Cervantes e é considerado um dos maiores clássicos da literatura espanhola e mundial.",
+    "dificuldade": "normal"
   },
   {
     "tema": "Tradições",
     "pergunta": "O chá da tarde é uma tradição cultural famosa em qual país?",
     "opcoes": ["Índia", "China", "Inglaterra", "Austrália"],
     "resposta_correta": 2,
-    "explicacao": "O chá da tarde é uma tradição britânica que surgiu no século XIX, geralmente acompanhado de bolos e sanduíches."
+    "explicacao": "O chá da tarde é uma tradição britânica que surgiu no século XIX, geralmente acompanhado de bolos e sanduíches.",
+    "dificuldade": "facil"
   },
   {
     "tema": "Arquitetura Religiosa",
     "pergunta": "A Catedral de Notre-Dame está localizada em qual cidade?",
     "opcoes": ["Paris", "Londres", "Madri", "Roma"],
     "resposta_correta": 0,
-    "explicacao": "A Catedral de Notre-Dame está em Paris, França, e é um dos maiores exemplos da arquitetura gótica na Europa."
+    "explicacao": "A Catedral de Notre-Dame está em Paris, França, e é um dos maiores exemplos da arquitetura gótica na Europa.",
+    "dificuldade": "normal"
   },
   {
-  "tema": "Língua",
-  "pergunta": "De qual país se originou a palavra 'Kindergarten'?",
-  "opcoes": ["Áustria", "Alemanha", "Suíça", "Holanda"],
-  "resposta_correta": 1,
-  "explicacao": "'Kindergarten' é uma palavra alemã que significa 'jardim da infância'. O termo foi criado na Alemanha por Friedrich Fröbel no século XIX para descrever uma instituição de educação infantil."
-},
-    {
-  "tema": "Língua",
-  "pergunta": "De qual país se originou a palavra 'Bonjour'?",
-  "opcoes": ["Canadá", "Bélgica", "França", "Suíça"],
-  "resposta_correta": 2,
-  "explicacao": "'Bonjour' é uma saudação típica da língua francesa que significa 'bom dia' e é originária da França, embora também seja usada em outros países francófonos."
-}
-
-
-
+    "tema": "Língua",
+    "pergunta": "De qual país se originou a palavra 'Kindergarten'?",
+    "opcoes": ["Áustria", "Alemanha", "Suíça", "Holanda"],
+    "resposta_correta": 1,
+    "explicacao": "'Kindergarten' é uma palavra alemã que significa 'jardim da infância'. O termo foi criado na Alemanha por Friedrich Fröbel no século XIX para descrever uma instituição de educação infantil.",
+    "dificuldade": "dificil"
+  },
+  {
+    "tema": "Língua",
+    "pergunta": "De qual país se originou a palavra 'Bonjour'?",
+    "opcoes": ["Canadá", "Bélgica", "França", "Suíça"],
+    "resposta_correta": 2,
+    "explicacao": "'Bonjour' é uma saudação típica da língua francesa que significa 'bom dia' e é originária da França, embora também seja usada em outros países francófonos.",
+    "dificuldade": "facil"
+  },
+  {
+    "tema": "Arte",
+    "pergunta": "Qual movimento artístico foi fundado por Pablo Picasso e Georges Braque?",
+    "opcoes": ["Impressionismo", "Cubismo", "Surrealismo", "Expressionismo"],
+    "resposta_correta": 1,
+    "explicacao": "O Cubismo foi um movimento artístico revolucionário do início do século XX, caracterizado pela representação de objetos em formas geométricas.",
+    "dificuldade": "dificil"
+  },
+  {
+    "tema": "Filosofia",
+    "pergunta": "Qual filósofo grego é conhecido pela frase 'Só sei que nada sei'?",
+    "opcoes": ["Platão", "Aristóteles", "Sócrates", "Tales de Mileto"],
+    "resposta_correta": 2,
+    "explicacao": "Sócrates é famoso por esta frase que representa sua humildade intelectual e método de questionamento.",
+    "dificuldade": "dificil"
+  },
+  {
+    "tema": "História",
+    "pergunta": "Em que ano caiu o Muro de Berlim?",
+    "opcoes": ["1987", "1989", "1991", "1993"],
+    "resposta_correta": 1,
+    "explicacao": "O Muro de Berlim caiu em 9 de novembro de 1989, marcando o fim da divisão da Alemanha.",
+    "dificuldade": "dificil"
+  },
+  {
+    "tema": "Ciência",
+    "pergunta": "Quem desenvolveu a teoria da relatividade?",
+    "opcoes": ["Isaac Newton", "Albert Einstein", "Galileu Galilei", "Stephen Hawking"],
+    "resposta_correta": 1,
+    "explicacao": "Albert Einstein desenvolveu tanto a teoria da relatividade especial (1905) quanto a geral (1915).",
+    "dificuldade": "normal"
+  },
+  {
+    "tema": "Geografia",
+    "pergunta": "Qual é o menor país do mundo?",
+    "opcoes": ["Mônaco", "Vaticano", "San Marino", "Liechtenstein"],
+    "resposta_correta": 1,
+    "explicacao": "O Vaticano é o menor país do mundo, com apenas 0,17 milhas quadradas (0,44 km²).",
+    "dificuldade": "dificil"
+  },
+  {
+    "tema": "Economia",
+    "pergunta": "Qual é a moeda oficial da União Europeia?",
+    "opcoes": ["Libra", "Franco", "Euro", "Marco"],
+    "resposta_correta": 2,
+    "explicacao": "O Euro é a moeda oficial de 19 dos 27 países membros da União Europeia.",
+    "dificuldade": "facil"
+  },
+  {
+    "tema": "Tecnologia",
+    "pergunta": "Quem é considerado o fundador da Microsoft?",
+    "opcoes": ["Steve Jobs", "Bill Gates", "Mark Zuckerberg", "Larry Page"],
+    "resposta_correta": 1,
+    "explicacao": "Bill Gates co-fundou a Microsoft em 1975 junto com Paul Allen.",
+    "dificuldade": "facil"
+  }
 ]

@@ -4,7 +4,7 @@ import os
 
 app = Flask(__name__)
 
-IDIOMAS_SUPORTADOS = ['pt', 'en']
+IDIOMAS_SUPORTADOS = ['pt', 'en', 'es']
 
 def carregar_perguntas(idioma='pt'):
     if idioma not in IDIOMAS_SUPORTADOS:
@@ -12,8 +12,6 @@ def carregar_perguntas(idioma='pt'):
     caminho = f"dados/perguntas_{idioma}.json"
     with open(caminho, encoding="utf-8") as f:
         return json.load(f)
-    
-
 
 def carregar_ranking():
     if not os.path.exists("dados/ranking.json"):
@@ -23,7 +21,22 @@ def carregar_ranking():
 
 def salvar_ranking(nome, pontos):
     ranking = carregar_ranking()
-    ranking.append({"nome": nome, "pontos": pontos})
+    
+    # Verificar se o jogador já existe
+    jogador_existente = None
+    for jogador in ranking:
+        if jogador['nome'] == nome:
+            jogador_existente = jogador
+            break
+    
+    if jogador_existente:
+        # Somar pontos ao jogador existente
+        jogador_existente['pontos'] += pontos
+    else:
+        # Adicionar novo jogador
+        ranking.append({"nome": nome, "pontos": pontos})
+    
+    # Ordenar por pontos e manter apenas os top 10
     ranking.sort(key=lambda x: x['pontos'], reverse=True)
     with open("dados/ranking.json", "w", encoding="utf-8") as f:
         json.dump(ranking[:10], f, indent=2, ensure_ascii=False)
@@ -34,7 +47,7 @@ def index():
 
 @app.route("/perguntas")
 def perguntas():
-    idioma = request.args.get("lang", '')
+    idioma = request.args.get("lang", 'pt')
     return jsonify(carregar_perguntas(idioma))
 
 @app.route("/pontuar", methods=["POST"])
@@ -54,4 +67,4 @@ def minijogo():
     return render_template("minijogo.html")
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run(host="0.0.0.0", port=5000, debug=True)

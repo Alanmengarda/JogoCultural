@@ -1,76 +1,347 @@
-const bandeiras = [
-  {
-    pais: "Brasil 🇧🇷",
-    imagem: "https://upload.wikimedia.org/wikipedia/en/0/05/Flag_of_Brazil.svg",
-    pecas: [
-      { id: 1, x: 0, y: 0, width: 50, height: 50 },
-      { id: 2, x: 50, y: 0, width: 50, height: 50 },
-      { id: 3, x: 0, y: 50, width: 50, height: 50 },
-      { id: 4, x: 50, y: 50, width: 50, height: 50 }
-    ],
-    explicacao: "A bandeira do Brasil representa as riquezas naturais e a diversidade do país.",
-    dimensoes: { width: 100, height: 100 }
-  },
-  {
-    pais: "França 🇫🇷",
-    imagem: "https://upload.wikimedia.org/wikipedia/en/c/c3/Flag_of_France.svg",
-    pecas: [
-      { id: 1, x: 0, y: 0, width: 33.33, height: 100 },
-      { id: 2, x: 33.33, y: 0, width: 33.33, height: 100 },
-      { id: 3, x: 66.66, y: 0, width: 33.34, height: 100 }
-    ],
-    explicacao: "A bandeira francesa representa liberdade, igualdade e fraternidade.",
-    dimensoes: { width: 100, height: 100 }
-  },
-  {
-    pais: "Alemanha 🇩🇪",
-    imagem: "https://upload.wikimedia.org/wikipedia/en/b/ba/Flag_of_Germany.svg",
-    pecas: [
-      { id: 1, x: 0, y: 0, width: 100, height: 33.33 },
-      { id: 2, x: 0, y: 33.33, width: 100, height: 33.33 },
-      { id: 3, x: 0, y: 66.66, width: 100, height: 33.34 }
-    ],
-    explicacao: "A bandeira alemã simboliza a unidade e democracia do país.",
-    dimensoes: { width: 100, height: 100 }
-  },
-  {
-    pais: "Japão 🇯🇵",
-    imagem: "https://upload.wikimedia.org/wikipedia/en/9/9e/Flag_of_Japan.svg",
-    pecas: [
-      { id: 1, x: 0, y: 0, width: 50, height: 50 },
-      { id: 2, x: 50, y: 0, width: 50, height: 50 },
-      { id: 3, x: 0, y: 50, width: 50, height: 50 },
-      { id: 4, x: 50, y: 50, width: 50, height: 50 }
-    ],
-    explicacao: "A bandeira japonesa representa o sol nascente e a pureza.",
-    dimensoes: { width: 100, height: 100 }
-  },
-  {
-    pais: "Reino Unido 🇬🇧",
-    imagem: "https://upload.wikimedia.org/wikipedia/en/a/ae/Flag_of_the_United_Kingdom.svg",
-    pecas: [
-      { id: 1, x: 0, y: 0, width: 50, height: 50 },
-      { id: 2, x: 50, y: 0, width: 50, height: 50 },
-      { id: 3, x: 0, y: 50, width: 50, height: 50 },
-      { id: 4, x: 50, y: 50, width: 50, height: 50 }
-    ],
-    explicacao: "A Union Jack combina as cruzes de São Jorge, Santo André e São Patrício.",
-    dimensoes: { width: 100, height: 100 }
-  }
-];
+const bandeiras = {
+  facil: [
+    {
+      pais: "Brasil 🇧🇷",
+      imagem: "https://upload.wikimedia.org/wikipedia/en/0/05/Flag_of_Brazil.svg",
+      pecas: [
+        { id: 1, x: 0, y: 0, width: 50, height: 50 },
+        { id: 2, x: 50, y: 0, width: 50, height: 50 },
+        { id: 3, x: 0, y: 50, width: 50, height: 50 },
+        { id: 4, x: 50, y: 50, width: 50, height: 50 }
+      ],
+      explicacao: "A bandeira do Brasil representa as riquezas naturais do país. O verde simboliza as florestas, o amarelo as riquezas minerais, e o azul com estrelas representa o céu do Rio de Janeiro na Proclamação da República.",
+      dimensoes: { width: 100, height: 100 }
+    },
+    {
+      pais: "França 🇫🇷",
+      imagem: "https://upload.wikimedia.org/wikipedia/en/c/c3/Flag_of_France.svg",
+      pecas: [
+        { id: 1, x: 0, y: 0, width: 50, height: 50 },
+        { id: 2, x: 50, y: 0, width: 50, height: 50 },
+        { id: 3, x: 0, y: 50, width: 50, height: 50 },
+        { id: 4, x: 50, y: 50, width: 50, height: 50 }
+      ],
+      explicacao: "A bandeira francesa, conhecida como Tricolor, representa os ideais da Revolução Francesa: azul (liberdade), branco (igualdade) e vermelho (fraternidade). Foi adotada oficialmente em 1794.",
+      dimensoes: { width: 100, height: 100 }
+    },
+    {
+      pais: "Japão 🇯🇵",
+      imagem: "https://upload.wikimedia.org/wikipedia/en/9/9e/Flag_of_Japan.svg",
+      pecas: [
+        { id: 1, x: 0, y: 0, width: 50, height: 50 },
+        { id: 2, x: 50, y: 0, width: 50, height: 50 },
+        { id: 3, x: 0, y: 50, width: 50, height: 50 },
+        { id: 4, x: 50, y: 50, width: 50, height: 50 }
+      ],
+      explicacao: "A bandeira japonesa, chamada Hinomaru, significa 'círculo do sol'. O círculo vermelho representa o sol nascente, simbolizando o Japão como a 'Terra do Sol Nascente'.",
+      dimensoes: { width: 100, height: 100 }
+    },
+    {
+      pais: "Alemanha 🇩🇪",
+      imagem: "https://upload.wikimedia.org/wikipedia/en/b/ba/Flag_of_Germany.svg",
+      pecas: [
+        { id: 1, x: 0, y: 0, width: 50, height: 50 },
+        { id: 2, x: 50, y: 0, width: 50, height: 50 },
+        { id: 3, x: 0, y: 50, width: 50, height: 50 },
+        { id: 4, x: 50, y: 50, width: 50, height: 50 }
+      ],
+      explicacao: "A bandeira alemã tem três faixas horizontais: preta, vermelha e dourada. Estas cores representam a unidade e liberdade alemã, sendo adotadas oficialmente em 1949.",
+      dimensoes: { width: 100, height: 100 }
+    },
+    {
+      pais: "Canadá 🇨🇦",
+      imagem: "https://upload.wikimedia.org/wikipedia/commons/d/d9/Flag_of_Canada_%28Pantone%29.svg",
+      pecas: [
+        { id: 1, x: 0, y: 0, width: 50, height: 50 },
+        { id: 2, x: 50, y: 0, width: 50, height: 50 },
+        { id: 3, x: 0, y: 50, width: 50, height: 50 },
+        { id: 4, x: 50, y: 50, width: 50, height: 50 }
+      ],
+      explicacao: "A bandeira do Canadá apresenta a folha de bordo vermelha, símbolo nacional do país. Foi adotada em 1965, substituindo a Union Jack britânica.",
+      dimensoes: { width: 100, height: 100 }
+    }
+  ],
+  normal: [
+    {
+      pais: "Reino Unido 🇬🇧",
+      imagem: "https://upload.wikimedia.org/wikipedia/en/a/ae/Flag_of_the_United_Kingdom.svg",
+      pecas: [
+        { id: 1, x: 0, y: 0, width: 50, height: 50 },
+        { id: 2, x: 50, y: 0, width: 50, height: 50 },
+        { id: 3, x: 0, y: 50, width: 50, height: 50 },
+        { id: 4, x: 50, y: 50, width: 50, height: 50 }
+      ],
+      explicacao: "A Union Jack combina as cruzes de São Jorge (Inglaterra), Santo André (Escócia) e São Patrício (Irlanda do Norte), representando a união dos países do Reino Unido.",
+      dimensoes: { width: 100, height: 100 }
+    },
+    {
+      pais: "Estados Unidos 🇺🇸",
+      imagem: "https://upload.wikimedia.org/wikipedia/en/a/a4/Flag_of_the_United_States.svg",
+      pecas: [
+        { id: 1, x: 0, y: 0, width: 50, height: 50 },
+        { id: 2, x: 50, y: 0, width: 50, height: 50 },
+        { id: 3, x: 0, y: 50, width: 50, height: 50 },
+        { id: 4, x: 50, y: 50, width: 50, height: 50 }
+      ],
+      explicacao: "A bandeira americana tem 13 listras representando as colônias originais e 50 estrelas representando os estados atuais. É conhecida como 'Stars and Stripes'.",
+      dimensoes: { width: 100, height: 100 }
+    },
+    {
+      pais: "Espanha 🇪🇸",
+      imagem: "https://upload.wikimedia.org/wikipedia/en/9/9a/Flag_of_Spain.svg",
+      pecas: [
+        { id: 1, x: 0, y: 0, width: 50, height: 50 },
+        { id: 2, x: 50, y: 0, width: 50, height: 50 },
+        { id: 3, x: 0, y: 50, width: 50, height: 50 },
+        { id: 4, x: 50, y: 50, width: 50, height: 50 }
+      ],
+      explicacao: "A bandeira espanhola tem duas faixas vermelhas e uma amarela central com o brasão nacional. As cores representam os antigos reinos de Castela e Aragão.",
+      dimensoes: { width: 100, height: 100 }
+    },
+    {
+      pais: "Itália 🇮🇹",
+      imagem: "https://upload.wikimedia.org/wikipedia/en/0/03/Flag_of_Italy.svg",
+      pecas: [
+        { id: 1, x: 0, y: 0, width: 50, height: 50 },
+        { id: 2, x: 50, y: 0, width: 50, height: 50 },
+        { id: 3, x: 0, y: 50, width: 50, height: 50 },
+        { id: 4, x: 50, y: 50, width: 50, height: 50 }
+      ],
+      explicacao: "A bandeira italiana, conhecida como 'Il Tricolore', tem três faixas verticais: verde (esperança), branco (fé) e vermelho (caridade). Foi inspirada na bandeira francesa.",
+      dimensoes: { width: 100, height: 100 }
+    },
+    {
+      pais: "China 🇨🇳",
+      imagem: "https://upload.wikimedia.org/wikipedia/commons/f/fa/Flag_of_the_People%27s_Republic_of_China.svg",
+      pecas: [
+        { id: 1, x: 0, y: 0, width: 50, height: 50 },
+        { id: 2, x: 50, y: 0, width: 50, height: 50 },
+        { id: 3, x: 0, y: 50, width: 50, height: 50 },
+        { id: 4, x: 50, y: 50, width: 50, height: 50 }
+      ],
+      explicacao: "A bandeira chinesa tem fundo vermelho com cinco estrelas douradas. A estrela maior representa o Partido Comunista e as quatro menores representam as classes sociais unidas.",
+      dimensoes: { width: 100, height: 100 }
+    }
+  ],
+  dificil: [
+    {
+      pais: "Suíça 🇨🇭",
+      imagem: "https://upload.wikimedia.org/wikipedia/commons/0/08/Flag_of_Switzerland_%28Pantone%29.svg",
+      pecas: [
+        { id: 1, x: 0, y: 0, width: 50, height: 50 },
+        { id: 2, x: 50, y: 0, width: 50, height: 50 },
+        { id: 3, x: 0, y: 50, width: 50, height: 50 },
+        { id: 4, x: 50, y: 50, width: 50, height: 50 }
+      ],
+      explicacao: "A bandeira suíça é uma das únicas bandeiras quadradas do mundo. A cruz branca sobre fundo vermelho simboliza a fé cristã e a neutralidade do país.",
+      dimensoes: { width: 100, height: 100 }
+    },
+    {
+      pais: "Coreia do Sul 🇰🇷",
+      imagem: "https://upload.wikimedia.org/wikipedia/commons/0/09/Flag_of_South_Korea.svg",
+      pecas: [
+        { id: 1, x: 0, y: 0, width: 50, height: 50 },
+        { id: 2, x: 50, y: 0, width: 50, height: 50 },
+        { id: 3, x: 0, y: 50, width: 50, height: 50 },
+        { id: 4, x: 50, y: 50, width: 50, height: 50 }
+      ],
+      explicacao: "A bandeira sul-coreana, chamada Taegeukgi, apresenta o símbolo yin-yang (taegeuk) no centro e quatro trigramas nos cantos, representando os elementos fundamentais do universo.",
+      dimensoes: { width: 100, height: 100 }
+    },
+    {
+      pais: "Nepal 🇳🇵",
+      imagem: "https://upload.wikimedia.org/wikipedia/commons/9/9b/Flag_of_Nepal.svg",
+      pecas: [
+        { id: 1, x: 0, y: 0, width: 50, height: 50 },
+        { id: 2, x: 50, y: 0, width: 50, height: 50 },
+        { id: 3, x: 0, y: 50, width: 50, height: 50 },
+        { id: 4, x: 50, y: 50, width: 50, height: 50 }
+      ],
+      explicacao: "A bandeira do Nepal é única por não ser retangular. Tem formato de dois triângulos sobrepostos com sol e lua, simbolizando que o país durará enquanto existirem esses astros.",
+      dimensoes: { width: 100, height: 100 }
+    },
+    {
+      pais: "Grécia 🇬🇷",
+      imagem: "https://upload.wikimedia.org/wikipedia/commons/5/5c/Flag_of_Greece.svg",
+      pecas: [
+        { id: 1, x: 0, y: 0, width: 50, height: 50 },
+        { id: 2, x: 50, y: 0, width: 50, height: 50 },
+        { id: 3, x: 0, y: 50, width: 50, height: 50 },
+        { id: 4, x: 50, y: 50, width: 50, height: 50 }
+      ],
+      explicacao: "A bandeira grega tem nove listras azuis e brancas representando as sílabas do lema 'Liberdade ou Morte' e uma cruz simbolizando a fé ortodoxa grega.",
+      dimensoes: { width: 100, height: 100 }
+    },
+    {
+      pais: "Índia 🇮🇳",
+      imagem: "https://upload.wikimedia.org/wikipedia/en/4/41/Flag_of_India.svg",
+      pecas: [
+        { id: 1, x: 0, y: 0, width: 50, height: 50 },
+        { id: 2, x: 50, y: 0, width: 50, height: 50 },
+        { id: 3, x: 0, y: 50, width: 50, height: 50 },
+        { id: 4, x: 50, y: 50, width: 50, height: 50 }
+      ],
+      explicacao: "A bandeira indiana tem três faixas: açafrão (coragem), branco (verdade) e verde (prosperidade), com a roda de Ashoka no centro simbolizando o dharma e o progresso.",
+      dimensoes: { width: 100, height: 100 }
+    }
+  ]
+};
 
+let dificuldadeAtual = 'facil';
 let indiceAtual = 0;
 let acertos = 0;
 let tentativas = 0;
 let pecasColocadas = [];
 let imagemCarregada = false;
+let bandeirasAtuais = [];
+
+// Sistema de sons
+function tocarSom(tipo) {
+  try {
+    // Criar sons usando Web Audio API
+    const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+    
+    if (tipo === 'acerto') {
+      // Som de acerto - frequências ascendentes
+      const frequencies = [523.25, 659.25, 783.99]; // C5, E5, G5
+      frequencies.forEach((freq, index) => {
+        const oscillator = audioContext.createOscillator();
+        const gainNode = audioContext.createGain();
+        
+        oscillator.connect(gainNode);
+        gainNode.connect(audioContext.destination);
+        
+        oscillator.frequency.setValueAtTime(freq, audioContext.currentTime + index * 0.1);
+        gainNode.gain.setValueAtTime(0.3, audioContext.currentTime + index * 0.1);
+        gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + index * 0.1 + 0.3);
+        
+        oscillator.start(audioContext.currentTime + index * 0.1);
+        oscillator.stop(audioContext.currentTime + index * 0.1 + 0.3);
+      });
+    } else if (tipo === 'erro') {
+      // Som de erro - frequência descendente
+      const oscillator = audioContext.createOscillator();
+      const gainNode = audioContext.createGain();
+      
+      oscillator.connect(gainNode);
+      gainNode.connect(audioContext.destination);
+      
+      oscillator.frequency.setValueAtTime(200, audioContext.currentTime);
+      oscillator.frequency.exponentialRampToValueAtTime(100, audioContext.currentTime + 0.5);
+      gainNode.gain.setValueAtTime(0.3, audioContext.currentTime);
+      gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 0.5);
+      
+      oscillator.start();
+      oscillator.stop(audioContext.currentTime + 0.5);
+    } else if (tipo === 'completo') {
+      // Som de bandeira completa - melodia de vitória
+      const melody = [523.25, 659.25, 783.99, 1046.50]; // C5, E5, G5, C6
+      melody.forEach((freq, index) => {
+        const oscillator = audioContext.createOscillator();
+        const gainNode = audioContext.createGain();
+        
+        oscillator.connect(gainNode);
+        gainNode.connect(audioContext.destination);
+        
+        oscillator.frequency.setValueAtTime(freq, audioContext.currentTime + index * 0.15);
+        gainNode.gain.setValueAtTime(0.2, audioContext.currentTime + index * 0.15);
+        gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + index * 0.15 + 0.4);
+        
+        oscillator.start(audioContext.currentTime + index * 0.15);
+        oscillator.stop(audioContext.currentTime + index * 0.15 + 0.4);
+      });
+    } else if (tipo === 'final') {
+      // Som de final de nível - fanfarra
+      const fanfare = [523.25, 659.25, 783.99, 1046.50, 1318.51]; // C5, E5, G5, C6, E6
+      fanfare.forEach((freq, index) => {
+        const oscillator = audioContext.createOscillator();
+        const gainNode = audioContext.createGain();
+        
+        oscillator.connect(gainNode);
+        gainNode.connect(audioContext.destination);
+        
+        oscillator.frequency.setValueAtTime(freq, audioContext.currentTime + index * 0.2);
+        gainNode.gain.setValueAtTime(0.25, audioContext.currentTime + index * 0.2);
+        gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + index * 0.2 + 0.6);
+        
+        oscillator.start(audioContext.currentTime + index * 0.2);
+        oscillator.stop(audioContext.currentTime + index * 0.2 + 0.6);
+      });
+    }
+  } catch (e) {
+    console.log('Erro ao tocar som:', e);
+  }
+}
+
+function inicializarJogo() {
+  dificuldadeAtual = document.getElementById("dificuldade-mini").value;
+  bandeirasAtuais = bandeiras[dificuldadeAtual];
+  indiceAtual = 0;
+  acertos = 0;
+  tentativas = 0;
+  atualizarPainelEstatisticas();
+  carregarBandeira();
+}
+
+function atualizarPainelEstatisticas() {
+  const painelDiv = document.getElementById('painel-estatisticas');
+  const bandeirasRestantes = bandeirasAtuais.length - indiceAtual;
+  const porcentagemAcertos = tentativas > 0 ? Math.round((acertos / tentativas) * 100) : 0;
+  
+  const dificuldadeTexto = {
+    'facil': '🟢 Fácil',
+    'normal': '🟡 Normal',
+    'dificil': '🔴 Difícil'
+  };
+  
+  painelDiv.innerHTML = `
+    <div class="stats-header">
+      <h3>📊 ESTATÍSTICAS</h3>
+    </div>
+    
+    <div class="stats-item">
+      <span class="stats-label">Nível:</span>
+      <span class="stats-valor">${dificuldadeTexto[dificuldadeAtual]}</span>
+    </div>
+    
+    <div class="stats-item">
+      <span class="stats-label">Bandeira:</span>
+      <span class="stats-valor">${indiceAtual + 1}/${bandeirasAtuais.length}</span>
+    </div>
+    
+    <div class="stats-item">
+      <span class="stats-label">Restantes:</span>
+      <span class="stats-valor">${bandeirasRestantes}</span>
+    </div>
+    
+    <div class="stats-item">
+      <span class="stats-label">Acertos:</span>
+      <span class="stats-valor acertos">${acertos}/${tentativas}</span>
+    </div>
+    
+    <div class="barra-progresso-mini">
+      <div class="barra-preenchida-mini" style="width: ${((indiceAtual) / bandeirasAtuais.length) * 100}%"></div>
+    </div>
+    <div class="porcentagem-texto-mini">${Math.round(((indiceAtual) / bandeirasAtuais.length) * 100)}% Completo</div>
+    
+    <div class="taxa-acertos">
+      <span class="stats-label">Taxa de Acerto:</span>
+      <span class="stats-valor taxa">${porcentagemAcertos}%</span>
+    </div>
+  `;
+}
 
 function carregarBandeira() {
+  if (indiceAtual >= bandeirasAtuais.length) {
+    mostrarFinalNivel();
+    return;
+  }
+  
   // Limpa a mensagem de acerto/erro ao trocar de bandeira
   document.getElementById("resultado-mini").innerHTML = "";
   document.getElementById("resultado-mini").className = "";
 
-  const bandeira = bandeiras[indiceAtual];
+  const bandeira = bandeirasAtuais[indiceAtual];
   document.getElementById("titulo-jogo").innerHTML = `🧩 Monte a bandeira de ${bandeira.pais}`;
 
   document.getElementById("pecas-disponiveis").innerHTML = "";
@@ -89,6 +360,8 @@ function carregarBandeira() {
     criarPecasFallback(bandeira);
   };
   img.src = bandeira.imagem;
+  
+  atualizarPainelEstatisticas();
 }
 
 function criarPecasESlots(bandeira, imagemOriginal) {
@@ -135,8 +408,6 @@ function criarPecaComImagem(peca, canvasOriginal) {
   ctx.strokeStyle = '#00ffff';
   ctx.lineWidth = 3;
   ctx.strokeRect(0, 0, larguraPeca, alturaPeca);
-
-  // Removido: número da peça
 
   div.appendChild(canvas);
 
@@ -196,8 +467,6 @@ function criarAreaMontagem(bandeira) {
       background: rgba(0, 255, 255, 0.05);
     `;
 
-    // Removido: número do slot
-
     slot.addEventListener('dragover', allowDrop);
     slot.addEventListener('drop', drop);
 
@@ -208,7 +477,7 @@ function criarAreaMontagem(bandeira) {
 }
 
 function criarPecasFallback(bandeira) {
-  const cores = ['#ff6b6b', '#4ecdc4', '#45b7d1', '#96ceb4', '#feca57', '#ff9ff3'];
+  const cores = ['#ff6b6b', '#4ecdc4', '#45b7d1', '#96ceb4'];
   const pecasEmbaralhadas = [...bandeira.pecas].sort(() => Math.random() - 0.5);
 
   pecasEmbaralhadas.forEach((peca, index) => {
@@ -237,8 +506,7 @@ function criarPecasFallback(bandeira) {
       animation-fill-mode: both;
     `;
 
-    // Removido: div.textContent = `Peça ${peca.id}`;
-
+    div.textContent = peca.id;
     div.addEventListener('dragstart', drag);
     div.addEventListener('dragend', dragEnd);
 
@@ -303,7 +571,10 @@ function drop(ev) {
       slot.style.borderColor = 'var(--success-color)';
       slot.style.boxShadow = '0 0 20px rgba(0, 255, 136, 0.6)';
 
-      if (pecasColocadas.length === bandeiras[indiceAtual].pecas.length) {
+      // Tocar som de acerto
+      tocarSom('acerto');
+
+      if (pecasColocadas.length === bandeirasAtuais[indiceAtual].pecas.length) {
         setTimeout(verificarCompleto, 500);
       }
 
@@ -315,6 +586,9 @@ function drop(ev) {
     slot.style.background = 'rgba(255, 68, 68, 0.3)';
     slot.style.borderColor = 'var(--error-color)';
     slot.style.animation = 'shake 0.6s ease-out';
+
+    // Tocar som de erro
+    tocarSom('erro');
 
     setTimeout(() => {
       slot.style.background = 'rgba(0, 255, 255, 0.05)';
@@ -329,14 +603,25 @@ function drop(ev) {
 }
 
 function verificarCompleto() {
-  const bandeira = bandeiras[indiceAtual];
+  const bandeira = bandeirasAtuais[indiceAtual];
   const resultadoDiv = document.getElementById("resultado-mini");
 
   tentativas++;
   acertos++;
 
-  resultadoDiv.innerHTML = `✅ <strong>Parabéns!</strong> <em>${bandeira.explicacao}</em>`;
+  resultadoDiv.innerHTML = `
+    <div class="resultado-completo">
+      <h3>✅ <strong>Bandeira Completa!</strong></h3>
+      <div class="explicacao-bandeira">
+        <h4>🏛️ ${bandeira.pais}</h4>
+        <p><em>${bandeira.explicacao}</em></p>
+      </div>
+    </div>
+  `;
   resultadoDiv.className = "correto";
+
+  // Tocar som de bandeira completa
+  tocarSom('completo');
 
   criarEfeitoSucesso();
 
@@ -344,7 +629,7 @@ function verificarCompleto() {
     navigator.vibrate([100, 50, 100, 50, 100]);
   }
 
-  atualizarEstatisticas();
+  atualizarPainelEstatisticas();
 }
 
 function criarEfeitoSucesso() {
@@ -388,12 +673,90 @@ function criarEfeitoSucesso() {
   }
 }
 
+function mostrarFinalNivel() {
+  const resultadoDiv = document.getElementById("resultado-mini");
+  const porcentagemAcertos = Math.round((acertos / tentativas) * 100);
+  
+  // Tocar som de final de nível
+  tocarSom('final');
+  
+  resultadoDiv.innerHTML = `
+    <div class="final-nivel">
+      <h2>🎉 <strong>Nível ${dificuldadeAtual.charAt(0).toUpperCase() + dificuldadeAtual.slice(1)} Completo!</strong></h2>
+      <div class="estatisticas-finais">
+        <div class="stat-final">
+          <span class="stat-numero">${acertos}</span>
+          <span class="stat-label">Bandeiras Montadas</span>
+        </div>
+        <div class="stat-final">
+          <span class="stat-numero">${porcentagemAcertos}%</span>
+          <span class="stat-label">Taxa de Acerto</span>
+        </div>
+      </div>
+      <div class="mensagem-final">
+        ${porcentagemAcertos === 100 ? 
+          '🏆 <strong>Perfeito!</strong> Você é um expert em bandeiras!' :
+          porcentagemAcertos >= 80 ?
+          '⭐ <strong>Excelente!</strong> Muito bem jogado!' :
+          '👍 <strong>Bom trabalho!</strong> Continue praticando!'
+        }
+      </div>
+    </div>
+  `;
+  resultadoDiv.className = "final-completo";
+  
+  // Efeito especial para 100%
+  if (porcentagemAcertos === 100) {
+    criarEfeitoFogosArtificio();
+  }
+}
+
+function criarEfeitoFogosArtificio() {
+  for (let i = 0; i < 30; i++) {
+    const fogo = document.createElement('div');
+    fogo.style.cssText = `
+      position: fixed;
+      width: 6px;
+      height: 6px;
+      background: ${['#00ffff', '#ff00ff', '#ffff00', '#00ff88', '#ff6b6b'][Math.floor(Math.random() * 5)]};
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 9999;
+      left: 50%;
+      top: 50%;
+      animation: fogos${i} 3s ease-out forwards;
+    `;
+
+    const style = document.createElement('style');
+    style.textContent = `
+      @keyframes fogos${i} {
+        0% {
+          transform: translate(0, 0) scale(1);
+          opacity: 1;
+        }
+        100% {
+          transform: translate(${(Math.random() - 0.5) * 600}px, ${(Math.random() - 0.5) * 600}px) scale(0);
+          opacity: 0;
+        }
+      }
+    `;
+    document.head.appendChild(style);
+    document.body.appendChild(fogo);
+
+    setTimeout(() => {
+      fogo.remove();
+      style.remove();
+    }, 3000);
+  }
+}
+
 function reiniciar() {
-  carregarBandeira();
+  // Reiniciar o jogo do zero
+  inicializarJogo();
 }
 
 function proximaBandeira() {
-  indiceAtual = (indiceAtual + 1) % bandeiras.length;
+  indiceAtual++;
   const container = document.querySelector('.container');
   container.style.transform = 'scale(0.95)';
   container.style.opacity = '0.7';
@@ -405,35 +768,8 @@ function proximaBandeira() {
   }, 300);
 }
 
-function atualizarEstatisticas() {
-  let stats = document.getElementById('stats-panel');
-  if (!stats) {
-    stats = document.createElement('div');
-    stats.id = 'stats-panel';
-    stats.style.cssText = `
-      position: fixed;
-      top: 20px;
-      right: 20px;
-      background: rgba(20, 20, 40, 0.9);
-      border: 2px solid var(--primary-color);
-      border-radius: 15px;
-      padding: 15px;
-      color: var(--text-light);
-      font-weight: bold;
-      backdrop-filter: blur(10px);
-      z-index: 1000;
-      min-width: 150px;
-    `;
-    document.body.appendChild(stats);
-  }
-
-  const porcentagem = tentativas > 0 ? Math.round((acertos / tentativas) * 100) : 0;
-  stats.innerHTML = `
-    <div style="text-align: center; color: var(--primary-color); margin-bottom: 10px;">📊 STATS</div>
-    <div>✅ Completados: ${acertos}</div>
-    <div>🎯 Tentativas: ${tentativas}</div>
-    <div>📈 Taxa: ${porcentagem}%</div>
-  `;
+function mudarDificuldade() {
+  inicializarJogo();
 }
 
 function adicionarAnimacoesExtras() {
@@ -483,6 +819,5 @@ function adicionarAnimacoesExtras() {
 
 window.onload = function() {
   adicionarAnimacoesExtras();
-  carregarBandeira();
-  atualizarEstatisticas();
+  inicializarJogo();
 };

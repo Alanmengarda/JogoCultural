@@ -1,0 +1,194 @@
+[
+  {
+    "tema": "Gastronomía",
+    "pergunta": "¿Qué país es famoso por el plato llamado sushi?",
+    "opcoes": ["China", "Japón", "Corea del Sur", "Tailandia"],
+    "resposta_correta": 1,
+    "explicacao": "El sushi es un plato tradicional japonés hecho con arroz sazonado y generalmente pescado crudo o mariscos.",
+    "dificuldade": "facil"
+  },
+  {
+    "tema": "Religión",
+    "pergunta": "¿Qué religión tiene el Bhagavad Gita como texto sagrado?",
+    "opcoes": ["Cristianismo", "Islam", "Hinduismo", "Budismo"],
+    "resposta_correta": 2,
+    "explicacao": "El Bhagavad Gita es uno de los textos sagrados más importantes del hinduismo, parte del épico Mahabharata.",
+    "dificuldade": "normal"
+  },
+  {
+    "tema": "Arte",
+    "pergunta": "¿Quién pintó la Mona Lisa?",
+    "opcoes": ["Miguel Ángel", "Van Gogh", "Leonardo da Vinci", "Picasso"],
+    "resposta_correta": 2,
+    "explicacao": "La Mona Lisa fue pintada por Leonardo da Vinci en el siglo XVI y es una de las obras de arte más conocidas del mundo.",
+    "dificuldade": "facil"
+  },
+  {
+    "tema": "Cultura",
+    "pergunta": "¿Qué es un 'kimono'?",
+    "opcoes": ["Una danza tradicional", "Una prenda japonesa", "Un instrumento musical", "Un plato típico"],
+    "resposta_correta": 1,
+    "explicacao": "El kimono es una vestimenta tradicional japonesa usada en ocasiones formales y festivales.",
+    "dificuldade": "facil"
+  },
+  {
+    "tema": "Arquitectura",
+    "pergunta": "¿Dónde está ubicado el Taj Mahal?",
+    "opcoes": ["India", "Pakistán", "Nepal", "Bangladesh"],
+    "resposta_correta": 0,
+    "explicacao": "El Taj Mahal está ubicado en Agra, India, y es un mausoleo construido por el emperador Shah Jahan en memoria de su esposa.",
+    "dificuldade": "normal"
+  },
+  {
+    "tema": "Idioma",
+    "pergunta": "¿Cuál es el idioma oficial de Brasil?",
+    "opcoes": ["Portugués", "Español", "Inglés", "Francés"],
+    "resposta_correta": 0,
+    "explicacao": "El idioma oficial de Brasil es el portugués, debido a la colonización portuguesa en el siglo XVI.",
+    "dificuldade": "facil"
+  },
+  {
+    "tema": "Danza",
+    "pergunta": "¿El flamenco es un estilo de danza tradicional de qué país?",
+    "opcoes": ["Italia", "México", "España", "Argentina"],
+    "resposta_correta": 2,
+    "explicacao": "El flamenco es una forma expresiva de música y danza originaria de la región de Andalucía, España.",
+    "dificuldade": "normal"
+  },
+  {
+    "tema": "Música",
+    "pergunta": "¿El reggae es un género musical originado en qué país?",
+    "opcoes": ["Estados Unidos", "Jamaica", "Sudáfrica", "Cuba"],
+    "resposta_correta": 1,
+    "explicacao": "El reggae surgió en Jamaica en la década de 1960 y se hizo famoso por artistas como Bob Marley.",
+    "dificuldade": "normal"
+  },
+  {
+    "tema": "Festivales",
+    "pergunta": "¿En qué país se celebra el Día de los Muertos con altares y calaveras decoradas?",
+    "opcoes": ["Perú", "México", "España", "Colombia"],
+    "resposta_correta": 1,
+    "explicacao": "El Día de los Muertos es una celebración tradicional mexicana que honra a los seres queridos fallecidos con ofrendas y decoraciones simbólicas.",
+    "dificuldade": "normal"
+  },
+  {
+    "tema": "Cine",
+    "pergunta": "¿Qué país es conocido por su industria cinematográfica llamada 'Bollywood'?",
+    "opcoes": ["India", "Estados Unidos", "Japón", "Francia"],
+    "resposta_correta": 0,
+    "explicacao": "Bollywood es el nombre dado a la industria cinematográfica de India, especialmente de Mumbai, conocida por sus películas musicales y coloridas.",
+    "dificuldade": "facil"
+  },
+  {
+    "tema": "Mitología",
+    "pergunta": "¿En la mitología griega, quién es el dios del trueno?",
+    "opcoes": ["Hades", "Ares", "Zeus", "Apolo"],
+    "resposta_correta": 2,
+    "explicacao": "Zeus es el principal dios del Olimpo y es conocido como el dios del cielo, del trueno y del rayo en la mitología griega.",
+    "dificuldade": "normal"
+  },
+  {
+    "tema": "Deportes Tradicionales",
+    "pergunta": "¿El sumo es un deporte tradicional de qué país?",
+    "opcoes": ["China", "Mongolia", "Japón", "Corea del Sur"],
+    "resposta_correta": 2,
+    "explicacao": "El sumo es un deporte de lucha tradicional de Japón con raíces religiosas y rituales sintoístas.",
+    "dificuldade": "normal"
+  },
+  {
+    "tema": "Literatura",
+    "pergunta": "¿Quién escribió 'Don Quijote'?",
+    "opcoes": ["Shakespeare", "Cervantes", "Camões", "Victor Hugo"],
+    "resposta_correta": 1,
+    "explicacao": "Don Quijote fue escrito por Miguel de Cervantes y es considerado uno de los mayores clásicos de la literatura española y mundial.",
+    "dificuldade": "normal"
+  },
+  {
+    "tema": "Tradiciones",
+    "pergunta": "¿El té de la tarde es una tradición cultural famosa en qué país?",
+    "opcoes": ["India", "China", "Inglaterra", "Australia"],
+    "resposta_correta": 2,
+    "explicacao": "El té de la tarde es una tradición británica que surgió en el siglo XIX, generalmente acompañado de pasteles y sándwiches.",
+    "dificuldade": "facil"
+  },
+  {
+    "tema": "Arquitectura Religiosa",
+    "pergunta": "¿La Catedral de Notre-Dame está ubicada en qué ciudad?",
+    "opcoes": ["París", "Londres", "Madrid", "Roma"],
+    "resposta_correta": 0,
+    "explicacao": "La Catedral de Notre-Dame está en París, Francia, y es uno de los mayores ejemplos de la arquitectura gótica en Europa.",
+    "dificuldade": "normal"
+  },
+  {
+    "tema": "Idioma",
+    "pergunta": "¿De qué país se originó la palabra 'Kindergarten'?",
+    "opcoes": ["Austria", "Alemania", "Suiza", "Holanda"],
+    "resposta_correta": 1,
+    "explicacao": "'Kindergarten' es una palabra alemana que significa 'jardín de la infancia'. El término fue creado en Alemania por Friedrich Fröbel en el siglo XIX para describir una institución de educación infantil.",
+    "dificuldade": "dificil"
+  },
+  {
+    "tema": "Idioma",
+    "pergunta": "¿De qué país se originó la palabra 'Bonjour'?",
+    "opcoes": ["Canadá", "Bélgica", "Francia", "Suiza"],
+    "resposta_correta": 2,
+    "explicacao": "'Bonjour' es un saludo típico del idioma francés que significa 'buenos días' y es originario de Francia, aunque también se usa en otros países francófonos.",
+    "dificuldade": "facil"
+  },
+  {
+    "tema": "Arte",
+    "pergunta": "¿Qué movimiento artístico fue fundado por Pablo Picasso y Georges Braque?",
+    "opcoes": ["Impresionismo", "Cubismo", "Surrealismo", "Expresionismo"],
+    "resposta_correta": 1,
+    "explicacao": "El Cubismo fue un movimiento artístico revolucionario de principios del siglo XX, caracterizado por la representación de objetos en formas geométricas.",
+    "dificuldade": "dificil"
+  },
+  {
+    "tema": "Filosofía",
+    "pergunta": "¿Qué filósofo griego es conocido por la frase 'Solo sé que no sé nada'?",
+    "opcoes": ["Platón", "Aristóteles", "Sócrates", "Tales de Mileto"],
+    "resposta_correta": 2,
+    "explicacao": "Sócrates es famoso por esta frase que representa su humildad intelectual y método de cuestionamiento.",
+    "dificuldade": "dificil"
+  },
+  {
+    "tema": "Historia",
+    "pergunta": "¿En qué año cayó el Muro de Berlín?",
+    "opcoes": ["1987", "1989", "1991", "1993"],
+    "resposta_correta": 1,
+    "explicacao": "El Muro de Berlín cayó el 9 de noviembre de 1989, marcando el fin de la división de Alemania.",
+    "dificuldade": "dificil"
+  },
+  {
+    "tema": "Ciencia",
+    "pergunta": "¿Quién desarrolló la teoría de la relatividad?",
+    "opcoes": ["Isaac Newton", "Albert Einstein", "Galileo Galilei", "Stephen Hawking"],
+    "resposta_correta": 1,
+    "explicacao": "Albert Einstein desarrolló tanto la teoría de la relatividad especial (1905) como la general (1915).",
+    "dificuldade": "normal"
+  },
+  {
+    "tema": "Geografía",
+    "pergunta": "¿Cuál es el país más pequeño del mundo?",
+    "opcoes": ["Mónaco", "Vaticano", "San Marino", "Liechtenstein"],
+    "resposta_correta": 1,
+    "explicacao": "El Vaticano es el país más pequeño del mundo, con solo 0,17 millas cuadradas (0,44 km²).",
+    "dificuldade": "dificil"
+  },
+  {
+    "tema": "Economía",
+    "pergunta": "¿Cuál es la moneda oficial de la Unión Europea?",
+    "opcoes": ["Libra", "Franco", "Euro", "Marco"],
+    "resposta_correta": 2,
+    "explicacao": "El Euro es la moneda oficial de 19 de los 27 países miembros de la Unión Europea.",
+    "dificuldade": "facil"
+  },
+  {
+    "tema": "Tecnología",
+    "pergunta": "¿Quién es considerado el fundador de Microsoft?",
+    "opcoes": ["Steve Jobs", "Bill Gates", "Mark Zuckerberg", "Larry Page"],
+    "resposta_correta": 1,
+    "explicacao": "Bill Gates co-fundó Microsoft en 1975 junto con Paul Allen.",
+    "dificuldade": "facil"
+  }
+]
