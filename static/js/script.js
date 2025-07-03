@@ -18,13 +18,95 @@ const transicoes = [
   'bounceIn'
 ];
 
-// Sistema de sons
-function tocarSom(tipo) {
+// Sistema de sons para o quiz
+function tocarSomQuiz(tipo) {
   try {
-    const audio = document.getElementById(`som-${tipo}`);
-    if (audio) {
-      audio.currentTime = 0;
-      audio.play().catch(e => console.log('Som não pôde ser reproduzido:', e));
+    // Criar sons usando Web Audio API
+    const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+    
+    if (tipo === 'acerto') {
+      // Som de acerto - acordes harmoniosos
+      const frequencies = [523.25, 659.25, 783.99]; // C5, E5, G5
+      frequencies.forEach((freq, index) => {
+        const oscillator = audioContext.createOscillator();
+        const gainNode = audioContext.createGain();
+        
+        oscillator.connect(gainNode);
+        gainNode.connect(audioContext.destination);
+        
+        oscillator.frequency.setValueAtTime(freq, audioContext.currentTime + index * 0.1);
+        gainNode.gain.setValueAtTime(0.2, audioContext.currentTime + index * 0.1);
+        gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + index * 0.1 + 0.4);
+        
+        oscillator.start(audioContext.currentTime + index * 0.1);
+        oscillator.stop(audioContext.currentTime + index * 0.1 + 0.4);
+      });
+    } else if (tipo === 'erro') {
+      // Som de erro - dissonância descendente
+      const oscillator = audioContext.createOscillator();
+      const gainNode = audioContext.createGain();
+      
+      oscillator.connect(gainNode);
+      gainNode.connect(audioContext.destination);
+      
+      oscillator.frequency.setValueAtTime(300, audioContext.currentTime);
+      oscillator.frequency.exponentialRampToValueAtTime(150, audioContext.currentTime + 0.6);
+      gainNode.gain.setValueAtTime(0.3, audioContext.currentTime);
+      gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 0.6);
+      
+      oscillator.start();
+      oscillator.stop(audioContext.currentTime + 0.6);
+    } else if (tipo === 'final-facil') {
+      // Som de final fácil - melodia simples
+      const melody = [523.25, 659.25, 783.99, 1046.50]; // C5, E5, G5, C6
+      melody.forEach((freq, index) => {
+        const oscillator = audioContext.createOscillator();
+        const gainNode = audioContext.createGain();
+        
+        oscillator.connect(gainNode);
+        gainNode.connect(audioContext.destination);
+        
+        oscillator.frequency.setValueAtTime(freq, audioContext.currentTime + index * 0.2);
+        gainNode.gain.setValueAtTime(0.25, audioContext.currentTime + index * 0.2);
+        gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + index * 0.2 + 0.5);
+        
+        oscillator.start(audioContext.currentTime + index * 0.2);
+        oscillator.stop(audioContext.currentTime + index * 0.2 + 0.5);
+      });
+    } else if (tipo === 'final-normal') {
+      // Som de final normal - melodia mais elaborada
+      const melody = [523.25, 659.25, 783.99, 1046.50, 1318.51, 1046.50]; // C5, E5, G5, C6, E6, C6
+      melody.forEach((freq, index) => {
+        const oscillator = audioContext.createOscillator();
+        const gainNode = audioContext.createGain();
+        
+        oscillator.connect(gainNode);
+        gainNode.connect(audioContext.destination);
+        
+        oscillator.frequency.setValueAtTime(freq, audioContext.currentTime + index * 0.15);
+        gainNode.gain.setValueAtTime(0.25, audioContext.currentTime + index * 0.15);
+        gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + index * 0.15 + 0.6);
+        
+        oscillator.start(audioContext.currentTime + index * 0.15);
+        oscillator.stop(audioContext.currentTime + index * 0.15 + 0.6);
+      });
+    } else if (tipo === 'final-dificil') {
+      // Som de final difícil - fanfarra épica
+      const fanfare = [523.25, 659.25, 783.99, 1046.50, 1318.51, 1568.00, 2093.00]; // C5, E5, G5, C6, E6, G6, C7
+      fanfare.forEach((freq, index) => {
+        const oscillator = audioContext.createOscillator();
+        const gainNode = audioContext.createGain();
+        
+        oscillator.connect(gainNode);
+        gainNode.connect(audioContext.destination);
+        
+        oscillator.frequency.setValueAtTime(freq, audioContext.currentTime + index * 0.12);
+        gainNode.gain.setValueAtTime(0.3, audioContext.currentTime + index * 0.12);
+        gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + index * 0.12 + 0.8);
+        
+        oscillator.start(audioContext.currentTime + index * 0.12);
+        oscillator.stop(audioContext.currentTime + index * 0.12 + 0.8);
+      });
     }
   } catch (e) {
     console.log('Erro ao tocar som:', e);
@@ -306,7 +388,7 @@ function responder(indiceEscolhido) {
     opcoes[indiceEscolhido].classList.add("correta");
     
     // Tocar som de acerto
-    tocarSom('acerto');
+    tocarSomQuiz('acerto');
     
     // Efeito de partículas simulado
     criarEfeitoSucesso(opcoes[indiceEscolhido]);
@@ -321,7 +403,7 @@ function responder(indiceEscolhido) {
     opcoes[p.resposta_correta].classList.add("correta");
     
     // Tocar som de erro
-    tocarSom('erro');
+    tocarSomQuiz('erro');
     
     // Vibração de erro
     if (navigator.vibrate) {
@@ -360,8 +442,8 @@ function mostrarResultado() {
   document.getElementById("resultado").classList.remove("hidden");
   document.getElementById("pontuacao-final").innerText = `${pontuacao} pontos`;
 
-  // Tocar som de final
-  tocarSom('final');
+  // Tocar som de final baseado na dificuldade
+  tocarSomQuiz(`final-${dificuldadeAtual}`);
 
   // Mostrar link bonus se pontuação alta
   const pontuacaoMinima = {

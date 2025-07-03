@@ -16,9 +16,10 @@ const bandeiras = {
       pais: "França 🇫🇷",
       imagem: "https://upload.wikimedia.org/wikipedia/en/c/c3/Flag_of_France.svg",
       pecas: [
-        { id: 1, x: 0, y: 0, width: 33.33, height: 100 },
-        { id: 2, x: 33.33, y: 0, width: 33.33, height: 100 },
-        { id: 3, x: 66.66, y: 0, width: 33.34, height: 100 }
+        { id: 1, x: 0, y: 0, width: 50, height: 50 },
+        { id: 2, x: 50, y: 0, width: 50, height: 50 },
+        { id: 3, x: 0, y: 50, width: 50, height: 50 },
+        { id: 4, x: 50, y: 50, width: 50, height: 50 }
       ],
       explicacao: "A bandeira francesa, conhecida como Tricolor, representa os ideais da Revolução Francesa: azul (liberdade), branco (igualdade) e vermelho (fraternidade). Foi adotada oficialmente em 1794.",
       dimensoes: { width: 100, height: 100 }
@@ -39,9 +40,10 @@ const bandeiras = {
       pais: "Alemanha 🇩🇪",
       imagem: "https://upload.wikimedia.org/wikipedia/en/b/ba/Flag_of_Germany.svg",
       pecas: [
-        { id: 1, x: 0, y: 0, width: 100, height: 33.33 },
-        { id: 2, x: 0, y: 33.33, width: 100, height: 33.33 },
-        { id: 3, x: 0, y: 66.66, width: 100, height: 33.34 }
+        { id: 1, x: 0, y: 0, width: 50, height: 50 },
+        { id: 2, x: 50, y: 0, width: 50, height: 50 },
+        { id: 3, x: 0, y: 50, width: 50, height: 50 },
+        { id: 4, x: 50, y: 50, width: 50, height: 50 }
       ],
       explicacao: "A bandeira alemã tem três faixas horizontais: preta, vermelha e dourada. Estas cores representam a unidade e liberdade alemã, sendo adotadas oficialmente em 1949.",
       dimensoes: { width: 100, height: 100 }
@@ -50,9 +52,10 @@ const bandeiras = {
       pais: "Canadá 🇨🇦",
       imagem: "https://upload.wikimedia.org/wikipedia/commons/d/d9/Flag_of_Canada_%28Pantone%29.svg",
       pecas: [
-        { id: 1, x: 0, y: 0, width: 25, height: 100 },
-        { id: 2, x: 25, y: 0, width: 50, height: 100 },
-        { id: 3, x: 75, y: 0, width: 25, height: 100 }
+        { id: 1, x: 0, y: 0, width: 50, height: 50 },
+        { id: 2, x: 50, y: 0, width: 50, height: 50 },
+        { id: 3, x: 0, y: 50, width: 50, height: 50 },
+        { id: 4, x: 50, y: 50, width: 50, height: 50 }
       ],
       explicacao: "A bandeira do Canadá apresenta a folha de bordo vermelha, símbolo nacional do país. Foi adotada em 1965, substituindo a Union Jack britânica.",
       dimensoes: { width: 100, height: 100 }
@@ -63,15 +66,10 @@ const bandeiras = {
       pais: "Reino Unido 🇬🇧",
       imagem: "https://upload.wikimedia.org/wikipedia/en/a/ae/Flag_of_the_United_Kingdom.svg",
       pecas: [
-        { id: 1, x: 0, y: 0, width: 33.33, height: 33.33 },
-        { id: 2, x: 33.33, y: 0, width: 33.33, height: 33.33 },
-        { id: 3, x: 66.66, y: 0, width: 33.34, height: 33.33 },
-        { id: 4, x: 0, y: 33.33, width: 33.33, height: 33.33 },
-        { id: 5, x: 33.33, y: 33.33, width: 33.33, height: 33.33 },
-        { id: 6, x: 66.66, y: 33.33, width: 33.34, height: 33.33 },
-        { id: 7, x: 0, y: 66.66, width: 33.33, height: 33.34 },
-        { id: 8, x: 33.33, y: 66.66, width: 33.33, height: 33.34 },
-        { id: 9, x: 66.66, y: 66.66, width: 33.34, height: 33.34 }
+        { id: 1, x: 0, y: 0, width: 50, height: 50 },
+        { id: 2, x: 50, y: 0, width: 50, height: 50 },
+        { id: 3, x: 0, y: 50, width: 50, height: 50 },
+        { id: 4, x: 50, y: 50, width: 50, height: 50 }
       ],
       explicacao: "A Union Jack combina as cruzes de São Jorge (Inglaterra), Santo André (Escócia) e São Patrício (Irlanda do Norte), representando a união dos países do Reino Unido.",
       dimensoes: { width: 100, height: 100 }
@@ -80,15 +78,10 @@ const bandeiras = {
       pais: "Estados Unidos 🇺🇸",
       imagem: "https://upload.wikimedia.org/wikipedia/en/a/a4/Flag_of_the_United_States.svg",
       pecas: [
-        { id: 1, x: 0, y: 0, width: 33.33, height: 33.33 },
-        { id: 2, x: 33.33, y: 0, width: 33.33, height: 33.33 },
-        { id: 3, x: 66.66, y: 0, width: 33.34, height: 33.33 },
-        { id: 4, x: 0, y: 33.33, width: 33.33, height: 33.33 },
-        { id: 5, x: 33.33, y: 33.33, width: 33.33, height: 33.33 },
-        { id: 6, x: 66.66, y: 33.33, width: 33.34, height: 33.33 },
-        { id: 7, x: 0, y: 66.66, width: 33.33, height: 33.34 },
-        { id: 8, x: 33.33, y: 66.66, width: 33.33, height: 33.34 },
-        { id: 9, x: 66.66, y: 66.66, width: 33.34, height: 33.34 }
+        { id: 1, x: 0, y: 0, width: 50, height: 50 },
+        { id: 2, x: 50, y: 0, width: 50, height: 50 },
+        { id: 3, x: 0, y: 50, width: 50, height: 50 },
+        { id: 4, x: 50, y: 50, width: 50, height: 50 }
       ],
       explicacao: "A bandeira americana tem 13 listras representando as colônias originais e 50 estrelas representando os estados atuais. É conhecida como 'Stars and Stripes'.",
       dimensoes: { width: 100, height: 100 }
@@ -97,12 +90,10 @@ const bandeiras = {
       pais: "Espanha 🇪🇸",
       imagem: "https://upload.wikimedia.org/wikipedia/en/9/9a/Flag_of_Spain.svg",
       pecas: [
-        { id: 1, x: 0, y: 0, width: 50, height: 25 },
-        { id: 2, x: 50, y: 0, width: 50, height: 25 },
-        { id: 3, x: 0, y: 25, width: 50, height: 50 },
-        { id: 4, x: 50, y: 25, width: 50, height: 50 },
-        { id: 5, x: 0, y: 75, width: 50, height: 25 },
-        { id: 6, x: 50, y: 75, width: 50, height: 25 }
+        { id: 1, x: 0, y: 0, width: 50, height: 50 },
+        { id: 2, x: 50, y: 0, width: 50, height: 50 },
+        { id: 3, x: 0, y: 50, width: 50, height: 50 },
+        { id: 4, x: 50, y: 50, width: 50, height: 50 }
       ],
       explicacao: "A bandeira espanhola tem duas faixas vermelhas e uma amarela central com o brasão nacional. As cores representam os antigos reinos de Castela e Aragão.",
       dimensoes: { width: 100, height: 100 }
@@ -111,12 +102,10 @@ const bandeiras = {
       pais: "Itália 🇮🇹",
       imagem: "https://upload.wikimedia.org/wikipedia/en/0/03/Flag_of_Italy.svg",
       pecas: [
-        { id: 1, x: 0, y: 0, width: 33.33, height: 50 },
-        { id: 2, x: 33.33, y: 0, width: 33.33, height: 50 },
-        { id: 3, x: 66.66, y: 0, width: 33.34, height: 50 },
-        { id: 4, x: 0, y: 50, width: 33.33, height: 50 },
-        { id: 5, x: 33.33, y: 50, width: 33.33, height: 50 },
-        { id: 6, x: 66.66, y: 50, width: 33.34, height: 50 }
+        { id: 1, x: 0, y: 0, width: 50, height: 50 },
+        { id: 2, x: 50, y: 0, width: 50, height: 50 },
+        { id: 3, x: 0, y: 50, width: 50, height: 50 },
+        { id: 4, x: 50, y: 50, width: 50, height: 50 }
       ],
       explicacao: "A bandeira italiana, conhecida como 'Il Tricolore', tem três faixas verticais: verde (esperança), branco (fé) e vermelho (caridade). Foi inspirada na bandeira francesa.",
       dimensoes: { width: 100, height: 100 }
@@ -139,31 +128,10 @@ const bandeiras = {
       pais: "Suíça 🇨🇭",
       imagem: "https://upload.wikimedia.org/wikipedia/commons/0/08/Flag_of_Switzerland_%28Pantone%29.svg",
       pecas: [
-        { id: 1, x: 0, y: 0, width: 20, height: 20 },
-        { id: 2, x: 20, y: 0, width: 20, height: 20 },
-        { id: 3, x: 40, y: 0, width: 20, height: 20 },
-        { id: 4, x: 60, y: 0, width: 20, height: 20 },
-        { id: 5, x: 80, y: 0, width: 20, height: 20 },
-        { id: 6, x: 0, y: 20, width: 20, height: 20 },
-        { id: 7, x: 20, y: 20, width: 20, height: 20 },
-        { id: 8, x: 40, y: 20, width: 20, height: 20 },
-        { id: 9, x: 60, y: 20, width: 20, height: 20 },
-        { id: 10, x: 80, y: 20, width: 20, height: 20 },
-        { id: 11, x: 0, y: 40, width: 20, height: 20 },
-        { id: 12, x: 20, y: 40, width: 20, height: 20 },
-        { id: 13, x: 40, y: 40, width: 20, height: 20 },
-        { id: 14, x: 60, y: 40, width: 20, height: 20 },
-        { id: 15, x: 80, y: 40, width: 20, height: 20 },
-        { id: 16, x: 0, y: 60, width: 20, height: 20 },
-        { id: 17, x: 20, y: 60, width: 20, height: 20 },
-        { id: 18, x: 40, y: 60, width: 20, height: 20 },
-        { id: 19, x: 60, y: 60, width: 20, height: 20 },
-        { id: 20, x: 80, y: 60, width: 20, height: 20 },
-        { id: 21, x: 0, y: 80, width: 20, height: 20 },
-        { id: 22, x: 20, y: 80, width: 20, height: 20 },
-        { id: 23, x: 40, y: 80, width: 20, height: 20 },
-        { id: 24, x: 60, y: 80, width: 20, height: 20 },
-        { id: 25, x: 80, y: 80, width: 20, height: 20 }
+        { id: 1, x: 0, y: 0, width: 50, height: 50 },
+        { id: 2, x: 50, y: 0, width: 50, height: 50 },
+        { id: 3, x: 0, y: 50, width: 50, height: 50 },
+        { id: 4, x: 50, y: 50, width: 50, height: 50 }
       ],
       explicacao: "A bandeira suíça é uma das únicas bandeiras quadradas do mundo. A cruz branca sobre fundo vermelho simboliza a fé cristã e a neutralidade do país.",
       dimensoes: { width: 100, height: 100 }
@@ -172,22 +140,10 @@ const bandeiras = {
       pais: "Coreia do Sul 🇰🇷",
       imagem: "https://upload.wikimedia.org/wikipedia/commons/0/09/Flag_of_South_Korea.svg",
       pecas: [
-        { id: 1, x: 0, y: 0, width: 25, height: 25 },
-        { id: 2, x: 25, y: 0, width: 25, height: 25 },
-        { id: 3, x: 50, y: 0, width: 25, height: 25 },
-        { id: 4, x: 75, y: 0, width: 25, height: 25 },
-        { id: 5, x: 0, y: 25, width: 25, height: 25 },
-        { id: 6, x: 25, y: 25, width: 25, height: 25 },
-        { id: 7, x: 50, y: 25, width: 25, height: 25 },
-        { id: 8, x: 75, y: 25, width: 25, height: 25 },
-        { id: 9, x: 0, y: 50, width: 25, height: 25 },
-        { id: 10, x: 25, y: 50, width: 25, height: 25 },
-        { id: 11, x: 50, y: 50, width: 25, height: 25 },
-        { id: 12, x: 75, y: 50, width: 25, height: 25 },
-        { id: 13, x: 0, y: 75, width: 25, height: 25 },
-        { id: 14, x: 25, y: 75, width: 25, height: 25 },
-        { id: 15, x: 50, y: 75, width: 25, height: 25 },
-        { id: 16, x: 75, y: 75, width: 25, height: 25 }
+        { id: 1, x: 0, y: 0, width: 50, height: 50 },
+        { id: 2, x: 50, y: 0, width: 50, height: 50 },
+        { id: 3, x: 0, y: 50, width: 50, height: 50 },
+        { id: 4, x: 50, y: 50, width: 50, height: 50 }
       ],
       explicacao: "A bandeira sul-coreana, chamada Taegeukgi, apresenta o símbolo yin-yang (taegeuk) no centro e quatro trigramas nos cantos, representando os elementos fundamentais do universo.",
       dimensoes: { width: 100, height: 100 }
@@ -196,22 +152,10 @@ const bandeiras = {
       pais: "Nepal 🇳🇵",
       imagem: "https://upload.wikimedia.org/wikipedia/commons/9/9b/Flag_of_Nepal.svg",
       pecas: [
-        { id: 1, x: 0, y: 0, width: 25, height: 25 },
-        { id: 2, x: 25, y: 0, width: 25, height: 25 },
-        { id: 3, x: 50, y: 0, width: 25, height: 25 },
-        { id: 4, x: 75, y: 0, width: 25, height: 25 },
-        { id: 5, x: 0, y: 25, width: 25, height: 25 },
-        { id: 6, x: 25, y: 25, width: 25, height: 25 },
-        { id: 7, x: 50, y: 25, width: 25, height: 25 },
-        { id: 8, x: 75, y: 25, width: 25, height: 25 },
-        { id: 9, x: 0, y: 50, width: 25, height: 25 },
-        { id: 10, x: 25, y: 50, width: 25, height: 25 },
-        { id: 11, x: 50, y: 50, width: 25, height: 25 },
-        { id: 12, x: 75, y: 50, width: 25, height: 25 },
-        { id: 13, x: 0, y: 75, width: 25, height: 25 },
-        { id: 14, x: 25, y: 75, width: 25, height: 25 },
-        { id: 15, x: 50, y: 75, width: 25, height: 25 },
-        { id: 16, x: 75, y: 75, width: 25, height: 25 }
+        { id: 1, x: 0, y: 0, width: 50, height: 50 },
+        { id: 2, x: 50, y: 0, width: 50, height: 50 },
+        { id: 3, x: 0, y: 50, width: 50, height: 50 },
+        { id: 4, x: 50, y: 50, width: 50, height: 50 }
       ],
       explicacao: "A bandeira do Nepal é única por não ser retangular. Tem formato de dois triângulos sobrepostos com sol e lua, simbolizando que o país durará enquanto existirem esses astros.",
       dimensoes: { width: 100, height: 100 }
@@ -220,22 +164,10 @@ const bandeiras = {
       pais: "Grécia 🇬🇷",
       imagem: "https://upload.wikimedia.org/wikipedia/commons/5/5c/Flag_of_Greece.svg",
       pecas: [
-        { id: 1, x: 0, y: 0, width: 25, height: 25 },
-        { id: 2, x: 25, y: 0, width: 25, height: 25 },
-        { id: 3, x: 50, y: 0, width: 25, height: 25 },
-        { id: 4, x: 75, y: 0, width: 25, height: 25 },
-        { id: 5, x: 0, y: 25, width: 25, height: 25 },
-        { id: 6, x: 25, y: 25, width: 25, height: 25 },
-        { id: 7, x: 50, y: 25, width: 25, height: 25 },
-        { id: 8, x: 75, y: 25, width: 25, height: 25 },
-        { id: 9, x: 0, y: 50, width: 25, height: 25 },
-        { id: 10, x: 25, y: 50, width: 25, height: 25 },
-        { id: 11, x: 50, y: 50, width: 25, height: 25 },
-        { id: 12, x: 75, y: 50, width: 25, height: 25 },
-        { id: 13, x: 0, y: 75, width: 25, height: 25 },
-        { id: 14, x: 25, y: 75, width: 25, height: 25 },
-        { id: 15, x: 50, y: 75, width: 25, height: 25 },
-        { id: 16, x: 75, y: 75, width: 25, height: 25 }
+        { id: 1, x: 0, y: 0, width: 50, height: 50 },
+        { id: 2, x: 50, y: 0, width: 50, height: 50 },
+        { id: 3, x: 0, y: 50, width: 50, height: 50 },
+        { id: 4, x: 50, y: 50, width: 50, height: 50 }
       ],
       explicacao: "A bandeira grega tem nove listras azuis e brancas representando as sílabas do lema 'Liberdade ou Morte' e uma cruz simbolizando a fé ortodoxa grega.",
       dimensoes: { width: 100, height: 100 }
@@ -244,22 +176,10 @@ const bandeiras = {
       pais: "Índia 🇮🇳",
       imagem: "https://upload.wikimedia.org/wikipedia/en/4/41/Flag_of_India.svg",
       pecas: [
-        { id: 1, x: 0, y: 0, width: 25, height: 25 },
-        { id: 2, x: 25, y: 0, width: 25, height: 25 },
-        { id: 3, x: 50, y: 0, width: 25, height: 25 },
-        { id: 4, x: 75, y: 0, width: 25, height: 25 },
-        { id: 5, x: 0, y: 25, width: 25, height: 25 },
-        { id: 6, x: 25, y: 25, width: 25, height: 25 },
-        { id: 7, x: 50, y: 25, width: 25, height: 25 },
-        { id: 8, x: 75, y: 25, width: 25, height: 25 },
-        { id: 9, x: 0, y: 50, width: 25, height: 25 },
-        { id: 10, x: 25, y: 50, width: 25, height: 25 },
-        { id: 11, x: 50, y: 50, width: 25, height: 25 },
-        { id: 12, x: 75, y: 50, width: 25, height: 25 },
-        { id: 13, x: 0, y: 75, width: 25, height: 25 },
-        { id: 14, x: 25, y: 75, width: 25, height: 25 },
-        { id: 15, x: 50, y: 75, width: 25, height: 25 },
-        { id: 16, x: 75, y: 75, width: 25, height: 25 }
+        { id: 1, x: 0, y: 0, width: 50, height: 50 },
+        { id: 2, x: 50, y: 0, width: 50, height: 50 },
+        { id: 3, x: 0, y: 50, width: 50, height: 50 },
+        { id: 4, x: 50, y: 50, width: 50, height: 50 }
       ],
       explicacao: "A bandeira indiana tem três faixas: açafrão (coragem), branco (verdade) e verde (prosperidade), com a roda de Ashoka no centro simbolizando o dharma e o progresso.",
       dimensoes: { width: 100, height: 100 }
@@ -557,7 +477,7 @@ function criarAreaMontagem(bandeira) {
 }
 
 function criarPecasFallback(bandeira) {
-  const cores = ['#ff6b6b', '#4ecdc4', '#45b7d1', '#96ceb4', '#feca57', '#ff9ff3'];
+  const cores = ['#ff6b6b', '#4ecdc4', '#45b7d1', '#96ceb4'];
   const pecasEmbaralhadas = [...bandeira.pecas].sort(() => Math.random() - 0.5);
 
   pecasEmbaralhadas.forEach((peca, index) => {
@@ -586,6 +506,7 @@ function criarPecasFallback(bandeira) {
       animation-fill-mode: both;
     `;
 
+    div.textContent = peca.id;
     div.addEventListener('dragstart', drag);
     div.addEventListener('dragend', dragEnd);
 
@@ -830,7 +751,8 @@ function criarEfeitoFogosArtificio() {
 }
 
 function reiniciar() {
-  carregarBandeira();
+  // Reiniciar o jogo do zero
+  inicializarJogo();
 }
 
 function proximaBandeira() {
