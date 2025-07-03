@@ -250,17 +250,17 @@ h2 {
   flex-wrap: wrap;
   gap: 15px;
   justify-content: center;
-  min-height: 200px;
+  min-height: 100px;
   align-items: flex-start;
-  padding: 20px;
+  padding: 0px;
 }
 
 #area-montagem {
   display: flex;
   justify-content: center;
   align-items: center;
-  min-height: 300px;
-  padding: 20px;
+  min-height: 100px;
+  padding: 0px;
 }
 
 .bandeira-container {
