@@ -181,6 +181,25 @@ function atualizarRankingSidebar() {
     
     rankingList.appendChild(li);
   });
+  
+  // Adicionar botão para ir ao mini-jogo das bandeiras
+  const botaoBandeiras = document.createElement('div');
+  botaoBandeiras.className = 'botao-bandeiras-container';
+  botaoBandeiras.innerHTML = `
+    <a href="/minijogo" class="botao-bandeiras">
+      🧩 Jogo das Bandeiras
+    </a>
+  `;
+  
+  const rankingSidebar = document.querySelector('.ranking-sidebar');
+  
+  // Remover botão existente se houver
+  const botaoExistente = rankingSidebar.querySelector('.botao-bandeiras-container');
+  if (botaoExistente) {
+    botaoExistente.remove();
+  }
+  
+  rankingSidebar.appendChild(botaoBandeiras);
 }
 
 function atualizarPainelProgresso() {
@@ -461,7 +480,7 @@ function mostrarResultado() {
     criarEfeitoFogosArtificio();
   }
   
-  // Mostrar botão de salvar apenas se ainda não salvou
+  // Mostrar botão de salvar apenas se ainda não salvou NESTA PARTIDA
   const botaoSalvar = document.getElementById("botao-salvar");
   const inputNome = document.getElementById("nome-jogador");
   
@@ -469,7 +488,14 @@ function mostrarResultado() {
     botaoSalvar.style.display = 'none';
     inputNome.style.display = 'none';
     
+    // Remover mensagem anterior se existir
+    const mensagemAnterior = document.querySelector('.mensagem-salvo');
+    if (mensagemAnterior) {
+      mensagemAnterior.remove();
+    }
+    
     const mensagemSalvo = document.createElement('div');
+    mensagemSalvo.className = 'mensagem-salvo';
     mensagemSalvo.innerHTML = '✅ <strong>Pontuação já foi salva!</strong><br>Reinicie o jogo para jogar novamente.';
     mensagemSalvo.style.cssText = `
       background: rgba(0, 255, 136, 0.2);
@@ -482,6 +508,16 @@ function mostrarResultado() {
     `;
     
     document.getElementById("resultado").insertBefore(mensagemSalvo, document.getElementById("link-bonus"));
+  } else {
+    // Mostrar campos para salvar pontuação
+    botaoSalvar.style.display = 'inline-block';
+    inputNome.style.display = 'inline-block';
+    
+    // Remover mensagem de salvo se existir
+    const mensagemSalvo = document.querySelector('.mensagem-salvo');
+    if (mensagemSalvo) {
+      mensagemSalvo.remove();
+    }
   }
 }
 
@@ -547,8 +583,15 @@ function enviarPontuacao() {
     document.getElementById("botao-salvar").style.display = 'none';
     document.getElementById("nome-jogador").style.display = 'none';
     
+    // Remover mensagem anterior se existir
+    const mensagemAnterior = document.querySelector('.mensagem-salvo');
+    if (mensagemAnterior) {
+      mensagemAnterior.remove();
+    }
+    
     // Mostrar mensagem de sucesso
     const mensagemSalvo = document.createElement('div');
+    mensagemSalvo.className = 'mensagem-salvo';
     mensagemSalvo.innerHTML = '✅ <strong>Pontuação salva com sucesso!</strong><br>Seus pontos foram somados ao ranking. Reinicie para jogar novamente.';
     mensagemSalvo.style.cssText = `
       background: rgba(0, 255, 136, 0.2);
@@ -566,9 +609,22 @@ function enviarPontuacao() {
 }
 
 function reiniciarJogo() {
+  // IMPORTANTE: Resetar a flag para permitir salvar novamente
   jaSalvouPontuacao = false;
+  
   document.getElementById("resultado").classList.add("hidden");
   document.getElementById("quiz-box").classList.remove("hidden");
+  
+  // Limpar campos de entrada
+  document.getElementById("nome-jogador").value = '';
+  
+  // Remover mensagem de salvo se existir
+  const mensagemSalvo = document.querySelector('.mensagem-salvo');
+  if (mensagemSalvo) {
+    mensagemSalvo.remove();
+  }
+  
+  // Recarregar perguntas
   carregarPerguntas();
 }
 
