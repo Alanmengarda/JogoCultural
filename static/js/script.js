@@ -1,8 +1,12 @@
 let perguntas = [];
+let perguntasFiltradas = [];
 let indice = 0;
 let pontuacao = 0;
 let idioma = 'pt';
 let ranking = [];
+let dificuldadeAtual = 'facil';
+let estatisticasTemas = {};
+let jaSalvouPontuacao = false;
 
 // Transições diferentes para cada pergunta
 const transicoes = [
@@ -16,14 +20,41 @@ const transicoes = [
 
 function carregarPerguntas() {
   idioma = document.getElementById("idioma").value;
+  dificuldadeAtual = document.getElementById("dificuldade").value;
+  
   fetch(`/perguntas?lang=${idioma}`)
     .then(res => res.json())
     .then(data => {
       perguntas = data;
+      filtrarPerguntasPorDificuldade();
       indice = 0;
       pontuacao = 0;
+      jaSalvouPontuacao = false;
+      inicializarEstatisticas();
       mostrarPergunta();
+      atualizarPainelProgresso();
     });
+}
+
+function filtrarPerguntasPorDificuldade() {
+  perguntasFiltradas = perguntas.filter(p => p.dificuldade === dificuldadeAtual);
+  // Embaralhar perguntas
+  perguntasFiltradas = perguntasFiltradas.sort(() => Math.random() - 0.5);
+}
+
+function inicializarEstatisticas() {
+  estatisticasTemas = {};
+  perguntasFiltradas.forEach(p => {
+    if (!estatisticasTemas[p.tema]) {
+      estatisticasTemas[p.tema] = {
+        total: 0,
+        acertos: 0,
+        porcentagem: 0
+      };
+    }
+    estatisticasTemas[p.tema].total++;
+  });
+  atualizarGraficoTemas();
 }
 
 function carregarRanking() {
@@ -57,9 +88,103 @@ function atualizarRankingSidebar() {
   });
 }
 
+function atualizarPainelProgresso() {
+  const progressoDiv = document.getElementById('painel-progresso');
+  const perguntasRestantes = perguntasFiltradas.length - indice;
+  const perguntasRespondidas = indice;
+  const porcentagemCompleta = Math.round((perguntasRespondidas / perguntasFiltradas.length) * 100);
+  
+  const dificuldadeTexto = {
+    'facil': '🟢 Fácil',
+    'normal': '🟡 Normal', 
+    'dificil': '🔴 Difícil'
+  };
+  
+  progressoDiv.innerHTML = `
+    <div class="progresso-header">
+      <h3>📊 PROGRESSO</h3>
+    </div>
+    
+    <div class="progresso-item">
+      <span class="progresso-label">Nível:</span>
+      <span class="progresso-valor">${dificuldadeTexto[dificuldadeAtual]}</span>
+    </div>
+    
+    <div class="progresso-item">
+      <span class="progresso-label">Pergunta:</span>
+      <span class="progresso-valor">${perguntasRespondidas + 1}/${perguntasFiltradas.length}</span>
+    </div>
+    
+    <div class="progresso-item">
+      <span class="progresso-label">Restantes:</span>
+      <span class="progresso-valor">${perguntasRestantes}</span>
+    </div>
+    
+    <div class="barra-progresso">
+      <div class="barra-preenchida" style="width: ${porcentagemCompleta}%"></div>
+    </div>
+    <div class="porcentagem-texto">${porcentagemCompleta}% Completo</div>
+    
+    <div class="pontuacao-atual">
+      <span class="progresso-label">Pontos:</span>
+      <span class="progresso-valor pontos">${pontuacao}</span>
+    </div>
+  `;
+}
+
+function atualizarGraficoTemas() {
+  const graficoDiv = document.getElementById('grafico-temas');
+  let html = '<div class="grafico-header"><h4>📈 DESEMPENHO POR TEMA</h4></div>';
+  
+  const temasOrdenados = Object.entries(estatisticasTemas)
+    .sort((a, b) => a[1].porcentagem - b[1].porcentagem);
+  
+  if (temasOrdenados.length === 0) {
+    html += '<div class="tema-item">Nenhum tema respondido ainda</div>';
+  } else {
+    temasOrdenados.forEach(([tema, stats]) => {
+      const cor = stats.porcentagem >= 70 ? '#00ff88' : 
+                  stats.porcentagem >= 40 ? '#ffff00' : '#ff4444';
+      
+      html += `
+        <div class="tema-item">
+          <div class="tema-nome">${getThemeIcon(tema)} ${tema}</div>
+          <div class="tema-stats">
+            <div class="tema-barra">
+              <div class="tema-preenchida" style="width: ${stats.porcentagem}%; background: ${cor}"></div>
+            </div>
+            <span class="tema-porcentagem">${stats.porcentagem}%</span>
+          </div>
+          <div class="tema-detalhes">${stats.acertos}/${stats.total}</div>
+        </div>
+      `;
+    });
+    
+    // Mostrar tema que precisa melhorar
+    if (temasOrdenados.length > 0) {
+      const temaMelhorar = temasOrdenados[0];
+      if (temaMelhorar[1].total > 0 && temaMelhorar[1].porcentagem < 70) {
+        html += `
+          <div class="tema-melhorar">
+            <strong>💡 Foque em:</strong><br>
+            ${getThemeIcon(temaMelhorar[0])} ${temaMelhorar[0]}
+          </div>
+        `;
+      }
+    }
+  }
+  
+  graficoDiv.innerHTML = html;
+}
+
 function mostrarPergunta() {
+  if (indice >= perguntasFiltradas.length) {
+    mostrarResultado();
+    return;
+  }
+  
   const quizBox = document.getElementById("quiz-box");
-  const p = perguntas[indice];
+  const p = perguntasFiltradas[indice];
   
   // Aplicar transição de saída
   quizBox.classList.add('fade-out');
@@ -106,6 +231,8 @@ function mostrarPergunta() {
       });
     }, 600);
     
+    atualizarPainelProgresso();
+    
   }, 300);
 }
 
@@ -116,7 +243,7 @@ function getThemeIcon(tema) {
     'Arte': '🎨', 'Art': '🎨',
     'Cultura': '🎭', 'Culture': '🎭',
     'Arquitetura': '🏛️', 'Architecture': '🏛️',
-    'Idioma': '🗣️', 'Language': '🗣️',
+    'Língua': '🗣️', 'Language': '🗣️',
     'Dança': '💃', 'Dance': '💃',
     'Música': '🎵', 'Music': '🎵',
     'Festas': '🎉', 'Festivals': '🎉',
@@ -126,14 +253,18 @@ function getThemeIcon(tema) {
     'Literatura': '📚', 'Literature': '📚',
     'Tradições': '🎭', 'Traditions': '🎭',
     'Arquitetura Religiosa': '⛪', 'Religious Architecture': '⛪',
-    'Idioma': '🗣️', 'Language': '🗣️',
-    'Idioma': '🗣️', 'Language': '🗣️'
+    'Filosofia': '🤔', 'Philosophy': '🤔',
+    'História': '📜', 'History': '📜',
+    'Ciência': '🔬', 'Science': '🔬',
+    'Geografia': '🌍', 'Geography': '🌍',
+    'Economia': '💰', 'Economy': '💰',
+    'Tecnologia': '💻', 'Technology': '💻'
   };
   return icons[tema] || '🌍';
 }
 
 function responder(indiceEscolhido) {
-  const p = perguntas[indice];
+  const p = perguntasFiltradas[indice];
   const opcoes = document.querySelectorAll("#opcoes button");
 
   // Desabilita todos os botões de opção
@@ -141,6 +272,11 @@ function responder(indiceEscolhido) {
 
   const exp = document.getElementById("explicacao");
   exp.classList.remove("hidden");
+
+  // Atualizar estatísticas do tema
+  if (!estatisticasTemas[p.tema]) {
+    estatisticasTemas[p.tema] = { total: 0, acertos: 0, porcentagem: 0 };
+  }
 
   // Efeito sonoro simulado com vibração (se suportado)
   if (navigator.vibrate) {
@@ -152,8 +288,17 @@ function responder(indiceEscolhido) {
   }
 
   if (indiceEscolhido === p.resposta_correta) {
-    pontuacao += 10;
-    exp.innerHTML = `✅ <strong>Resposta correta!</strong><br><em>${p.explicacao}</em>`;
+    // Pontuação baseada na dificuldade
+    const pontosPorDificuldade = {
+      'facil': 5,
+      'normal': 10,
+      'dificil': 20
+    };
+    pontuacao += pontosPorDificuldade[p.dificuldade];
+    
+    estatisticasTemas[p.tema].acertos++;
+    
+    exp.innerHTML = `✅ <strong>Resposta correta! (+${pontosPorDificuldade[p.dificuldade]} pontos)</strong><br><em>${p.explicacao}</em>`;
     opcoes[indiceEscolhido].classList.add("correta");
     
     // Efeito de partículas simulado
@@ -164,10 +309,15 @@ function responder(indiceEscolhido) {
     opcoes[p.resposta_correta].classList.add("correta");
   }
 
+  // Atualizar porcentagem do tema
+  estatisticasTemas[p.tema].porcentagem = Math.round(
+    (estatisticasTemas[p.tema].acertos / estatisticasTemas[p.tema].total) * 100
+  );
+
   document.getElementById("proximo").disabled = false;
   
-  // Atualizar pontuação em tempo real
-  atualizarPontuacaoAtual();
+  atualizarGraficoTemas();
+  atualizarPainelProgresso();
 }
 
 function criarEfeitoSucesso(elemento) {
@@ -180,46 +330,9 @@ function criarEfeitoSucesso(elemento) {
   }, 300);
 }
 
-function atualizarPontuacaoAtual() {
-  // Criar ou atualizar indicador de pontuação atual
-  let pontuacaoAtual = document.getElementById('pontuacao-atual');
-  if (!pontuacaoAtual) {
-    pontuacaoAtual = document.createElement('div');
-    pontuacaoAtual.id = 'pontuacao-atual';
-    pontuacaoAtual.style.cssText = `
-      position: fixed;
-      top: 20px;
-      right: 20px;
-      background: linear-gradient(135deg, rgba(0, 255, 255, 0.2), rgba(255, 0, 255, 0.2));
-      border: 2px solid var(--primary-color);
-      border-radius: 15px;
-      padding: 15px 25px;
-      color: var(--text-light);
-      font-weight: bold;
-      font-size: 1.2rem;
-      backdrop-filter: blur(10px);
-      z-index: 1000;
-      animation: slideInRight 0.5s ease-out;
-    `;
-    document.body.appendChild(pontuacaoAtual);
-  }
-  
-  pontuacaoAtual.innerHTML = `⭐ ${pontuacao} pontos`;
-  
-  // Efeito de pulsação quando a pontuação muda
-  pontuacaoAtual.style.animation = 'none';
-  setTimeout(() => {
-    pontuacaoAtual.style.animation = 'titlePulse 0.5s ease-out';
-  }, 10);
-}
-
 function proximaPergunta() {
   indice++;
-  if (indice < perguntas.length) {
-    mostrarPergunta();
-  } else {
-    mostrarResultado();
-  }
+  mostrarPergunta();
 }
 
 function mostrarResultado() {
@@ -227,20 +340,43 @@ function mostrarResultado() {
   document.getElementById("resultado").classList.remove("hidden");
   document.getElementById("pontuacao-final").innerText = `${pontuacao} pontos`;
 
-  // Remover indicador de pontuação atual
-  const pontuacaoAtual = document.getElementById('pontuacao-atual');
-  if (pontuacaoAtual) {
-    pontuacaoAtual.remove();
-  }
-
   // Mostrar link bonus se pontuação alta
-  if (pontuacao >= 20) {
+  const pontuacaoMinima = {
+    'facil': 15,
+    'normal': 30,
+    'dificil': 60
+  };
+  
+  if (pontuacao >= pontuacaoMinima[dificuldadeAtual]) {
     document.getElementById("link-bonus").classList.remove("hidden");
   }
   
   // Efeito de fogos de artifício simulado para pontuações altas
-  if (pontuacao >= 50) {
+  if (pontuacao >= pontuacaoMinima[dificuldadeAtual] * 2) {
     criarEfeitoFogosArtificio();
+  }
+  
+  // Mostrar botão de salvar apenas se ainda não salvou
+  const botaoSalvar = document.getElementById("botao-salvar");
+  const inputNome = document.getElementById("nome-jogador");
+  
+  if (jaSalvouPontuacao) {
+    botaoSalvar.style.display = 'none';
+    inputNome.style.display = 'none';
+    
+    const mensagemSalvo = document.createElement('div');
+    mensagemSalvo.innerHTML = '✅ <strong>Pontuação já foi salva!</strong><br>Reinicie o jogo para jogar novamente.';
+    mensagemSalvo.style.cssText = `
+      background: rgba(0, 255, 136, 0.2);
+      border: 2px solid var(--success-color);
+      border-radius: 10px;
+      padding: 15px;
+      margin: 20px 0;
+      text-align: center;
+      color: var(--success-color);
+    `;
+    
+    document.getElementById("resultado").insertBefore(mensagemSalvo, document.getElementById("link-bonus"));
   }
 }
 
@@ -287,15 +423,48 @@ function criarEfeitoFogosArtificio() {
 }
 
 function enviarPontuacao() {
+  if (jaSalvouPontuacao) {
+    alert("Você já salvou sua pontuação! Reinicie o jogo para jogar novamente.");
+    return;
+  }
+  
   const nome = document.getElementById("nome-jogador").value || "Anônimo";
   fetch("/pontuar", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ nome, pontos: pontuacao })
   }).then(() => {
+    jaSalvouPontuacao = true;
     alert("Pontuação salva com sucesso! 🎉");
     carregarRanking(); // Atualizar ranking após salvar
+    
+    // Esconder botão e input após salvar
+    document.getElementById("botao-salvar").style.display = 'none';
+    document.getElementById("nome-jogador").style.display = 'none';
+    
+    // Mostrar mensagem de sucesso
+    const mensagemSalvo = document.createElement('div');
+    mensagemSalvo.innerHTML = '✅ <strong>Pontuação salva com sucesso!</strong><br>Reinicie o jogo para jogar novamente.';
+    mensagemSalvo.style.cssText = `
+      background: rgba(0, 255, 136, 0.2);
+      border: 2px solid var(--success-color);
+      border-radius: 10px;
+      padding: 15px;
+      margin: 20px 0;
+      text-align: center;
+      color: var(--success-color);
+      animation: slideInUp 0.5s ease-out;
+    `;
+    
+    document.getElementById("resultado").insertBefore(mensagemSalvo, document.getElementById("link-bonus"));
   });
+}
+
+function reiniciarJogo() {
+  jaSalvouPontuacao = false;
+  document.getElementById("resultado").classList.add("hidden");
+  document.getElementById("quiz-box").classList.remove("hidden");
+  carregarPerguntas();
 }
 
 // Adicionar CSS dinâmico para animações extras
