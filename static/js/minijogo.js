@@ -281,6 +281,194 @@ function inicializarJogo() {
   tentativas = 0;
   atualizarPainelEstatisticas();
   carregarBandeira();
+  updateMiniGameInterface();
+}
+
+function updateMiniGameInterface() {
+  // Atualizar título do jogo
+  const gameTitle = document.querySelector('h2');
+  if (gameTitle) {
+    gameTitle.textContent = tMini('flagGameTitle');
+  }
+  
+  // Atualizar descrição
+  const description = document.querySelector('.container p');
+  if (description) {
+    description.textContent = tMini('puzzleDescription');
+  }
+  
+  // Atualizar labels das seções
+  const puzzlePiecesTitle = document.querySelector('.secao h3');
+  if (puzzlePiecesTitle) {
+    puzzlePiecesTitle.textContent = tMini('puzzlePieces');
+  }
+  
+  const assembleFlagTitle = document.querySelectorAll('.secao h3')[1];
+  if (assembleFlagTitle) {
+    assembleFlagTitle.textContent = tMini('assembleFlag');
+  }
+  
+  // Atualizar botões
+  const restartButton = document.querySelector('button[onclick="reiniciar()"]');
+  if (restartButton) {
+    restartButton.textContent = tMini('restart');
+  }
+  
+  const nextButton = document.querySelector('button[onclick="proximaBandeira()"]');
+  if (nextButton) {
+    nextButton.textContent = tMini('nextFlag');
+  }
+  
+  // Atualizar botão voltar
+  const backButton = document.querySelector('.botao-voltar');
+  if (backButton) {
+    backButton.textContent = tMini('backToMain');
+  }
+  
+  // Atualizar label de dificuldade
+  const difficultyLabel = document.querySelector('label[for="dificuldade-mini"]');
+  if (difficultyLabel) {
+    difficultyLabel.textContent = tMini('difficulty');
+  }
+  
+  // Atualizar opções de dificuldade
+  const difficultySelect = document.getElementById('dificuldade-mini');
+  if (difficultySelect) {
+    const options = difficultySelect.querySelectorAll('option');
+    if (options.length >= 3) {
+      options[0].textContent = tMini('easyMini');
+      options[1].textContent = tMini('normalMini');
+      options[2].textContent = tMini('hardMini');
+    }
+  }
+}
+
+function tMini(key, params = {}) {
+  // Detectar idioma da página principal ou usar padrão
+  const currentLang = getMainPageLanguage() || 'pt';
+  
+  const miniTranslations = {
+    pt: {
+      flagGameTitle: "🧩 Quebra-cabeça de Bandeiras",
+      puzzleDescription: "Arraste as peças da imagem real da bandeira para montar o quebra-cabeça",
+      puzzlePieces: "🎯 Peças do Quebra-cabeça",
+      assembleFlag: "🏁 Monte a Bandeira",
+      restart: "🔄 Reiniciar Jogo",
+      nextFlag: "➡️ Próxima Bandeira",
+      backToMain: "← Voltar ao Jogo Principal",
+      difficulty: "Dificuldade:",
+      easyMini: "🟢 Fácil (4 peças)",
+      normalMini: "🟡 Normal (4 peças)",
+      hardMini: "🔴 Difícil (4 peças)",
+      statistics: "📊 ESTATÍSTICAS",
+      level: "Nível:",
+      flag: "Bandeira:",
+      remaining: "Restantes:",
+      hits: "Acertos:",
+      complete: "Completo",
+      hitRate: "Taxa de Acerto:",
+      flagComplete: "✅ Bandeira Completa!",
+      levelComplete: "🎉 Nível {level} Completo!",
+      flagsAssembled: "Bandeiras Montadas",
+      perfect: "🏆 Perfeito! Você é um expert em bandeiras!",
+      excellent: "⭐ Excelente! Muito bem jogado!",
+      goodJob: "👍 Bom trabalho! Continue praticando!"
+    },
+    en: {
+      flagGameTitle: "🧩 Flag Puzzle",
+      puzzleDescription: "Drag the pieces from the real flag image to assemble the puzzle",
+      puzzlePieces: "🎯 Puzzle Pieces",
+      assembleFlag: "🏁 Assemble the Flag",
+      restart: "🔄 Restart Game",
+      nextFlag: "➡️ Next Flag",
+      backToMain: "← Back to Main Game",
+      difficulty: "Difficulty:",
+      easyMini: "🟢 Easy (4 pieces)",
+      normalMini: "🟡 Normal (4 pieces)",
+      hardMini: "🔴 Hard (4 pieces)",
+      statistics: "📊 STATISTICS",
+      level: "Level:",
+      flag: "Flag:",
+      remaining: "Remaining:",
+      hits: "Hits:",
+      complete: "Complete",
+      hitRate: "Hit Rate:",
+      flagComplete: "✅ Flag Complete!",
+      levelComplete: "🎉 Level {level} Complete!",
+      flagsAssembled: "Flags Assembled",
+      perfect: "🏆 Perfect! You are a flag expert!",
+      excellent: "⭐ Excellent! Very well played!",
+      goodJob: "👍 Good job! Keep practicing!"
+    },
+    es: {
+      flagGameTitle: "🧩 Rompecabezas de Banderas",
+      puzzleDescription: "Arrastra las piezas de la imagen real de la bandera para armar el rompecabezas",
+      puzzlePieces: "🎯 Piezas del Rompecabezas",
+      assembleFlag: "🏁 Arma la Bandera",
+      restart: "🔄 Reiniciar Juego",
+      nextFlag: "➡️ Siguiente Bandera",
+      backToMain: "← Volver al Juego Principal",
+      difficulty: "Dificultad:",
+      easyMini: "🟢 Fácil (4 piezas)",
+      normalMini: "🟡 Normal (4 piezas)",
+      hardMini: "🔴 Difícil (4 piezas)",
+      statistics: "📊 ESTADÍSTICAS",
+      level: "Nivel:",
+      flag: "Bandera:",
+      remaining: "Restantes:",
+      hits: "Aciertos:",
+      complete: "Completo",
+      hitRate: "Tasa de Acierto:",
+      flagComplete: "✅ ¡Bandera Completa!",
+      levelComplete: "🎉 ¡Nivel {level} Completo!",
+      flagsAssembled: "Banderas Armadas",
+      perfect: "🏆 ¡Perfecto! ¡Eres un experto en banderas!",
+      excellent: "⭐ ¡Excelente! ¡Muy bien jugado!",
+      goodJob: "👍 ¡Buen trabajo! ¡Sigue practicando!"
+    }
+  };
+  
+  let translation = miniTranslations[currentLang][key] || miniTranslations['pt'][key] || key;
+  
+  // Substituir parâmetros na tradução
+  Object.keys(params).forEach(param => {
+    translation = translation.replace(`{${param}}`, params[param]);
+  });
+  
+  return translation;
+}
+
+function getMainPageLanguage() {
+  // Tentar detectar idioma da página principal através de localStorage ou URL
+  try {
+    return localStorage.getItem('gameLanguage') || 'pt';
+  } catch (e) {
+    return 'pt';
+  }
+}
+
+function getDifficultyTextMini(difficulty) {
+  const currentLang = getMainPageLanguage() || 'pt';
+  
+  const difficultyTexts = {
+    'facil': {
+      'pt': '🟢 Fácil',
+      'en': '🟢 Easy',
+      'es': '🟢 Fácil'
+    },
+    'normal': {
+      'pt': '🟡 Normal',
+      'en': '🟡 Normal',
+      'es': '🟡 Normal'
+    },
+    'dificil': {
+      'pt': '🔴 Difícil',
+      'en': '🔴 Hard',
+      'es': '🔴 Difícil'
+    }
+  };
+  
+  return difficultyTexts[difficulty][currentLang] || difficultyTexts[difficulty]['pt'];
 }
 
 function atualizarPainelEstatisticas() {
@@ -288,44 +476,38 @@ function atualizarPainelEstatisticas() {
   const bandeirasRestantes = bandeirasAtuais.length - indiceAtual;
   const porcentagemAcertos = tentativas > 0 ? Math.round((acertos / tentativas) * 100) : 0;
   
-  const dificuldadeTexto = {
-    'facil': '🟢 Fácil',
-    'normal': '🟡 Normal',
-    'dificil': '🔴 Difícil'
-  };
-  
   painelDiv.innerHTML = `
     <div class="stats-header">
-      <h3>📊 ESTATÍSTICAS</h3>
+      <h3>${tMini('statistics')}</h3>
     </div>
     
     <div class="stats-item">
-      <span class="stats-label">Nível:</span>
-      <span class="stats-valor">${dificuldadeTexto[dificuldadeAtual]}</span>
+      <span class="stats-label">${tMini('level')}</span>
+      <span class="stats-valor">${getDifficultyTextMini(dificuldadeAtual)}</span>
     </div>
     
     <div class="stats-item">
-      <span class="stats-label">Bandeira:</span>
+      <span class="stats-label">${tMini('flag')}</span>
       <span class="stats-valor">${indiceAtual + 1}/${bandeirasAtuais.length}</span>
     </div>
     
     <div class="stats-item">
-      <span class="stats-label">Restantes:</span>
+      <span class="stats-label">${tMini('remaining')}</span>
       <span class="stats-valor">${bandeirasRestantes}</span>
     </div>
     
     <div class="stats-item">
-      <span class="stats-label">Acertos:</span>
+      <span class="stats-label">${tMini('hits')}</span>
       <span class="stats-valor acertos">${acertos}/${tentativas}</span>
     </div>
     
     <div class="barra-progresso-mini">
       <div class="barra-preenchida-mini" style="width: ${((indiceAtual) / bandeirasAtuais.length) * 100}%"></div>
     </div>
-    <div class="porcentagem-texto-mini">${Math.round(((indiceAtual) / bandeirasAtuais.length) * 100)}% Completo</div>
+    <div class="porcentagem-texto-mini">${Math.round(((indiceAtual) / bandeirasAtuais.length) * 100)}% ${tMini('complete')}</div>
     
     <div class="taxa-acertos">
-      <span class="stats-label">Taxa de Acerto:</span>
+      <span class="stats-label">${tMini('hitRate')}</span>
       <span class="stats-valor taxa">${porcentagemAcertos}%</span>
     </div>
   `;
@@ -342,7 +524,7 @@ function carregarBandeira() {
   document.getElementById("resultado-mini").className = "";
 
   const bandeira = bandeirasAtuais[indiceAtual];
-  document.getElementById("titulo-jogo").innerHTML = `🧩 Monte a bandeira de ${bandeira.pais}`;
+  document.getElementById("titulo-jogo").innerHTML = `🧩 ${tMini('assembleFlag').replace('🏁 ', '')} ${bandeira.pais}`;
 
   document.getElementById("pecas-disponiveis").innerHTML = "";
   document.getElementById("area-montagem").innerHTML = "";
@@ -611,7 +793,7 @@ function verificarCompleto() {
 
   resultadoDiv.innerHTML = `
     <div class="resultado-completo">
-      <h3>✅ <strong>Bandeira Completa!</strong></h3>
+      <h3>${tMini('flagComplete')}</h3>
       <div class="explicacao-bandeira">
         <h4>🏛️ ${bandeira.pais}</h4>
         <p><em>${bandeira.explicacao}</em></p>
@@ -680,26 +862,32 @@ function mostrarFinalNivel() {
   // Tocar som de final de nível
   tocarSom('final');
   
+  const levelText = getDifficultyTextMini(dificuldadeAtual).replace(/🟢|🟡|🔴/, '').trim();
+  
+  let mensagemFinal;
+  if (porcentagemAcertos === 100) {
+    mensagemFinal = tMini('perfect');
+  } else if (porcentagemAcertos >= 80) {
+    mensagemFinal = tMini('excellent');
+  } else {
+    mensagemFinal = tMini('goodJob');
+  }
+  
   resultadoDiv.innerHTML = `
     <div class="final-nivel">
-      <h2>🎉 <strong>Nível ${dificuldadeAtual.charAt(0).toUpperCase() + dificuldadeAtual.slice(1)} Completo!</strong></h2>
+      <h2>${tMini('levelComplete', { level: levelText })}</h2>
       <div class="estatisticas-finais">
         <div class="stat-final">
           <span class="stat-numero">${acertos}</span>
-          <span class="stat-label">Bandeiras Montadas</span>
+          <span class="stat-label">${tMini('flagsAssembled')}</span>
         </div>
         <div class="stat-final">
           <span class="stat-numero">${porcentagemAcertos}%</span>
-          <span class="stat-label">Taxa de Acerto</span>
+          <span class="stat-label">${tMini('hitRate')}</span>
         </div>
       </div>
       <div class="mensagem-final">
-        ${porcentagemAcertos === 100 ? 
-          '🏆 <strong>Perfeito!</strong> Você é um expert em bandeiras!' :
-          porcentagemAcertos >= 80 ?
-          '⭐ <strong>Excelente!</strong> Muito bem jogado!' :
-          '👍 <strong>Bom trabalho!</strong> Continue praticando!'
-        }
+        ${mensagemFinal}
       </div>
     </div>
   `;
@@ -819,5 +1007,16 @@ function adicionarAnimacoesExtras() {
 
 window.onload = function() {
   adicionarAnimacoesExtras();
+  
+  // Salvar idioma no localStorage para sincronização
+  try {
+    const urlParams = new URLSearchParams(window.location.search);
+    const lang = urlParams.get('lang') || 'pt';
+    localStorage.setItem('gameLanguage', lang);
+  } catch (e) {
+    console.log('Erro ao salvar idioma:', e);
+  }
+  
   inicializarJogo();
+  updateMiniGameInterface();
 };
