@@ -63,18 +63,26 @@ body::before {
   box-shadow: 0 0 20px rgba(0, 255, 255, 0.4);
 }
 
-.dificuldade-selector {
+.controls-container {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.idioma-selector, .dificuldade-selector {
   display: flex;
   align-items: center;
   gap: 10px;
 }
 
-.dificuldade-selector label {
+.idioma-selector label, .dificuldade-selector label {
   color: var(--text-light);
   font-weight: 600;
+  white-space: nowrap;
 }
 
-#dificuldade-mini {
+#idioma-mini, #dificuldade-mini {
   background: rgba(0, 0, 0, 0.5);
   border: 2px solid var(--primary-color);
   border-radius: 10px;
@@ -84,9 +92,10 @@ body::before {
   font-family: 'Exo 2', sans-serif;
   cursor: pointer;
   transition: all 0.3s ease;
+  min-width: 150px;
 }
 
-#dificuldade-mini:hover, #dificuldade-mini:focus {
+#idioma-mini:hover, #idioma-mini:focus, #dificuldade-mini:hover, #dificuldade-mini:focus {
   border-color: var(--secondary-color);
   box-shadow: 0 0 15px rgba(255, 0, 255, 0.5);
   outline: none;
@@ -544,6 +553,10 @@ button:hover {
   .estatisticas-finais {
     gap: 20px;
   }
+  
+  .controls-container {
+    gap: 15px;
+  }
 }
 
 @media (max-width: 768px) {
@@ -586,6 +599,21 @@ button:hover {
     gap: 10px;
   }
   
+  .controls-container {
+    flex-direction: column;
+    gap: 10px;
+    width: 100%;
+  }
+  
+  .idioma-selector, .dificuldade-selector {
+    justify-content: center;
+    width: 100%;
+  }
+  
+  #idioma-mini, #dificuldade-mini {
+    min-width: 200px;
+  }
+  
   .estatisticas-finais {
     flex-direction: column;
     gap: 15px;
@@ -613,16 +641,6 @@ button:hover {
     padding: 12px 20px;
     font-size: 1rem;
     margin: 5px;
-  }
-  
-  .dificuldade-selector {
-    flex-direction: column;
-    gap: 5px;
-    text-align: center;
-  }
-  
-  #dificuldade-mini {
-    padding: 10px 15px;
   }
 }
 
@@ -682,6 +700,16 @@ button:hover {
   .stat-label {
     font-size: 0.8rem;
   }
+  
+  #idioma-mini, #dificuldade-mini {
+    min-width: 150px;
+    padding: 6px 12px;
+    font-size: 0.8rem;
+  }
+  
+  .idioma-selector label, .dificuldade-selector label {
+    font-size: 0.9rem;
+  }
 }
 
 @media (max-width: 360px) {
@@ -710,5 +738,15 @@ button:hover {
   #pecas-disponiveis {
     padding: 8px;
     gap: 5px;
+  }
+  
+  #idioma-mini, #dificuldade-mini {
+    min-width: 120px;
+    padding: 5px 10px;
+    font-size: 0.7rem;
+  }
+  
+  .controls-container {
+    gap: 8px;
   }
 }

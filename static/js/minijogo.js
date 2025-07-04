@@ -194,6 +194,7 @@ let tentativas = 0;
 let pecasColocadas = [];
 let imagemCarregada = false;
 let bandeirasAtuais = [];
+let idiomaAtual = 'pt';
 
 // Sistema de sons
 function tocarSom(tipo) {
@@ -284,6 +285,21 @@ function inicializarJogo() {
   updateMiniGameInterface();
 }
 
+function mudarIdiomaMini() {
+  idiomaAtual = document.getElementById("idioma-mini").value;
+  
+  // Salvar idioma no localStorage para sincronização
+  try {
+    localStorage.setItem('gameLanguage', idiomaAtual);
+  } catch (e) {
+    console.log('Erro ao salvar idioma:', e);
+  }
+  
+  // Atualizar interface imediatamente
+  updateMiniGameInterface();
+  atualizarPainelEstatisticas();
+}
+
 function updateMiniGameInterface() {
   // Atualizar título do jogo
   const gameTitle = document.querySelector('h2');
@@ -325,7 +341,12 @@ function updateMiniGameInterface() {
     backButton.textContent = tMini('backToMain');
   }
   
-  // Atualizar label de dificuldade
+  // Atualizar labels dos seletores
+  const languageLabel = document.querySelector('label[for="idioma-mini"]');
+  if (languageLabel) {
+    languageLabel.textContent = tMini('language');
+  }
+  
   const difficultyLabel = document.querySelector('label[for="dificuldade-mini"]');
   if (difficultyLabel) {
     difficultyLabel.textContent = tMini('difficulty');
@@ -341,12 +362,18 @@ function updateMiniGameInterface() {
       options[2].textContent = tMini('hardMini');
     }
   }
+  
+  // Atualizar título da bandeira atual se existir
+  if (bandeirasAtuais && bandeirasAtuais[indiceAtual]) {
+    const bandeira = bandeirasAtuais[indiceAtual];
+    const tituloJogo = document.getElementById("titulo-jogo");
+    if (tituloJogo) {
+      tituloJogo.innerHTML = `🧩 ${tMini('assembleFlag').replace('🏁 ', '')} ${bandeira.pais}`;
+    }
+  }
 }
 
 function tMini(key, params = {}) {
-  // Detectar idioma da página principal ou usar padrão
-  const currentLang = getMainPageLanguage() || 'pt';
-  
   const miniTranslations = {
     pt: {
       flagGameTitle: "🧩 Quebra-cabeça de Bandeiras",
@@ -356,6 +383,7 @@ function tMini(key, params = {}) {
       restart: "🔄 Reiniciar Jogo",
       nextFlag: "➡️ Próxima Bandeira",
       backToMain: "← Voltar ao Jogo Principal",
+      language: "Idioma:",
       difficulty: "Dificuldade:",
       easyMini: "🟢 Fácil (4 peças)",
       normalMini: "🟡 Normal (4 peças)",
@@ -382,6 +410,7 @@ function tMini(key, params = {}) {
       restart: "🔄 Restart Game",
       nextFlag: "➡️ Next Flag",
       backToMain: "← Back to Main Game",
+      language: "Language:",
       difficulty: "Difficulty:",
       easyMini: "🟢 Easy (4 pieces)",
       normalMini: "🟡 Normal (4 pieces)",
@@ -408,6 +437,7 @@ function tMini(key, params = {}) {
       restart: "🔄 Reiniciar Juego",
       nextFlag: "➡️ Siguiente Bandera",
       backToMain: "← Volver al Juego Principal",
+      language: "Idioma:",
       difficulty: "Dificultad:",
       easyMini: "🟢 Fácil (4 piezas)",
       normalMini: "🟡 Normal (4 piezas)",
@@ -428,7 +458,7 @@ function tMini(key, params = {}) {
     }
   };
   
-  let translation = miniTranslations[currentLang][key] || miniTranslations['pt'][key] || key;
+  let translation = miniTranslations[idiomaAtual][key] || miniTranslations['pt'][key] || key;
   
   // Substituir parâmetros na tradução
   Object.keys(params).forEach(param => {
@@ -438,18 +468,7 @@ function tMini(key, params = {}) {
   return translation;
 }
 
-function getMainPageLanguage() {
-  // Tentar detectar idioma da página principal através de localStorage ou URL
-  try {
-    return localStorage.getItem('gameLanguage') || 'pt';
-  } catch (e) {
-    return 'pt';
-  }
-}
-
 function getDifficultyTextMini(difficulty) {
-  const currentLang = getMainPageLanguage() || 'pt';
-  
   const difficultyTexts = {
     'facil': {
       'pt': '🟢 Fácil',
@@ -468,7 +487,7 @@ function getDifficultyTextMini(difficulty) {
     }
   };
   
-  return difficultyTexts[difficulty][currentLang] || difficultyTexts[difficulty]['pt'];
+  return difficultyTexts[difficulty][idiomaAtual] || difficultyTexts[difficulty]['pt'];
 }
 
 function atualizarPainelEstatisticas() {
@@ -1008,13 +1027,18 @@ function adicionarAnimacoesExtras() {
 window.onload = function() {
   adicionarAnimacoesExtras();
   
-  // Salvar idioma no localStorage para sincronização
+  // Detectar idioma da página principal ou usar padrão
   try {
-    const urlParams = new URLSearchParams(window.location.search);
-    const lang = urlParams.get('lang') || 'pt';
-    localStorage.setItem('gameLanguage', lang);
+    idiomaAtual = localStorage.getItem('gameLanguage') || 'pt';
+    
+    // Definir o idioma no seletor
+    const idiomaSelect = document.getElementById('idioma-mini');
+    if (idiomaSelect) {
+      idiomaSelect.value = idiomaAtual;
+    }
   } catch (e) {
-    console.log('Erro ao salvar idioma:', e);
+    console.log('Erro ao carregar idioma:', e);
+    idiomaAtual = 'pt';
   }
   
   inicializarJogo();

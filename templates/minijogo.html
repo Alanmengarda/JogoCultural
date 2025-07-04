@@ -12,13 +12,24 @@
   <div class="game-header">
     <a href="/" class="botao-voltar">← Voltar ao Jogo Principal</a>
     
-    <div class="dificuldade-selector">
-      <label for="dificuldade-mini">Dificuldade:</label>
-      <select id="dificuldade-mini" onchange="mudarDificuldade()">
-        <option value="facil">🟢 Fácil (4 peças)</option>
-        <option value="normal">🟡 Normal (4 peças)</option>
-        <option value="dificil">🔴 Difícil (4 peças)</option>
-      </select>
+    <div class="controls-container">
+      <div class="idioma-selector">
+        <label for="idioma-mini">Idioma:</label>
+        <select id="idioma-mini" onchange="mudarIdiomaMini()">
+          <option value="pt">🇧🇷 Português</option>
+          <option value="en">🇺🇸 English</option>
+          <option value="es">🇪🇸 Español</option>
+        </select>
+      </div>
+      
+      <div class="dificuldade-selector">
+        <label for="dificuldade-mini">Dificuldade:</label>
+        <select id="dificuldade-mini" onchange="mudarDificuldade()">
+          <option value="facil">🟢 Fácil (4 peças)</option>
+          <option value="normal">🟡 Normal (4 peças)</option>
+          <option value="dificil">🔴 Difícil (4 peças)</option>
+        </select>
+      </div>
     </div>
   </div>
 
@@ -63,6 +74,7 @@
     </aside>
   </div>
 
+  <script src="{{ url_for('static', filename='js/translations.js') }}"></script>
   <script src="{{ url_for('static', filename='js/minijogo.js') }}"></script>
 </body>
 </html>
