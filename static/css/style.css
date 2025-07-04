@@ -118,29 +118,31 @@ body::before {
   font-weight: bold;
 }
 
-.botao-bandeiras-container {
-  margin-top: 20px;
-  text-align: center;
+.minijogo-button-container {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+  animation: slideInUp 0.8s ease-out;
 }
 
-.botao-bandeiras {
+.botao-minijogo {
   display: inline-block;
-  width: 100%;
-  padding: 15px 20px;
+  padding: 15px 30px;
   background: linear-gradient(135deg, var(--secondary-color), var(--accent-color));
   border: 2px solid var(--secondary-color);
-  border-radius: 12px;
+  border-radius: 25px;
   text-decoration: none;
   color: var(--bg-dark);
   font-weight: bold;
-  font-size: 1rem;
+  font-size: 1.1rem;
   transition: all 0.3s ease;
   text-align: center;
   position: relative;
   overflow: hidden;
+  box-shadow: 0 5px 20px rgba(255, 0, 255, 0.3);
 }
 
-.botao-bandeiras::before {
+.botao-minijogo::before {
   content: '';
   position: absolute;
   top: 50%;
@@ -153,14 +155,14 @@ body::before {
   transition: width 0.3s ease, height 0.3s ease;
 }
 
-.botao-bandeiras:hover::before {
+.botao-minijogo:hover::before {
   width: 300px;
   height: 300px;
 }
 
-.botao-bandeiras:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 10px 25px rgba(255, 0, 255, 0.4);
+.botao-minijogo:hover {
+  transform: translateY(-3px) scale(1.05);
+  box-shadow: 0 10px 30px rgba(255, 0, 255, 0.5);
 }
 
 .stats-sidebar {
@@ -763,9 +765,18 @@ button:disabled {
   .main-content {
     max-width: 100%;
   }
+  
+  .minijogo-button-container {
+    order: -1;
+  }
 }
 
 @media (max-width: 768px) {
+  .game-layout {
+    padding: 10px;
+    gap: 15px;
+  }
+  
   .container {
     padding: 20px;
   }
@@ -794,5 +805,50 @@ button:disabled {
   
   #painel-progresso, #grafico-temas {
     margin-bottom: 15px;
+  }
+  
+  .botao-minijogo {
+    padding: 12px 25px;
+    font-size: 1rem;
+  }
+  
+  .ranking-sidebar {
+    padding: 15px;
+  }
+  
+  .stats-sidebar {
+    padding: 15px;
+  }
+}
+
+@media (max-width: 480px) {
+  .game-layout {
+    padding: 5px;
+  }
+  
+  .container {
+    padding: 15px;
+  }
+  
+  h1 {
+    font-size: 1.5rem;
+  }
+  
+  #pergunta {
+    font-size: 1.1rem;
+  }
+  
+  #opcoes button {
+    padding: 12px 15px;
+    font-size: 0.9rem;
+  }
+  
+  .botao-minijogo {
+    padding: 10px 20px;
+    font-size: 0.9rem;
+  }
+  
+  #nome-jogador {
+    width: 200px;
   }
 }

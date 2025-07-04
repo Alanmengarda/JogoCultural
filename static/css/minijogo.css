@@ -518,7 +518,7 @@ button:hover {
   75% { transform: translateX(10px); }
 }
 
-/* Responsive */
+/* Responsive Design */
 @media (max-width: 1200px) {
   .main-layout {
     flex-direction: column;
@@ -547,9 +547,13 @@ button:hover {
 }
 
 @media (max-width: 768px) {
+  body {
+    padding: 10px;
+  }
+  
   .container {
     padding: 20px;
-    margin: 10px;
+    margin: 10px 0;
   }
   
   h2 {
@@ -564,6 +568,7 @@ button:hover {
   #pecas-disponiveis {
     min-height: 150px;
     padding: 15px;
+    gap: 10px;
   }
   
   .control-buttons {
@@ -578,11 +583,46 @@ button:hover {
   .game-header {
     flex-direction: column;
     text-align: center;
+    gap: 10px;
   }
   
   .estatisticas-finais {
     flex-direction: column;
     gap: 15px;
+  }
+  
+  .stats-panel {
+    padding: 15px;
+  }
+  
+  .puzzle-area {
+    gap: 15px;
+    margin: 20px 0;
+  }
+  
+  #area-montagem {
+    min-height: 200px;
+    padding: 15px;
+  }
+  
+  .peca {
+    margin: 5px;
+  }
+  
+  button {
+    padding: 12px 20px;
+    font-size: 1rem;
+    margin: 5px;
+  }
+  
+  .dificuldade-selector {
+    flex-direction: column;
+    gap: 5px;
+    text-align: center;
+  }
+  
+  #dificuldade-mini {
+    padding: 10px 15px;
   }
 }
 
@@ -593,6 +633,82 @@ button:hover {
   }
   
   .puzzle-area {
-    gap: 15px;
+    gap: 10px;
+  }
+  
+  .container {
+    padding: 15px;
+  }
+  
+  h2 {
+    font-size: 1.3rem;
+  }
+  
+  .secao h3 {
+    font-size: 1rem;
+  }
+  
+  #pecas-disponiveis {
+    padding: 10px;
+    gap: 8px;
+  }
+  
+  .peca {
+    margin: 3px;
+  }
+  
+  button {
+    padding: 10px 15px;
+    font-size: 0.9rem;
+  }
+  
+  .stats-item {
+    padding: 5px 0;
+  }
+  
+  .stats-label, .stats-valor {
+    font-size: 0.8rem;
+  }
+  
+  .botao-voltar {
+    padding: 10px 20px;
+    font-size: 0.9rem;
+  }
+  
+  .stat-numero {
+    font-size: 2rem;
+  }
+  
+  .stat-label {
+    font-size: 0.8rem;
+  }
+}
+
+@media (max-width: 360px) {
+  .bandeira-container {
+    width: 120px !important;
+    height: 80px !important;
+  }
+  
+  .container {
+    padding: 10px;
+  }
+  
+  h2 {
+    font-size: 1.1rem;
+  }
+  
+  button {
+    padding: 8px 12px;
+    font-size: 0.8rem;
+  }
+  
+  .peca {
+    transform: scale(0.9);
+  }
+  
+  #pecas-disponiveis {
+    padding: 8px;
+    gap: 5px;
   }
 }

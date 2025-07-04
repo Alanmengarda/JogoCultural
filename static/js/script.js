@@ -181,25 +181,6 @@ function atualizarRankingSidebar() {
     
     rankingList.appendChild(li);
   });
-  
-  // Adicionar botão para ir ao mini-jogo das bandeiras
-  const botaoBandeiras = document.createElement('div');
-  botaoBandeiras.className = 'botao-bandeiras-container';
-  botaoBandeiras.innerHTML = `
-    <a href="/minijogo" class="botao-bandeiras">
-      🧩 Jogo das Bandeiras
-    </a>
-  `;
-  
-  const rankingSidebar = document.querySelector('.ranking-sidebar');
-  
-  // Remover botão existente se houver
-  const botaoExistente = rankingSidebar.querySelector('.botao-bandeiras-container');
-  if (botaoExistente) {
-    botaoExistente.remove();
-  }
-  
-  rankingSidebar.appendChild(botaoBandeiras);
 }
 
 function atualizarPainelProgresso() {
