@@ -117,6 +117,9 @@ function carregarPerguntas() {
   idioma = document.getElementById("idioma").value;
   dificuldadeAtual = document.getElementById("dificuldade").value;
   
+  // Atualizar interface quando idioma mudar
+  updateInterface();
+  
   fetch(`/perguntas?lang=${idioma}`)
     .then(res => res.json())
     .then(data => {
@@ -181,25 +184,6 @@ function atualizarRankingSidebar() {
     
     rankingList.appendChild(li);
   });
-  
-  // Adicionar botão para ir ao mini-jogo das bandeiras
-  const botaoBandeiras = document.createElement('div');
-  botaoBandeiras.className = 'botao-bandeiras-container';
-  botaoBandeiras.innerHTML = `
-    <a href="/minijogo" class="botao-bandeiras">
-      🧩 Jogo das Bandeiras
-    </a>
-  `;
-  
-  const rankingSidebar = document.querySelector('.ranking-sidebar');
-  
-  // Remover botão existente se houver
-  const botaoExistente = rankingSidebar.querySelector('.botao-bandeiras-container');
-  if (botaoExistente) {
-    botaoExistente.remove();
-  }
-  
-  rankingSidebar.appendChild(botaoBandeiras);
 }
 
 function atualizarPainelProgresso() {
@@ -208,39 +192,33 @@ function atualizarPainelProgresso() {
   const perguntasRespondidas = indice;
   const porcentagemCompleta = Math.round((perguntasRespondidas / perguntasFiltradas.length) * 100);
   
-  const dificuldadeTexto = {
-    'facil': '🟢 Fácil',
-    'normal': '🟡 Normal', 
-    'dificil': '🔴 Difícil'
-  };
-  
   progressoDiv.innerHTML = `
     <div class="progresso-header">
-      <h3>📊 PROGRESSO</h3>
+      <h3>${t('progress')}</h3>
     </div>
     
     <div class="progresso-item">
-      <span class="progresso-label">Nível:</span>
-      <span class="progresso-valor">${dificuldadeTexto[dificuldadeAtual]}</span>
+      <span class="progresso-label">${t('level')}</span>
+      <span class="progresso-valor">${getDifficultyText(dificuldadeAtual)}</span>
     </div>
     
     <div class="progresso-item">
-      <span class="progresso-label">Pergunta:</span>
+      <span class="progresso-label">${t('question')}</span>
       <span class="progresso-valor">${perguntasRespondidas + 1}/${perguntasFiltradas.length}</span>
     </div>
     
     <div class="progresso-item">
-      <span class="progresso-label">Restantes:</span>
+      <span class="progresso-label">${t('remaining')}</span>
       <span class="progresso-valor">${perguntasRestantes}</span>
     </div>
     
     <div class="barra-progresso">
       <div class="barra-preenchida" style="width: ${porcentagemCompleta}%"></div>
     </div>
-    <div class="porcentagem-texto">${porcentagemCompleta}% Completo</div>
+    <div class="porcentagem-texto">${porcentagemCompleta}% ${t('complete')}</div>
     
     <div class="pontuacao-atual">
-      <span class="progresso-label">Pontos:</span>
+      <span class="progresso-label">${t('points')}</span>
       <span class="progresso-valor pontos">${pontuacao}</span>
     </div>
   `;
@@ -248,13 +226,13 @@ function atualizarPainelProgresso() {
 
 function atualizarGraficoTemas() {
   const graficoDiv = document.getElementById('grafico-temas');
-  let html = '<div class="grafico-header"><h4>📈 DESEMPENHO POR TEMA</h4></div>';
+  let html = `<div class="grafico-header"><h4>${t('performance')}</h4></div>`;
   
   const temasOrdenados = Object.entries(estatisticasTemas)
     .sort((a, b) => a[1].porcentagem - b[1].porcentagem);
   
   if (temasOrdenados.length === 0) {
-    html += '<div class="tema-item">Nenhum tema respondido ainda</div>';
+    html += `<div class="tema-item">${t('noThemeAnswered')}</div>`;
   } else {
     temasOrdenados.forEach(([tema, stats]) => {
       const cor = stats.porcentagem >= 70 ? '#00ff88' : 
@@ -280,7 +258,7 @@ function atualizarGraficoTemas() {
       if (temaMelhorar[1].total > 0 && temaMelhorar[1].porcentagem < 70) {
         html += `
           <div class="tema-melhorar">
-            <strong>💡 Foque em:</strong><br>
+            <strong>${t('focusOn')}</strong><br>
             ${getThemeIcon(temaMelhorar[0])} ${temaMelhorar[0]}
           </div>
         `;
@@ -403,7 +381,7 @@ function responder(indiceEscolhido) {
     
     estatisticasTemas[p.tema].acertos++;
     
-    exp.innerHTML = `✅ <strong>Resposta correta! (+${pontosPorDificuldade[p.dificuldade]} pontos)</strong><br><em>${p.explicacao}</em>`;
+    exp.innerHTML = `✅ <strong>${t('correctAnswer')} (+${pontosPorDificuldade[p.dificuldade]} ${t('points').toLowerCase()})</strong><br><em>${p.explicacao}</em>`;
     opcoes[indiceEscolhido].classList.add("correta");
     
     // Tocar som de acerto
@@ -417,7 +395,7 @@ function responder(indiceEscolhido) {
       navigator.vibrate([100, 50, 100]);
     }
   } else {
-    exp.innerHTML = `❌ <strong>Resposta errada!</strong> A correta era: <strong>${p.opcoes[p.resposta_correta]}</strong><br><em>${p.explicacao}</em>`;
+    exp.innerHTML = `❌ <strong>${t('wrongAnswer')}</strong> ${t('correctWas')} <strong>${p.opcoes[p.resposta_correta]}</strong><br><em>${p.explicacao}</em>`;
     opcoes[indiceEscolhido].classList.add("errada");
     opcoes[p.resposta_correta].classList.add("correta");
     
@@ -459,7 +437,7 @@ function proximaPergunta() {
 function mostrarResultado() {
   document.getElementById("quiz-box").classList.add("hidden");
   document.getElementById("resultado").classList.remove("hidden");
-  document.getElementById("pontuacao-final").innerText = `${pontuacao} pontos`;
+  document.getElementById("pontuacao-final").innerText = `${pontuacao} ${t('points').toLowerCase()}`;
 
   // Tocar som de final baseado na dificuldade
   tocarSomQuiz(`final-${dificuldadeAtual}`);
@@ -496,7 +474,7 @@ function mostrarResultado() {
     
     const mensagemSalvo = document.createElement('div');
     mensagemSalvo.className = 'mensagem-salvo';
-    mensagemSalvo.innerHTML = '✅ <strong>Pontuação já foi salva!</strong><br>Reinicie o jogo para jogar novamente.';
+    mensagemSalvo.innerHTML = t('alreadySavedMessage');
     mensagemSalvo.style.cssText = `
       background: rgba(0, 255, 136, 0.2);
       border: 2px solid var(--success-color);
@@ -519,6 +497,9 @@ function mostrarResultado() {
       mensagemSalvo.remove();
     }
   }
+  
+  // Atualizar interface do resultado
+  updateInterface();
 }
 
 function criarEfeitoFogosArtificio() {
@@ -565,7 +546,7 @@ function criarEfeitoFogosArtificio() {
 
 function enviarPontuacao() {
   if (jaSalvouPontuacao) {
-    alert("Você já salvou sua pontuação! Reinicie o jogo para jogar novamente.");
+    alert(t('alreadySaved'));
     return;
   }
   
@@ -576,7 +557,7 @@ function enviarPontuacao() {
     body: JSON.stringify({ nome, pontos: pontuacao })
   }).then(() => {
     jaSalvouPontuacao = true;
-    alert("Pontuação salva com sucesso! 🎉\nSeus pontos foram somados ao seu total no ranking!");
+    alert(t('scoreSaved'));
     carregarRanking(); // Atualizar ranking após salvar
     
     // Esconder botão e input após salvar
@@ -592,7 +573,7 @@ function enviarPontuacao() {
     // Mostrar mensagem de sucesso
     const mensagemSalvo = document.createElement('div');
     mensagemSalvo.className = 'mensagem-salvo';
-    mensagemSalvo.innerHTML = '✅ <strong>Pontuação salva com sucesso!</strong><br>Seus pontos foram somados ao ranking. Reinicie para jogar novamente.';
+    mensagemSalvo.innerHTML = `${t('scoreSavedSuccess')}<br>${t('pointsAdded')}`;
     mensagemSalvo.style.cssText = `
       background: rgba(0, 255, 136, 0.2);
       border: 2px solid var(--success-color);

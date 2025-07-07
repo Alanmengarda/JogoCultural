@@ -40,7 +40,7 @@
     "dificuldade": "normal"
   },
   {
-    "tema": "Língua",
+    "tema": "Idioma",
     "pergunta": "Qual é a língua oficial do Brasil?",
     "opcoes": ["Português", "Espanhol", "Inglês", "Francês"],
     "resposta_correta": 0,
@@ -120,7 +120,7 @@
     "dificuldade": "normal"
   },
   {
-    "tema": "Língua",
+    "tema": "Idioma",
     "pergunta": "De qual país se originou a palavra 'Kindergarten'?",
     "opcoes": ["Áustria", "Alemanha", "Suíça", "Holanda"],
     "resposta_correta": 1,
@@ -128,7 +128,7 @@
     "dificuldade": "dificil"
   },
   {
-    "tema": "Língua",
+    "tema": "Idioma",
     "pergunta": "De qual país se originou a palavra 'Bonjour'?",
     "opcoes": ["Canadá", "Bélgica", "França", "Suíça"],
     "resposta_correta": 2,

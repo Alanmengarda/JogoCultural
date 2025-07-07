@@ -63,18 +63,26 @@ body::before {
   box-shadow: 0 0 20px rgba(0, 255, 255, 0.4);
 }
 
-.dificuldade-selector {
+.controls-container {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.idioma-selector, .dificuldade-selector {
   display: flex;
   align-items: center;
   gap: 10px;
 }
 
-.dificuldade-selector label {
+.idioma-selector label, .dificuldade-selector label {
   color: var(--text-light);
   font-weight: 600;
+  white-space: nowrap;
 }
 
-#dificuldade-mini {
+#idioma-mini, #dificuldade-mini {
   background: rgba(0, 0, 0, 0.5);
   border: 2px solid var(--primary-color);
   border-radius: 10px;
@@ -84,9 +92,10 @@ body::before {
   font-family: 'Exo 2', sans-serif;
   cursor: pointer;
   transition: all 0.3s ease;
+  min-width: 150px;
 }
 
-#dificuldade-mini:hover, #dificuldade-mini:focus {
+#idioma-mini:hover, #idioma-mini:focus, #dificuldade-mini:hover, #dificuldade-mini:focus {
   border-color: var(--secondary-color);
   box-shadow: 0 0 15px rgba(255, 0, 255, 0.5);
   outline: none;
@@ -250,17 +259,17 @@ h2 {
   flex-wrap: wrap;
   gap: 15px;
   justify-content: center;
-  min-height: 100px;
+  min-height: 200px;
   align-items: flex-start;
-  padding: 0px;
+  padding: 20px;
 }
 
 #area-montagem {
   display: flex;
   justify-content: center;
   align-items: center;
-  min-height: 100px;
-  padding: 0px;
+  min-height: 300px;
+  padding: 20px;
 }
 
 .bandeira-container {
@@ -518,7 +527,7 @@ button:hover {
   75% { transform: translateX(10px); }
 }
 
-/* Responsive */
+/* Responsive Design */
 @media (max-width: 1200px) {
   .main-layout {
     flex-direction: column;
@@ -544,12 +553,20 @@ button:hover {
   .estatisticas-finais {
     gap: 20px;
   }
+  
+  .controls-container {
+    gap: 15px;
+  }
 }
 
 @media (max-width: 768px) {
+  body {
+    padding: 10px;
+  }
+  
   .container {
     padding: 20px;
-    margin: 10px;
+    margin: 10px 0;
   }
   
   h2 {
@@ -564,6 +581,7 @@ button:hover {
   #pecas-disponiveis {
     min-height: 150px;
     padding: 15px;
+    gap: 10px;
   }
   
   .control-buttons {
@@ -578,11 +596,51 @@ button:hover {
   .game-header {
     flex-direction: column;
     text-align: center;
+    gap: 10px;
+  }
+  
+  .controls-container {
+    flex-direction: column;
+    gap: 10px;
+    width: 100%;
+  }
+  
+  .idioma-selector, .dificuldade-selector {
+    justify-content: center;
+    width: 100%;
+  }
+  
+  #idioma-mini, #dificuldade-mini {
+    min-width: 200px;
   }
   
   .estatisticas-finais {
     flex-direction: column;
     gap: 15px;
+  }
+  
+  .stats-panel {
+    padding: 15px;
+  }
+  
+  .puzzle-area {
+    gap: 15px;
+    margin: 20px 0;
+  }
+  
+  #area-montagem {
+    min-height: 200px;
+    padding: 15px;
+  }
+  
+  .peca {
+    margin: 5px;
+  }
+  
+  button {
+    padding: 12px 20px;
+    font-size: 1rem;
+    margin: 5px;
   }
 }
 
@@ -593,6 +651,102 @@ button:hover {
   }
   
   .puzzle-area {
-    gap: 15px;
+    gap: 10px;
+  }
+  
+  .container {
+    padding: 15px;
+  }
+  
+  h2 {
+    font-size: 1.3rem;
+  }
+  
+  .secao h3 {
+    font-size: 1rem;
+  }
+  
+  #pecas-disponiveis {
+    padding: 10px;
+    gap: 8px;
+  }
+  
+  .peca {
+    margin: 3px;
+  }
+  
+  button {
+    padding: 10px 15px;
+    font-size: 0.9rem;
+  }
+  
+  .stats-item {
+    padding: 5px 0;
+  }
+  
+  .stats-label, .stats-valor {
+    font-size: 0.8rem;
+  }
+  
+  .botao-voltar {
+    padding: 10px 20px;
+    font-size: 0.9rem;
+  }
+  
+  .stat-numero {
+    font-size: 2rem;
+  }
+  
+  .stat-label {
+    font-size: 0.8rem;
+  }
+  
+  #idioma-mini, #dificuldade-mini {
+    min-width: 150px;
+    padding: 6px 12px;
+    font-size: 0.8rem;
+  }
+  
+  .idioma-selector label, .dificuldade-selector label {
+    font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 360px) {
+  .bandeira-container {
+    width: 120px !important;
+    height: 80px !important;
+  }
+  
+  .container {
+    padding: 10px;
+  }
+  
+  h2 {
+    font-size: 1.1rem;
+  }
+  
+  button {
+    padding: 8px 12px;
+    font-size: 0.8rem;
+  }
+  
+  .peca {
+    transform: scale(0.9);
+  }
+  
+  #pecas-disponiveis {
+    padding: 8px;
+    gap: 5px;
+  }
+  
+  #idioma-mini, #dificuldade-mini {
+    min-width: 120px;
+    padding: 5px 10px;
+    font-size: 0.7rem;
+  }
+  
+  .controls-container {
+    gap: 8px;
   }
 }
