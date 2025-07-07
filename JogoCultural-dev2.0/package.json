@@ -1,0 +1,16 @@
+{
+  "name": "flask-quiz-app",
+  "version": "1.0.0",
+  "description": "A Flask quiz application with frontend assets",
+  "main": "index.js",
+  "scripts": {
+    "dev": "echo 'Starting Flask development server...' && python app.py",
+    "build": "echo 'No build process needed for this Flask application'",
+    "start": "python app.py"
+  },
+  "keywords": ["flask", "quiz", "python"],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {},
+  "dependencies": {}
+}
